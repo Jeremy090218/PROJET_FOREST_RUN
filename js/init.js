@@ -31,8 +31,7 @@
     }
 
     chargeJS(0, classes[i], dossier, () => {
-      ++nb;
-      if(nb == 3){
+      if(++nb == classes.length){
         chargeJS(0, ['main'], "", () => {});
       }
     });

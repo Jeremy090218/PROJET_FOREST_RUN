@@ -1,5 +1,5 @@
 class Partie {
-  constructor() {
-
+  constructor(ctrl) {
+    this.controleur = ctrl;
   }
 }

@@ -1,5 +1,5 @@
 class VueShooterEchec extends Vue {
-  constructor() {
-    super();
+  constructor(ctrl) {
+    super(ctrl, 'shooterEchec');
   }
 }

@@ -1,5 +1,5 @@
 class PartieShoot extends Partie {
-  constructor() {
-    super();
+  constructor(ctrl) {
+    super(ctrl);
   }
 }

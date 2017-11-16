@@ -1,5 +1,5 @@
-class VueShooterBoss extends Vue {
-  constructor() {
-    super();
+class VueShooterBoss extends VueJeu {
+  constructor(ctrl) {
+    super(ctrl, 'shooterBoss');
   }
 }

@@ -1,5 +1,5 @@
 class PartieRun extends Partie {
-  constructor() {
-    super();
+  constructor(ctrl) {
+    super(ctrl);
   }
 }

@@ -1,2 +1,3 @@
-let test = new ObjetRamassable();
-console.log("Hello World !");
+(() => {
+  const ctrl = new Controleur();
+})();

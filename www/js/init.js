@@ -29,9 +29,7 @@
 
     chargeJS(0, classes[i], dossier, () => {
       if(++nb == classes.length){
-        let arr = ['main'];
-        if ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1)) arr.unshift('cordova');
-        chargeJS(0, arr, "", () => {});
+        chargeJS(0, ['main'], "", () => {});
       }
     });
   }

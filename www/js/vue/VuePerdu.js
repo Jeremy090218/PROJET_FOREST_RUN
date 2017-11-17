@@ -6,10 +6,10 @@ class VuePerdu extends Vue {
     this.add(titre);
     titre.innerHTML = "Perdu";
 
-    const button = this.create('button');
-    this.add(button);
-    button.innerHTML = "Menu Principal";
-    button.onclick = () => {
+    const buttonPerdu = this.create('button');
+    this.add(buttonPerdu);
+    buttonPerdu.innerHTML = "Menu Principal";
+    buttonPerdu.onclick = () => {
       this.controleur.changerVue(new VueMenuPrincipal(this.controleur), this);
     }
   }

@@ -11,13 +11,14 @@ class VuePause extends Vue {
     buttonReprendre.innerHTML = "Reprendre";
     buttonReprendre.onclick = () => {
       this.delete();
+      this.controleur.rafraichirVues();
     }
 
     const buttonMenuPrincip = this.create('button');
     this.add(buttonMenuPrincip);
     buttonMenuPrincip.innerHTML = "Menu principal";
     buttonMenuPrincip.onclick = () => {
-      this.controleur.changerVue(new VueMenuPrincipal(this.controleur), this);
+      this.controleur.changerVueUnique(new VueMenuPrincipal(this.controleur));
     }
   }
 }

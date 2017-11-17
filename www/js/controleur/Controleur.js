@@ -29,14 +29,24 @@ class Controleur {
     });
   }
 
-  changerVue(vue, vueActuelle = null){
-    if(vueActuelle) vueActuelle.delete();
+  rafraichirVues(){
     for (let i = 0; i < this.vues.length; ++i) {
       if(!this.vues[i].isAlive()){
         this.vues.splice(i--, 1);
       }
     }
+  }
 
+  changerVueUnique(vue){
+    for (let i = 0; i < this.vues.length; ++i) {
+      this.vues[i].delete();
+    }
+    this.changerVue(vue);
+  }
+
+  changerVue(vue, vueActuelle = null){
+    if(vueActuelle) vueActuelle.delete();
+    this.rafraichirVues();
     this.vues.push(vue);
   }
 

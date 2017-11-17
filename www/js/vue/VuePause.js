@@ -2,13 +2,22 @@ class VuePause extends Vue {
   constructor(ctrl) {
     super(ctrl, 'pause');
 
-    let titre = this.add('h1');
+    const titre = this.create('h1');
+    this.add(titre);
     titre.innerHTML = "Pause";
 
-    let button = this.add('button');
-    button.innerHTML = "Reprendre";
-    button.onclick = () => {
+    const buttonReprendre = this.create('button');
+    this.add(buttonReprendre);
+    buttonReprendre.innerHTML = "Reprendre";
+    buttonReprendre.onclick = () => {
       this.delete();
+    }
+
+    const buttonMenuPrincip = this.create('button');
+    this.add(buttonMenuPrincip);
+    buttonMenuPrincip.innerHTML = "Menu principal";
+    buttonMenuPrincip.onclick = () => {
+      this.controleur.changerVue(new VueMenuPrincipal(this.controleur),this);
     }
   }
 }

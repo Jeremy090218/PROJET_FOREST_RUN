@@ -2,13 +2,22 @@ class VueRunner extends VueJeu {
   constructor(ctrl) {
     super(ctrl, 'runner');
 
-    let titre = this.add('h1');
+    const titre = this.create('h1');
+    this.add(titre);
     titre.innerHTML = "Runner";
 
-    let button = this.add('button');
-    button.innerHTML = "Pause";
-    button.onclick = () => {
+    const buttonPause = this.create('buttonPause');
+    this.add(button);
+    buttonPause.innerHTML = "Pause";
+    buttonPause.onclick = () => {
       this.controleur.changerVue(new VuePause(this.controleur));
+    }
+
+    const buttonVct = this.create('button');
+    this.add(buttonVtc);
+    buttonVct.innerHTML = "Victoire";
+    buttonVct.onclick = () => {
+      this.controleur.changerVue(new VueVictoire(this.controleur),this);
     }
   }
 }

@@ -13,13 +13,15 @@ class VueMenuPrincipal extends Vue {
       this.controleur.changerVue(new VueAtelier(this.controleur), this);
     }
 
-    let button2 = this.add('button');
+    const button2 = this.create('button');
+    this.add(button2);
     button2.innerHTML = "Perdu";
     button2.onclick = () => {
       this.controleur.changerVue(new VuePerdu(this.controleur), this);
     }
 
-    let button3 = this.add('button');
+    const button3 = this.create('button');
+    this.add(button3);
     button3.innerHTML = "Jouer";
     button3.onclick = () => {
       this.controleur.changerVue(new VueRunner(this.controleur), this);

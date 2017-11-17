@@ -10,7 +10,7 @@ class VueAtelier extends Vue {
     this.add(button);
     button.innerHTML = "Menu principal";
     button.onclick = () => {
-      this.controleur.changerVue(new VueMenuPrincipal(this.controleur), this);
+      this.controleur.changerVue(new VueMenuPrincipal(this.controleur),this);
     }
 
     const p = this.create('p');

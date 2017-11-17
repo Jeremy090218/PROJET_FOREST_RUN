@@ -31,7 +31,7 @@ class Bank {
 
   getObjet(nom){
     if (this.obj[nom]) return this.obj[nom];
-    else return null;
+    else return this.getObjet('default.png');
   }
 
   getAll(){

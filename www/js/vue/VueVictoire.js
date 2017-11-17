@@ -13,5 +13,5 @@ class VueVictoire extends Vue {
       this.controleur.changerVue(new VueMenuPrincipal(this.controleur),this);
     }
   }
-  console.log("Petite Pomme");
+
 }

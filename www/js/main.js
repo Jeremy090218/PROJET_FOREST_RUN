@@ -1,3 +1,3 @@
-(() => {
+//(() => {
   const ctrl = new Controleur();
-})();
+//})();

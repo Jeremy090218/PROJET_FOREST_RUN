@@ -12,7 +12,7 @@ class Controleur {
 
     this.vues = new Array();
 
-    this.textures = new Bank("img", "textures/", ["default.png"]);
+    this.textures = new Bank("img", "textures/", ["default.png", "image2.png"]);
 
     this.chargement();
   }

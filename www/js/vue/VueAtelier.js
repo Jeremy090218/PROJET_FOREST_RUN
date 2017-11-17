@@ -2,13 +2,19 @@ class VueAtelier extends Vue {
   constructor(ctrl) {
     super(ctrl, 'atelier');
 
-    let titre = this.add('h2');
+    const titre = this.create('h2');
+    this.add(titre);
     titre.innerHTML = "Atelier";
 
-    let button = this.add('button');
+    const button = this.create('button');
+    this.add(button);
     button.innerHTML = "Menu principal";
     button.onclick = () => {
       this.controleur.changerVue(new VueMenuPrincipal(this.controleur), this);
     }
+
+    const p = this.create('p');
+    this.add(button, p);
+    p.innerHTML = "zuaeyizatei";
   }
 }

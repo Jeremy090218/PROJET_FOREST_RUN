@@ -9,10 +9,13 @@ class Vue {
     if (affiche) this.afficher();
   }
 
-  add(nomBalise){
-    let balise = document.createElement(nomBalise);
-    this.div.appendChild(balise);
-    return balise;
+  create(nomBalise){
+    return document.createElement(nomBalise);
+  }
+
+  add(balise1, balise2 = null){
+    if(balise2) balise1.appendChild(balise2);
+    else this.div.appendChild(balise1);
   }
 
   afficher(){

@@ -6,9 +6,14 @@ class VueMenuPrincipal extends Vue {
     this.add(titre);
     titre.innerHTML = "Forest Run";
 
+    const img = this.controleur.textures.getObjet('Coin_1.png');
+
+
     const button = this.create('button');
     this.add(button);
-    button.innerHTML = "Atelier";
+    this.add(button, img);
+    button.innerHTML += "Atelier";
+
     button.onclick = () => {
       this.controleur.changerVue(new VueAtelier(this.controleur), this);
     }

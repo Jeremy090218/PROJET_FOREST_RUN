@@ -86,4 +86,5 @@
   </platform>
   <plugin name="com.ludei.webviewplus.ios" spec="*"/>
   <plugin name="com.ludei.webviewplus.android" spec="*"/>
+  <plugin name="cordova-plugin-file" spec="*"></plugin>
 </widget>

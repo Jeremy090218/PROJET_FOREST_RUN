@@ -20,5 +20,12 @@ class VueMenuPrincipal extends Vue {
       this.controleur.changerVue(new VueRunner(this.controleur), this);
     }
 
+    const buttonOption = this.create('button');
+    this.add(buttonOption);
+    buttonOption.innerHTML = "Option";
+    buttonOption.onclick = () => {
+    this.controleur.changerVue(new VueOptions(this.controleur), this);
+    }
+
   }
 }

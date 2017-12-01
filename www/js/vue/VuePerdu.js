@@ -16,6 +16,6 @@ class VuePerdu extends Vue {
     // Test //
     const titreThomas = this.create('h2');
     this.add(titreThomas);
-    titreThomas.innerHTML = "Salut c'est Thomas";
+    titreThomas.innerHTML = "Salut c'est Jérémy";
   }
 }

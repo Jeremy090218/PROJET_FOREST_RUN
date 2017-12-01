@@ -36,7 +36,34 @@ width: 100%;
 height: 100%;
 }
 
+
 #menuPrincipal #btnO {
 position:relative;
 left:35%;
 }
+
+button {
+   border-top: 1px solid #1c4d2e;
+   background: #558a4e;
+
+
+   padding: 7px 14px;
+   -webkit-border-radius: 12px;
+   -moz-border-radius: 12px;
+   border-radius: 12px;
+
+   color: #f5f5f5;
+   font-size: 14px;
+   /*font-family: Georgia, Serif;*/
+   font-family: FredokaOne-Regular;
+   text-decoration: none;
+   vertical-align: middle;
+   display: block;
+   margin: auto;
+
+   }
+
+button:active {
+   border-top-color: #186112;
+   background: #186112;
+   }

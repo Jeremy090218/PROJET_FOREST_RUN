@@ -33,4 +33,8 @@ class Partie {
   update(){
     console.log("erreur");
   }
+
+  update(){
+    
+  }
 }

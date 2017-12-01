@@ -6,18 +6,19 @@ class VueBoutique extends Vue {
     this.add(titre);
     titre.innerHTML = "Boutique";
 
-    const buttonAtl = this.create('button');
-    this.add(buttonAtl);
-    buttonAtl.innerHTML = "Retour à l'Atelier";
-    buttonAtl.onclick = () => {
+    const buttonRetourAtl = this.create('button');
+    this.add(buttonRetourAtl);
+    buttonRetourAtl.innerHTML = "Retour à l'Atelier";
+    buttonRetourAtl.onclick = () => {
       this.delete();
+      this.controleur.rafraichirVues();
     }
 
     const buttonMenuPrincip = this.create('button');
     this.add(buttonMenuPrincip);
     buttonMenuPrincip.innerHTML = "Menu principal";
     buttonMenuPrincip.onclick = () => {
-      this.controleur.changerVue(new VueMenuPrincipal(this.controleur),this);
-    }
+      this.controleur.changerVueUnique(new VueMenuPrincipal(this.controleur));
   }
+ }
 }

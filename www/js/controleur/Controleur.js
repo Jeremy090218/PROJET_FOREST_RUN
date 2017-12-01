@@ -9,6 +9,7 @@ class Controleur {
 ///////////////////////////////////////
     this.partieRunner = null;
     this.partieShooter = null;
+    this.partieRendu = null;
 
     this.vues = new Array();
     this.vueRendu = null;
@@ -23,8 +24,11 @@ class Controleur {
 
   chargement(){
     this.textures.chargement(() => {
-      console.log("Fin chargement");
-      this.changerVue(new VueMenuPrincipal(this));
+      console.log("Fin chargement des textures");
+      this.chargerDonneesSauvegarde(() => {
+        console.log("Fin chargement des données utilisateur");
+        this.changerVue(new VueMenuPrincipal(this));
+      });
     }, (prog) => {
       console.log(prog +"%");
     });
@@ -57,6 +61,7 @@ class Controleur {
 
   nouvellePartie(){
     this.partieRunner = new PartieRun(this);
+    this.partieRendu = this.partieRunner;
     this.play();
   }
 
@@ -66,10 +71,14 @@ class Controleur {
   }
 
   play(){
-    console.log("play");
-    this.run = true;
-    this.acumulateur = 1001;
-    this.boucleDeJeu(0);
+    if(this.partieRendu){
+      console.log("play");
+      this.run = true;
+      this.acumulateur = 1001;
+      this.boucleDeJeu(0);
+    } else {
+      console.log("Play impossible, aucune partie initialisé");
+    }
   }
 
   boucleDeJeu(millis){
@@ -95,6 +104,36 @@ class Controleur {
 
   update(){
     //console.log("update");
+    this.partieRunner.update();
+  }
+
+  chargerDonneesSauvegarde(cb){
+    // TODO: utiliser plugin cordova pour faire un read ou utiliser un XMLHttpRequest
+    this.dataUtilisateur = {
+      achete: ["wowo", "ofhvoqjdhv", "qfdsghgfdfgh"],
+      equipe: ["iihiu", "gqdfgqdf", "qsdgoqu", "sqgq"]
+    }
+
+    cb();
+  }
+
+  sauvegarderDonnees(){
+    // TODO: utiliser plugin cordova pour faire un write
+    //this.dataUtilisateur;
+  }
+
+  getDataUtilisateur(){
+    return this.dataUtilisateur;
+  }
+
+  resetDataUtilisateur(){
+    if (confirm("Effacer toutes vos données ? Cette action est irreversible !!!")) {
+      for (let atr in this.dataUtilisateur) {
+        console.log("Remise à zero de: "+atr);
+        this.dataUtilisateur[atr] = null;
+      }
+      this.sauvegarderDonnees();
+    }
   }
 
   debbug(){

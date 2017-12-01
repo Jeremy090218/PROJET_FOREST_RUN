@@ -33,4 +33,11 @@ body{
 
 #boutique{
   
+
+/* ************Menu Pricipal************* */
+
+#menuPrincipal{
+background-color: pink;
+width: 100%;
+height: 100%;
 }

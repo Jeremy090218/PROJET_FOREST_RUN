@@ -26,5 +26,7 @@ class VueRunner extends VueJeu {
     buttonVct.onclick = () => {
       this.controleur.changerVue(new VueVictoire(this.controleur),this);
     }
+
+    this.controleur.play();
   }
 }

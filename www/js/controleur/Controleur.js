@@ -11,6 +11,7 @@ class Controleur {
     this.partieShooter = null;
 
     this.vues = new Array();
+    this.vueRendu = null;
 
     this.textures = new Bank("img", "textures/", ["default.png", "fondtest.png", "Ground_0_1.png",
                                                   "Obstacle_1.png",
@@ -42,6 +43,10 @@ class Controleur {
       this.vues[i].delete();
     }
     this.changerVue(vue);
+  }
+
+  setVueRendu(v){
+    this.vueRendu = v;
   }
 
   changerVue(vue, vueActuelle = null){
@@ -85,9 +90,19 @@ class Controleur {
 
   draw(){
     //console.log("draw");
+    this.vueRendu.draw();
   }
 
   update(){
     //console.log("update");
+  }
+
+  debbug(){
+    console.log("Etat run: "+ this.run);
+    console.log("PartieRunner: "+ this.partieRunner);
+    console.log("PartieShooterr: "+ this.partieShooter);
+    console.log("Vues:", this.vues);
+    console.log("Vue du rendu graphique courant:", this.vueRendu);
+    console.log("Acumulateur: "+ this.acumulateur);
   }
 }

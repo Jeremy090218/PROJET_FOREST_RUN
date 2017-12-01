@@ -4,10 +4,10 @@ class VueMenuPrincipal extends Vue {
 
 
     //Button option
-    const buttonOption = this.create('button');
-    this.add(buttonOption);
-    buttonOption.innerHTML = "Option";
-    buttonOption.onclick = () => {
+    const buttonOptions = this.create('button');
+    this.add(buttonOptions);
+    buttonOptions.innerHTML = "Options";
+    buttonOptions.onclick = () => {
     this.controleur.changerVue(new VueOptions(this.controleur), this);
     }
     //titre
@@ -32,11 +32,11 @@ class VueMenuPrincipal extends Vue {
       this.controleur.changerVue(new VueAtelier(this.controleur), this);
     }
 
-    //button Stats et leçon
-    const buttonStats = this.create('button');
-    this.add(buttonStats);
-    buttonStats.innerHTML = "Leçons et statistiques";
-    buttonStats.onclick = () => {
+    //button Stats et leçons
+    const buttonLeconsStats = this.create('button');
+    this.add(buttonLeconsStats);
+    buttonLeconsStats.innerHTML = "Leçons et statistiques";
+    buttonLeconsStats.onclick = () => {
       this.controleur.changerVue(new VueLeconsStats(this.controleur), this);
     }
 

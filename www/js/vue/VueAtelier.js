@@ -17,7 +17,8 @@ class VueAtelier extends Vue {
     this.add(buttonBtq);
     buttonBtq.innerHTML = "Boutique";
     buttonBtq.onclick = () => {
-      this.controleur.changerVue(new VueBoutique(this.controleur),this);
+      this.controleur.changerVue(new VueBoutique(this.controleur));
     }
+
   }
 }

@@ -13,4 +13,8 @@ class Partie {
   initElem(){
 
   }
+
+  update(){
+    
+  }
 }

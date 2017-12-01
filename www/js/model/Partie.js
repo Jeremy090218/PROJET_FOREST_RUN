@@ -1,16 +1,36 @@
 class Partie {
-  constructor(ctrl) {
+  constructor(ctrl, perso,questions) {
     this.controleur = ctrl;
-
-    this.personnage = null;
-    this.questions = new Array();
+    this.personnage = perso;
+    this.questions = questions;
+    this.elementsDecors = [] ;
   }
 
-  getPersonnage(){
-    return this.personnage;
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////// GETTERS /////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+  getPersonnage(){return this.personnage;}
+  getControleur(){return this.controleur;}
+  getQuestions(){return this.questions;}
+  getElementsDecors(){return this.elementsDecors;}
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////// SETTERS /////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+  setPersonnage(i){this.personnage = i;}
+  setConstroleur(i){this.controleur = i;}
+  setQuestions(i){this.questions = i;}
+  setElementsDecors(i){this.elementsDecors = i;}
+
+  initElement(){
+
   }
 
-  initElem(){
-
+  update(){
+    console.log("erreur");
   }
 }

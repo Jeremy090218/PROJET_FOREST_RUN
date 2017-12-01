@@ -1,5 +1,5 @@
 class VueOptions extends Vue {
-  constructor() {
-    super();
+  constructor(ctrl) {
+      super(ctrl, 'Options');
   }
 }

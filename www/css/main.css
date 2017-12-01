@@ -26,3 +26,23 @@ body{
   width: 100%;
   height: 100%;
 }
+
+#atelier{
+
+}
+
+#boutique{
+  
+
+/* ************Menu Pricipal************* */
+
+#menuPrincipal{
+background-color: pink;
+width: 100%;
+height: 100%;
+}
+
+#menuPrincipal #btnO {
+position:relative;
+left:35%;
+}

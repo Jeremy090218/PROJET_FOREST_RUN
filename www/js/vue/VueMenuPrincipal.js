@@ -22,7 +22,9 @@ class VueMenuPrincipal extends Vue {
     this.add(buttonJouer);
     buttonJouer.innerHTML = "Jouer";
     buttonJouer.onclick = () => {
+      this.controleur.switchMode("nouvellePartie");
       this.controleur.changerVue(new VueRunner(this.controleur), this);
+      this.controleur.play();
     }
 
     //button Atelier

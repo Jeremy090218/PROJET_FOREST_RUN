@@ -1,4 +1,4 @@
-class Reponse extends ElementsPartie{
+class Reponse extends ElementPartie{
   constructor(text) {
     super();
     this.texte = text;

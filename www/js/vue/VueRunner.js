@@ -27,6 +27,6 @@ class VueRunner extends VueJeu {
       this.controleur.changerVue(new VueVictoire(this.controleur),this);
     }
 
-    this.controleur.play();
+    this.controleur.switchMode("runner");
   }
 }

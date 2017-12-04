@@ -2,7 +2,7 @@ class Personnage extends Element {
   constructor(velociteY = 0) {
     super();
     this.velociteY = velociteY;
-    this.vie = 3 ;
+    this.vie = 3;
     this.items = [];
   }
 
@@ -40,7 +40,7 @@ class Personnage extends Element {
   }
 
   estMort(){
-    return this.getVie() = 0 ;
+    return this.setVie(0);
   }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -66,32 +66,6 @@ class Personnage extends Element {
   deplacementDroite(){
     this.setX(this.getX()+10);
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

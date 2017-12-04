@@ -1,5 +1,5 @@
 class Partie {
-  constructor(ctrl, perso,questions) {
+  constructor(ctrl, perso ,questions) {
     this.controleur = ctrl;
     this.personnage = perso;
     this.questions = questions;
@@ -31,10 +31,6 @@ class Partie {
   }
 
   update(){
-    console.log("erreur");
-  }
-
-  update(){
-    
+    //console.log("erreur");
   }
 }

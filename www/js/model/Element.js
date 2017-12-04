@@ -4,7 +4,7 @@ class Element {
   constructor(x=0,y=0,z=0) {
                                     // Pour donner un id différent à chaques éléments
     if(!Element.id) Element.id = 0;
-    ++Element.id;
+    this.id = ++Element.id;
     this.x = x;
     this.y = y;
     this.z = z;
@@ -24,4 +24,6 @@ class Element {
   setX(i){this.x = i;}
   setY(i){this.y = i;}
   setZ(i){this.z = i;}
+
+  update(){}
 }

@@ -1,6 +1,6 @@
 class PartieRun extends Partie {
-  constructor(personnage, ctrl,questions ,gravite = 1) {
-    super(ctrl,personnage,questions);
+  constructor(ctrl, personnage, questions, gravite = 1) {
+    super(ctrl, personnage, questions);
     this.gravite = gravite;
     this.obstacles = [];
     this.ramassables = [];
@@ -36,7 +36,7 @@ class PartieRun extends Partie {
 ////////////////////////////////////////////////////////////////////////////////
                               ////// Pour la mise a jour de tout element de la partie
 
-  update(temps){
+  update(){
                         ////// Mise a jour de tout les elements
     this.updateDecor();
     this.updatePersonnage();
@@ -54,11 +54,15 @@ class PartieRun extends Partie {
     }
   }
 
-    updateObjets(){
-      for (var ramassable in this.getRamassables()) {
-        ramassable.update();
-      }
+  updateObjets(){
+    for (var ramassable in this.getRamassables()) {
+      ramassable.update();
     }
+  }
+
+  updateDecor(){
+
+  }
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////

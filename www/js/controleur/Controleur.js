@@ -59,10 +59,29 @@ class Controleur {
     this.vues.push(vue);
   }
 
-  nouvellePartie(){
-    this.partieRunner = new PartieRun(this);
-    this.partieRendu = this.partieRunner;
+  /*nouvellePartie(){
+    this.switchMode("nouvellePartie");
     this.play();
+  }*/
+
+  switchMode(m){
+    switch (m) {
+      case "runner":
+        if(!this.partieRunner) console.log("Erreur: aucune nouvelle partie initialisée");
+        else this.partieRendu = this.partieRunner;
+        break;
+      case "shooter":
+        if(!this.partieShooter) this.partieShooter = new PartieShoot(this, new Personnage(), null);
+        this.partieRendu = this.partieShooter;
+        break;
+      case "nouvellePartie":
+        this.partieRunner = new PartieRun(this, new Personnage(), null);
+        this.partieShooter = null;
+        this.partieRendu = this.partieRunner;
+        break;
+      default:
+        console.log("switchMode incorrecte");
+    }
   }
 
   pause(){
@@ -77,7 +96,7 @@ class Controleur {
       this.acumulateur = 1001;
       this.boucleDeJeu(0);
     } else {
-      console.log("Play impossible, aucune partie initialisé");
+      console.log("Play impossible, aucune partie initialisée");
     }
   }
 
@@ -104,7 +123,7 @@ class Controleur {
 
   update(){
     //console.log("update");
-    this.partieRunner.update();
+    this.partieRendu.update();
   }
 
   chargerDonneesSauvegarde(cb){
@@ -138,8 +157,9 @@ class Controleur {
 
   debbug(){
     console.log("Etat run: "+ this.run);
-    console.log("PartieRunner: "+ this.partieRunner);
-    console.log("PartieShooterr: "+ this.partieShooter);
+    console.log("PartieRunner:", this.partieRunner);
+    console.log("PartieShooter:", this.partieShooter);
+    console.log("Partie en cours de fonctionnement:", this.partieRendu);
     console.log("Vues:", this.vues);
     console.log("Vue du rendu graphique courant:", this.vueRendu);
     console.log("Acumulateur: "+ this.acumulateur);

@@ -13,7 +13,7 @@ class VueLecons extends Vue {
     let cours = [];
 
     // Ajout des leçons dans le vecteur
-    cours = ["Angles", "Thales", "Equations", "Espace", "Fonctions_num", "Fonctions_lin", "Identites", "Nombres_entiers", "Probabilites", "Puissances", "Racines", "Sphere", "Statistiques", "Trigo"];
+    cours = ["Angles Inscrits & Polygones Reguliers", "Thales", "Equations, Inequations & Systemes", "Geometrie dans l'Espace", "Fonction Numerique", "Fonctions Lineaires & Affines", "Identites Remarquables & Equations Produit", "Nombres Entiers & Rationnels", "Probabilites", "Puissances d'Exposants Relatifs", "Racines Carrees", "Sphere", "Statistiques", "Trigonometrie"];
 
     // Création d'un bouton pour chaque cours
 

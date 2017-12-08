@@ -13,7 +13,7 @@
   const classes = [
     ['Controleur'],
     ['Element', 'Partie', 'Bank', 'ElementPartie', 'Atelier', 'Boutique', 'ElementDecor', 'Item', 'ObjetRamassable', 'Obstacle', 'PartieRun', 'PartieShoot', 'Personnage', 'Question', 'Reponse', 'Trajectoire', 'Utilisateur'],
-    ['Vue', 'VueJeu', 'VueAtelier', 'VueRunner', 'VueLeconsStats', 'VueMenuPrincipal', 'VueOptions', 'VuePause', 'VuePerdu', 'VueShooterBoss', 'VueShooterEchec', 'VueVictoire', 'VueBoutique']
+    ['Vue', 'VueJeu', 'VueAtelier', 'VueRunner', 'VueLecons', 'VueLecon', 'VueStats', 'VueLeconsStats', 'VueMenuPrincipal', 'VueOptions', 'VuePause', 'VuePerdu', 'VueShooterBoss', 'VueShooterEchec', 'VueVictoire', 'VueBoutique']
   ];
 
   const body = document.getElementsByTagName('body')[0];

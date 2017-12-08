@@ -15,6 +15,7 @@ body{
 
 #canvas{
   position: absolute;
+  color: pink;
   top: 0;
   left: 0;
 }
@@ -27,49 +28,58 @@ body{
   height: 100%;
 }
 
-#atelier{
+
+button {
+	font-family: FredokaOne-Regular, sans-serif;
+	font-size: 14px;
+	color: #ffffff;
+	padding: 8px 20px;
+	background: -moz-linear-gradient(top,#ededed 0%,#1aa12e 4%,#16780d 49%,#145706);
+	background: -webkit-gradient(linear, left top, left bottom,from(#ededed),color-stop(0.4, #1aa12e),color-stop(0.49, #16780d),	to(#145706));
+	-moz-border-radius: 11px;
+	-webkit-border-radius: 11px;
+	border-radius: 11px;
+	border: 2px solid #0d7525;
+	-moz-box-shadow:
+		2px 3px 3px rgba(0,0,0,0.5),
+		inset 1px -1px 8px rgba(66,166,101,1);
+	-webkit-box-shadow:
+		2px 3px 3px rgba(0,0,0,0.5),
+		inset 1px -1px 8px rgba(66,166,101,1);
+	box-shadow:
+		2px 3px 3px rgba(0,0,0,0.5),
+		inset 1px -1px 8px rgba(66,166,101,1);
+	text-shadow:
+		0px -1px 0px rgba(17,31,24,0),
+		0px 0px 0px rgba(255,255,255,0.2);
+    display: block;
+    margin: auto;
 
 }
-
-#boutique{
-  
-
 /* ************Menu Pricipal************* */
 
 #menuPrincipal{
-background-color: pink;
+background-color: black;
 width: 100%;
 height: 100%;
 }
 
+#btn0 {
 
-#menuPrincipal #btnO {
-position:relative;
-left:35%;
+  margin-right: inherit;
+
+
 }
 
-button {
-   border-top: 1px solid #1c4d2e;
-   background: #558a4e;
+
+/* ************** atelier **************/
+#atelier {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+}
 
 
-   padding: 7px 14px;
-   -webkit-border-radius: 12px;
-   -moz-border-radius: 12px;
-   border-radius: 12px;
-
-   color: #f5f5f5;
-   font-size: 14px;
-   /*font-family: Georgia, Serif;*/
-   font-family: FredokaOne-Regular;
-   text-decoration: none;
-   vertical-align: middle;
-   display: block;
-   margin: auto;
-
-   }
-
-button:active {
-   border-top-color: #186112;
-   background: #186112;
-   }
+#atelier #divA {
+  margin-right: inherit;
+}

@@ -29,4 +29,16 @@ class VueRunner extends VueJeu {
 
     this.controleur.switchMode("runner");
   }
+
+  draw(){
+    super.draw();
+
+    for (let o of this.controleur.partieRunner.getObstacles()) {
+      this.ctx.save();
+      this.ctx.translate(o.getX(), o.getY());
+      this.ctx.scale((o.getY()/450), (o.getY()/450));
+      this.ctx.drawImage(o.getTexture(), 0, 0);
+      this.ctx.restore();
+    }
+  }
 }

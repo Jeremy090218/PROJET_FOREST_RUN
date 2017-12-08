@@ -1,6 +1,6 @@
 class Personnage extends Element {
-  constructor(velociteY = 0) {
-    super();
+  constructor(ctrl, velociteY = 0) {
+    super(ctrl);
     this.velociteY = velociteY;
     this.vie = 3;
     this.items = [];

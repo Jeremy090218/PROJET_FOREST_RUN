@@ -1,7 +1,10 @@
 class ElementPartie extends Element {
-  constructor(trajectoire = 0) {
-    super();
-    this.trajectoire = trajectoire ;
+  constructor(ctrl, texture, points, vitesse) {
+    super(ctrl, texture);
+    this.trajectoire = new Trajectoire(this, points, vitesse);
+    this.trajectoire.setActionFin(() => {
+      this.detruire();
+    });
   }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -13,4 +16,8 @@ class ElementPartie extends Element {
 /////////////////////////// SETTERS ////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
   setTrajectoire(i){this.trajectoire = i;}
+
+  update(){
+    this.trajectoire.update();
+  }
 }

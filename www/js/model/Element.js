@@ -1,13 +1,18 @@
 class Element {
 
   /////// Constructeur D'element avec x y et z par default a 0 ///////////
-  constructor(x=0,y=0,z=0) {
+  constructor(ctrl, texture = null, x = 0 ,y = 0 ,z = 0) {
                                     // Pour donner un id différent à chaques éléments
     if(!Element.id) Element.id = 0;
     this.id = ++Element.id;
-    this.x = x;
-    this.y = y;
-    this.z = z;
+    this.setX(x);
+    this.setY(y);
+    this.setZ(z);
+
+    this.detruit = false;
+    this.controleur = ctrl;
+
+    this.setTexture(texture);
   }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -17,6 +22,7 @@ class Element {
   getX(){return this.x;}
   getY(){return this.y;}
   getZ(){return this.z;}
+  getTexture(){return this.texture}
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////  SETTERS  /////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -24,6 +30,15 @@ class Element {
   setX(i){this.x = i;}
   setY(i){this.y = i;}
   setZ(i){this.z = i;}
+  setTexture(t){this.texture = this.controleur.textures.getObjet(t);}
 
   update(){}
+
+  detruire(){
+    this.detruit = true;
+  }
+
+  estDetruit(){
+    return this.detruit;
+  }
 }

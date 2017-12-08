@@ -2,11 +2,10 @@ class VueAtelier extends Vue {
   constructor(ctrl) {
     super(ctrl, 'atelier');
 
-    const titre = this.create('h1');
-    this.add(titre);
-    titre.innerHTML = "Atelier";
+
 
     const buttonMenuPrincip = this.create('button');
+    buttonMenuPrincip.id="btnA";
     this.add(buttonMenuPrincip);
     buttonMenuPrincip.innerHTML = "Menu principal";
     buttonMenuPrincip.onclick = () => {
@@ -14,11 +13,16 @@ class VueAtelier extends Vue {
     }
 
     const buttonBtq = this.create('button');
+    buttonBtq.id="btnA";
     this.add(buttonBtq);
     buttonBtq.innerHTML = "Boutique";
     buttonBtq.onclick = () => {
       this.controleur.changerVue(new VueBoutique(this.controleur));
     }
+
+    const titre = this.create('h1');
+    this.add(titre);
+    titre.innerHTML = "Atelier";
 
   }
 }

@@ -1,6 +1,6 @@
 class VueLeconsStats extends Vue {
-  constructor() {
-    super();
+  constructor(ctrl) {
+    super(ctrl, 'leconsStats');
 
     //titre
     const titre = this.create('h1');

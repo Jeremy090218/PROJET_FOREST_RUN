@@ -1,6 +1,6 @@
 class VueLecons extends Vue {
   constructor(ctrl) {
-    super();
+    super(ctrl, 'VueLecons');
 
     const buttonRetour = this.create('button');
     this.add(buttonRetour);
@@ -8,4 +8,5 @@ class VueLecons extends Vue {
     buttonRetour.onclick = () => {
       this.controleur.changerVue(new VueMenuPrincipal(this.controleur), this);
     }
+}
 }

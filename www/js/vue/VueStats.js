@@ -1,6 +1,6 @@
 class VueStats extends Vue {
   constructor(ctrl) {
-    super();
+    super(ctrl, 'VueStats');
 
     const buttonRetour = this.create('button');
     this.add(buttonRetour);
@@ -8,4 +8,5 @@ class VueStats extends Vue {
     buttonRetour.onclick = () => {
       this.controleur.changerVue(new VueMenuPrincipal(this.controleur), this);
     }
+}
 }

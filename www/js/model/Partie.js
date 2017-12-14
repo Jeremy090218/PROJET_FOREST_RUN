@@ -1,5 +1,10 @@
 class Partie {
   constructor(ctrl, perso) {
+    if (Partie.VirtualW || Partie.virtualH) {
+      Partie.VirtualW = 360;
+      Partie.virtualH = 640;
+    }
+
     this.controleur = ctrl;
     this.personnage = perso;
     this.questions = new Array();

@@ -93,14 +93,14 @@ class PartieRun extends Partie {
   }
   actionGauche(){
     ///   -10 +++++++ 0 +++++++++ 10  ///
-    if(this.getPersonnge().getX() != -10){
+    if(this.getPersonnage().getX() != -10){
                               // Si le personnage n'est pas déja sur la colonne de gauche
       this.getPersonnage().deplacementGauche();
     }
 
   }
   actionDroite(){
-    if(this.getPersonnge().getX() != 10){
+    if(this.getPersonnage().getX() != 10){
                               // Si le personnage n'est pas déja sur la colonne de droite
       this.getPersonnage().deplacementDroite();
     }
@@ -151,6 +151,7 @@ class PartieRun extends Partie {
   testColision(elem){
     //////// test la colision entre tout l'element choisi et le personnage
     /////// return vrai si l'element possede les meme x,y,z du personnage
+    return this.getPersonnge().estEnColision(elem);
   }
 
 

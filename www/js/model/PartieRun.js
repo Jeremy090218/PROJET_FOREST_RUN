@@ -115,7 +115,7 @@ class PartieRun extends Partie {
   }
 
   addRamassables(ramassable){
-    this.getRamassables().unshift(ramasable);
+    this.getRamassables().unshift(ramassable);
   }
 
   supprimerRamassables(ramassable){

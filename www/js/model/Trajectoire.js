@@ -1,5 +1,5 @@
 class Trajectoire {
-  constructor(cible, points = [{x: 180, y: 0, z: 0}, {x: Math.random()*360, y: Math.random()*640, z: Math.random()*640}], vitesse =  Math.random(), acc = 1) {
+  constructor(cible, points = [{x: 180, y: 0, z: 0}, {x: Math.random()*360, y: Math.random()*640, z: 2}], vitesse =  Math.random(), acc = 1) {
     this.points = points;
     this.vitesse = vitesse/300;
     this.t = 0;

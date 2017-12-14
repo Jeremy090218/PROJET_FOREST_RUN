@@ -41,4 +41,5 @@ class Element {
   estDetruit(){
     return this.detruit;
   }
+
 }

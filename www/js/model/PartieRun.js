@@ -1,9 +1,9 @@
 class PartieRun extends Partie {
-  constructor(ctrl, personnage, questions, gravite = 1) {
-    super(ctrl, personnage, questions);
+  constructor(ctrl, personnage, gravite = 1) {
+    super(ctrl, personnage);
     this.gravite = gravite;
-    this.obstacles = [];
-    this.ramassables = [];
+    this.obstacles = new Array();
+    this.ramassables = new Array();
     this.initElement();
   }
 ////////////////////////////////////////////////////////////////////////////////
@@ -38,31 +38,37 @@ class PartieRun extends Partie {
 
   update(){
                         ////// Mise a jour de tout les elements
-    this.updateDecor();
+    //this.updateDecor();
+    this.updateArray(this.getElementsDecors());
     this.updatePersonnage();
-    this.updateObstacles();
-    this.updateObjets();
+    //this.updateObstacles();
+    //this.updateObjets();
+    this.updateArray(this.getObstacles());
+    this.updateArray(this.getRamassables());
   }
 
   updatePersonnage(){
     this.getPersonnage().update();
   }
 
-  updateObstacles(){
-    for (let obstacle in this.getObstacles()) {
-      obstacle.update();
+  /*updateObstacles(){
+
+    const o = this.getObstacles();
+    for (let i = 0; i < o.length; ++i) {
+      if(!o[i].estDetruit()) o[i].update();
+      else o.splice(i--, 1);
     }
   }
 
   updateObjets(){
-    for (var ramassable in this.getRamassables()) {
+    for (let ramassable of this.getRamassables()) {
       ramassable.update();
     }
   }
 
   updateDecor(){
 
-  }
+  }*/
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -107,11 +113,13 @@ class PartieRun extends Partie {
   creationRamassables(){
 
   }
+
   addRamassables(ramassable){
-    this.getRamassables().push(ramasable);
+    this.getRamassables().unshift(ramasable);
   }
+
   supprimerRamassables(ramassable){
-    for (var i = 0; i < this.getRamassables().length; i++) {
+    for (let i = 0; i < this.getRamassables().length; ++i) {
       if (ramassable.getId() == this.getRamassables()[i].getId()) {
         this.getRamassables().splice(i,1);
       }
@@ -124,7 +132,7 @@ class PartieRun extends Partie {
 
   }
   addObstacle(obstacle){
-    this.getRamassables().push(obstacle);
+    this.getObstacles().unshift(obstacle);
   }
   supprimerObstacle(obstacle){
     for (var i = 0; i < this.getObstacles().length; i++) {

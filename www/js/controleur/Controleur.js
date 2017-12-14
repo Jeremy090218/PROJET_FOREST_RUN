@@ -75,7 +75,7 @@ class Controleur {
         this.partieRendu = this.partieShooter;
         break;
       case "nouvellePartie":
-        this.partieRunner = new PartieRun(this, new Personnage(), null);
+        this.partieRunner = new PartieRun(this, new Personnage(this), null);
         this.partieShooter = null;
         this.partieRendu = this.partieRunner;
         break;

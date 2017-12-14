@@ -9,13 +9,20 @@ class VueRunner extends VueJeu {
     const buttonPause = this.create('button');
     this.add(buttonPause);
     buttonPause.innerHTML = "Pause";
+    this.pause = 0;
     buttonPause.onclick = () => {
-      this.controleur.changerVue(new VuePause(this.controleur));
+      if (this.pause == 0) {
+        this.pause = 1;
+        this.controleur.changerVue(new VuePause(this.controleur, this));
+        this.controleur.pause();
+      }
     }
 
     const buttonPerdu = this.create('button');
     this.add(buttonPerdu);
+
     buttonPerdu.innerHTML = "Perdu";
+
     buttonPerdu.onclick = () => {
       this.controleur.changerVue(new VuePerdu(this.controleur), this);
     }

@@ -76,33 +76,49 @@ class PartieRun extends Partie {
 
   actionHaut(){
                           // Si le personnage est déjà en saut ne pas resauter
-    if(this.getPersonnage().getY() <= 0 ){
-      this.getPersonnage().sauter(this.getGravite());
+    if(this.controleur.isRunning()){
+      if(this.getPersonnage().getY() <= 0 ){
+        this.getPersonnage().sauter(this.getGravite());
+      }
+    } else {
+      console.log("annulée");
     }
   }
 
   actionBas(){
-    if(this.getPersonnage().getY() == 0){
-                                // Si le pesonnage court normalement, il doit se baisser
-      this.getPersonnage().seBaisser();
-    }else if(this.getPersonnage().getY() > 0){
-                                // Si le personnage est en vole alors il doit retomber
-      this.getPersonnage().retomber();
+    if (this.controleur.isRunning()) {
+      if(this.getPersonnage().getY() == 0){
+                                  // Si le pesonnage court normalement, il doit se baisser
+        this.getPersonnage().seBaisser();
+      }else if(this.getPersonnage().getY() > 0){
+                                  // Si le personnage est en vole alors il doit retomber
+        this.getPersonnage().retomber();
+      }
+      // sinon ne rien faire else {
+    } else {
+      console.log("annulée");
     }
-    // sinon ne rien faire
   }
   actionGauche(){
     ///   -10 +++++++ 0 +++++++++ 10  ///
-    if(this.getPersonnage().getX() != -10){
-                              // Si le personnage n'est pas déja sur la colonne de gauche
-      this.getPersonnage().deplacementGauche();
+    if(this.controleur.isRunning()){
+      if(this.getPersonnage().getX() != -10){
+                                // Si le personnage n'est pas déja sur la colonne de gauche
+        this.getPersonnage().deplacementGauche();
+      }
+    } else {
+      console.log("annulée");
     }
 
   }
   actionDroite(){
-    if(this.getPersonnage().getX() != 10){
-                              // Si le personnage n'est pas déja sur la colonne de droite
-      this.getPersonnage().deplacementDroite();
+    if(this.controleur.isRunning()){
+      if(this.getPersonnage().getX() != 10){
+                                // Si le personnage n'est pas déja sur la colonne de droite
+        this.getPersonnage().deplacementDroite();
+      }
+    } else {
+      console.log("annulée");
     }
   }
 

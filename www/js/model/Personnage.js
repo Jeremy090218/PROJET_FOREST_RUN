@@ -101,10 +101,7 @@ class Personnage extends Element {
           this.setY(620);
           this.setVelocite(0);
         }
-
       }
     }
-    }
   }
-
 }

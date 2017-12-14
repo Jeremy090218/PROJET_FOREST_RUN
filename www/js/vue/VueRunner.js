@@ -38,20 +38,20 @@ class VueRunner extends VueJeu {
     this.controleur.switchMode("runner");
 
 
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     this.pointeur = {x: -1, y: -1};
     this.depart = {x: -1, y: -1};
     this.mov = 0;
 
-    document.addEventListener('touchstart', (e) => {
+    document.addEventListener('touchstart', this.touchstart = (e) => {
       const pt = e.touches[0];
       this.depart.x = pt.clientX;
       this.depart.y = pt.clientY;
     }, false);
 
-    document.addEventListener('touchmove', (e) => {
+    document.addEventListener('touchmove', this.touchmove = (e) => {
       ++this.mov;
       const pt = e.changedTouches[0];
       this.pointeur.x = pt.clientX;
@@ -74,11 +74,11 @@ class VueRunner extends VueJeu {
       }
     }, false);
 
-    document.addEventListener('touchcancel', (e) => {
+    document.addEventListener('touchcancel', this.touchcancel = (e) => {
       //console.log("Cancel");
     }, false);
 
-    document.addEventListener('touchend', (e) => {
+    document.addEventListener('touchend', this.touchend = (e) => {
       //console.log("End");
       this.mov = 0;
     }, false);
@@ -86,20 +86,10 @@ class VueRunner extends VueJeu {
 
   draw(){
     super.draw();
-
-    /*for (let o of this.controleur.partieRunner.getObstacles()) {
-      this.ctx.save();
-      this.ctx.translate(o.getX(), o.getY());
-      this.ctx.scale((o.getY()/o.getZ()), (o.getY()/o.getZ()));
-      this.ctx.drawImage(o.getTexture(), 0, 0);
-      this.ctx.restore();
-    }*/
-
     this.iterDrawPercpec(this.controleur.partieRunner.getElementsDecors());
     this.iterDrawPercpec(this.controleur.partieRunner.getObstacles());
     this.iterDrawPercpec(this.controleur.partieRunner.getRamassables());
     this.iterDrawPercpec([this.controleur.partieRunner.getPersonnage()]);
-
   }
 
   iterDrawPercpec(arr){
@@ -110,5 +100,13 @@ class VueRunner extends VueJeu {
       this.ctx.drawImage(o.getTexture(), 0, 0);
       this.ctx.restore();
     }
+  }
+
+  delete(){
+    document.removeEventListener('touchstart', this.touchstart);
+    document.removeEventListener('touchmove', this.touchmove);
+    document.removeEventListener('touchcancel', this.touchcancel);
+    document.removeEventListener('touchend', this.touchend);
+    super.delete();
   }
 }

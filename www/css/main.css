@@ -84,3 +84,16 @@ height: 100%;
 #atelier #divA {
   margin-right: inherit;
 }
+
+/* ************** lecon **************/
+
+#VueLecon {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+}
+
+iframe {
+  height: 90%;
+  width: 100%;
+}

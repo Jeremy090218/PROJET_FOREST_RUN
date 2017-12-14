@@ -85,12 +85,17 @@ button:active {
   height: 100%;
 }
 
-
+/*
 #atelier #divA {
   margin-right: inherit;
 }
+<<<<<<< HEAD
 
 /* ************** Lecon **************/
+=======
+*/
+/* ************** lecon **************/
+>>>>>>> d52746446ef793573f6585f3a73a70aadd6f399a
 
 #VueLecon {
   background-color: black;

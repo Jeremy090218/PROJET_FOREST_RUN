@@ -8,5 +8,12 @@ class VueOptions extends Vue {
       buttonRetour.onclick = () => {
         this.controleur.changerVue(new VueMenuPrincipal(this.controleur), this);
       }
+
+      const buttonStats = this.create('button');
+      this.add(buttonStats);
+      buttonStats.innerHTML = "Statistiques";
+      buttonStats.onclick = () => {
+        this.controleur.changerVue(new VueStats(this.controleur), this);
+      }
   }
 }

@@ -100,6 +100,10 @@ class Controleur {
     }
   }
 
+  isRunning(){
+    return this.run;
+  }
+
   boucleDeJeu(millis){
     if(this.run){
       this.acumulateur += (millis - this.temps);

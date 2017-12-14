@@ -56,20 +56,21 @@ class Question extends Element {
     return this.reponse;
   }
   
-  
-  setReponse(reponse) {
-    this.reponse = reponse;
+
+  setQuestion() {
+    this.question = this.createQuestion();
   }
   
   
-  setQuestion() {
-    this.question = this.createQuestion();
+  setReponse(reponse) {
+    this.reponse = reponse;
   }
 
 
   isInt(value) {
     return Math.round(value) == value;
   }
+
 
   solver(e) {
     let Fraction = algebra.Fraction;
@@ -103,7 +104,7 @@ class Question extends Element {
 
     try {
       if (this.solver(eq) > 0 && this.isInt(this.solver(eq))) {
-        this.setReponse(this.solver(eq));
+        this.setReponse(new Reponse(ctrl, this.solver(eq)));
         return eq;
       } else {
         return this.createQuestion();
@@ -115,6 +116,6 @@ class Question extends Element {
 
   
   repondre(rep) {
-    return rep == this.getReponse();
+    return rep == this.reponse.getReponse();
   }
 }

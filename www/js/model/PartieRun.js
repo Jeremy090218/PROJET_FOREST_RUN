@@ -3,6 +3,12 @@ class PartieRun extends Partie {
     super(ctrl, personnage);
     this.gravite = gravite;
     this.obstacles = new Array();
+    this.trajsPossible = [  //// faire getters
+      [{x: 180, y: 300, z: 0.1}, {x: 180, y: 640, z: 2}],
+      [{x: 175, y: 300, z: 0.1}, {x: 75, y: 640, z: 2}],
+      [{x: 185, y: 300, z: 0.1}, {x: 285, y: 640, z: 2}]
+    ];
+    this.lastTraj = 1;
     this.ramassables = new Array();
     this.initElement();
   }
@@ -11,7 +17,7 @@ class PartieRun extends Partie {
 ////////////////////////////////////////////////////////////////////////////////
   getGravite(){return this.gravite;}
   getObstacles(){return this.obstacles;}
-  getObstaclesIn(i){return this.obstacle[i]}  /// recupération par son indice
+  getObstaclesIn(i){return this.obstacles[i]}  /// recupération par son indice
   getRamassables(){return this.ramassables;}
   getRamassablesIn(i){return this.ramassables[i];}
 
@@ -45,6 +51,34 @@ class PartieRun extends Partie {
     //this.updateObjets();
     this.updateArray(this.getObstacles());
     this.updateArray(this.getRamassables());
+
+    for (var i = 0; i < this.getObstacles().length; i++) {
+      if(this.getPersonnage().estEnColision(this.getObstacles()[i])){
+        this.getPersonnage().decrementerVie();
+        this.getObstaclesIn(i).detruire();
+        if(this.getPersonnage().estMort()){
+          this.controleur.pause();
+          this.controleur.changerVueUnique(new VuePerdu(this.controleur));
+        }
+      }
+    }
+
+    for (var i = 0; i < this.getRamassables().length; i++) {
+      if(this.getPersonnage().estEnColision(this.getRamassables()[i])){
+        this.getRamassablesIn(i).detruire();
+        console.log("1 piece en plus");
+      }
+    }
+
+    if(!this.cd){
+      this.addObstacle();
+      this.cd = 45;
+    } else{
+      --this.cd ;
+    }
+    if(this.cd == 23){
+      if(Math.random() > 0.5) this.addRamassables();
+    }
   }
 
   updatePersonnage(){
@@ -130,8 +164,8 @@ class PartieRun extends Partie {
 
   }
 
-  addRamassables(ramassable){
-    this.getRamassables().unshift(ramassable);
+  addRamassables(){
+    this.getRamassables().unshift(new ObjetRamassable(this.controleur,"Coin_1.png",this.getTrajectoire(),1));
   }
 
   supprimerRamassables(ramassable){
@@ -144,18 +178,26 @@ class PartieRun extends Partie {
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
                                             ////// Gestion des Obstacles
-  creationObstacle(){
 
+  addObstacle(){
+    this.getObstacles().unshift(new Obstacle(this.controleur, "Obstacle_1.png", this.getTrajectoire(), 1));
   }
-  addObstacle(obstacle){
-    this.getObstacles().unshift(obstacle);
-  }
+
   supprimerObstacle(obstacle){
     for (var i = 0; i < this.getObstacles().length; i++) {
       if (obstacle.getId() == this.getObstacles()[i].getId()) {
         this.getObstacle().splice(i,1);
       }
     }
+  }
+
+  getTrajectoire(){
+    let i = Math.round(Math.random()*2);
+    while(i == this.lastTraj){
+      i = Math.round(Math.random()*2);
+    }
+    this.lastTraj = i;
+    return this.trajsPossible[this.lastTraj];
   }
 
 

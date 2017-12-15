@@ -83,6 +83,12 @@ class VueRunner extends VueJeu {
 
   draw(){
     super.draw();
+    this.ctx.fillStyle = "#1a5";
+    this.ctx.fillRect(0, 300, 360, 340);
+
+    this.ctx.fillStyle = "#15a";
+    this.ctx.fillRect(0, 0, 360, 300);
+
     this.iterDrawPercpec(this.controleur.partieRunner.getElementsDecors());
     this.iterDrawPercpec(this.controleur.partieRunner.getObstacles());
     this.iterDrawPercpec(this.controleur.partieRunner.getRamassables());

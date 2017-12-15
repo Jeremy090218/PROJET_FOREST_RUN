@@ -1,6 +1,6 @@
 class Personnage extends Element {
   constructor(ctrl, velociteY = 0) {
-    super(ctrl,null,180,620,1);
+    super(ctrl,"Character_0_vue_4.png",180,620,2);
     this.velociteY = velociteY;
     this.velociteX = 0;
     this.vie = 3;
@@ -31,7 +31,7 @@ class Personnage extends Element {
 
 ////// Gestion de la vie
   decrementerVie(){
-    if (this.getVie()<1) {
+    if (this.getVie()>0) {
       this.setVie(this.getVie() -1 );
     }
   }
@@ -43,7 +43,7 @@ class Personnage extends Element {
   }
 
   estMort(){
-    return this.setVie(0);
+    return this.getVie() == 0;
   }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -85,7 +85,7 @@ class Personnage extends Element {
   // return true si x,y,z sont en inferieur a 10 apres la soustraction
   //sinon return false
   estEnColision(element){
-    if(10 > Math.abs(element.getZ()-this.getZ())){
+    if(1.8 < element.getZ()){
       if(10 > Math.abs(element.getY()-this.getY())){
         if(10 > Math.abs(element.getX()-this.getX())){
           return true;

@@ -1,5 +1,5 @@
 class ObjetRamassable extends ElementPartie {
-  constructor() {
-    super();
+  constructor(ctrl, texture, points, vitesse) {
+    super(ctrl, texture, points, vitesse);
   }
 }

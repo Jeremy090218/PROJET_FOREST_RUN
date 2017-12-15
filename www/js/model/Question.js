@@ -1,49 +1,17 @@
-/*class Question extends Element {
-  constructor(reponses,bonneReponse) {
-    super();
-    this.reponses = reponses ;
-    this.bonneReponse = bonneReponse ;
-  }
-
-
-////////////////////////////////////////////////////////////////////////////////
-//////////////////////////// GETTERS ///////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
-  getReponses(){return this.reponses ;}
-  getBonneReponse(){return this.bonneReponse;}
-
-////////////////////////////////////////////////////////////////////////////////
-//////////////////////////// SETTERS ///////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-  setReponses(i){this.reponses = i ;}
-  setBonneReponse(i){this.bonneReponse = i;}
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
-  reponseJuste(reponse){                      // return vrai si la reponse est juste
-    return this.getBonneReponse() == reponse;
-  }
-}
-*/
-//require('algebra-0.2.6.min.js');
-
 class Question extends Element {
   constructor(ctrl) {
     super(ctrl);
     if(!Element.id) Element.id = 0;
     this.id = ++Element.id;
+    this.intitule = null;
     this.question = null;
     this.reponse = null;
-    this.setQuestion();    
+    this.setQuestion(this.getRndBias(1,1,0,0));    
   }
 
 
-  getRndBias(min, max, bias, influence) {
-    let rnd = Math.random() * (max - min) + min,   // random in range
-        mix = Math.random() * influence;           // random mixer
-    return Math.floor(rnd * (1 - mix) + bias * mix);           // mix full range and bias
+  getIntitule() {
+    return this.intitule;
   }
 
 
@@ -55,15 +23,40 @@ class Question extends Element {
   getReponse() {
     return this.reponse;
   }
+
+
+  setIntitule(i) {
+    this.intitule = i;
+  }
   
 
-  setQuestion() {
-    this.question = this.createQuestion();
+  setQuestion(typeQ) {
+    switch (typeQ) { 
+      case 1 :
+        this.setIntitule("Combien vaut x ? Ramassez le nombre de pièces correspondant !");      
+        this.question = this.createEquation();
+        this.setReponse(new Reponse(ctrl, this.solveEquation(this.question)));
+        break;
+
+      case 2 :
+        this.setIntitule("");      
+        this.question = this.createBooleen();
+        this.setReponse(new Reponse(ctrl, this.solveBooleen(this.question)));
+        break;
+      default : break;
+    }
   }
   
   
-  setReponse(reponse) {
-    this.reponse = reponse;
+  setReponse(r) {
+    this.reponse = r;
+  }
+
+
+  getRndBias(min, max, bias, influence) {
+    let rnd = Math.random() * (max - min) + min,   // random in range
+        mix = Math.random() * influence;           // random mixer
+    return Math.floor(rnd * (1 - mix) + bias * mix);           // mix full range and bias
   }
 
 
@@ -72,18 +65,7 @@ class Question extends Element {
   }
 
 
-  solver(e) {
-    let Fraction = algebra.Fraction;
-    let Expression = algebra.Expression;
-    let Equation = algebra.Equation;
-
-    let eq = algebra.parse(e);
-    let ans = eq.solveFor("x");
-    return ans.toString();
-  }
-
-
-  createQuestion() {
+  createEquation() {
     let Fraction = algebra.Fraction;
     let Expression = algebra.Expression;
     let Equation = algebra.Equation;
@@ -103,15 +85,25 @@ class Question extends Element {
     let eq = expGauche.toString() + " = " + expDroite.toString();
 
     try {
-      if (this.solver(eq) > 0 && this.isInt(this.solver(eq))) {
-        this.setReponse(new Reponse(ctrl, this.solver(eq)));
+      if (this.solveEquation(eq) > 0 && this.isInt(this.solveEquation(eq))) {
         return eq;
       } else {
-        return this.createQuestion();
+        return this.createEquation();
       }
     } catch(EvalError) {
-      return this.createQuestion();
+      return this.createEquation();
     }
+  }
+
+
+  solveEquation(e) {
+    let Fraction = algebra.Fraction;
+    let Expression = algebra.Expression;
+    let Equation = algebra.Equation;
+
+    let eq = algebra.parse(e);
+    let ans = eq.solveFor("x");
+    return ans.toString();
   }
 
   

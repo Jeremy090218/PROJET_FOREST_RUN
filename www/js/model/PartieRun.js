@@ -77,8 +77,8 @@ class PartieRun extends Partie {
   actionHaut(){
                           // Si le personnage est déjà en saut ne pas resauter
     if(this.controleur.isRunning()){
-      if(this.getPersonnage().getY() <= 0 ){
-        this.getPersonnage().sauter(this.getGravite());
+      if(this.getPersonnage().getY() >= 620 ){
+        this.getPersonnage().sauter();
       }
     } else {
       console.log("annulée");
@@ -87,10 +87,10 @@ class PartieRun extends Partie {
 
   actionBas(){
     if (this.controleur.isRunning()) {
-      if(this.getPersonnage().getY() == 0){
+      if(this.getPersonnage().getY() == 620){
                                   // Si le pesonnage court normalement, il doit se baisser
         this.getPersonnage().seBaisser();
-      }else if(this.getPersonnage().getY() > 0){
+      }else if(this.getPersonnage().getY() < 620){
                                   // Si le personnage est en vole alors il doit retomber
         this.getPersonnage().retomber();
       }
@@ -102,7 +102,7 @@ class PartieRun extends Partie {
   actionGauche(){
     ///   -10 +++++++ 0 +++++++++ 10  ///
     if(this.controleur.isRunning()){
-      if(this.getPersonnage().getX() != -10){
+      if(this.getPersonnage().getX() >= 180){
                                 // Si le personnage n'est pas déja sur la colonne de gauche
         this.getPersonnage().deplacementGauche();
       }
@@ -113,7 +113,7 @@ class PartieRun extends Partie {
   }
   actionDroite(){
     if(this.controleur.isRunning()){
-      if(this.getPersonnage().getX() != 10){
+      if(this.getPersonnage().getX() <= 180){
                                 // Si le personnage n'est pas déja sur la colonne de droite
         this.getPersonnage().deplacementDroite();
       }

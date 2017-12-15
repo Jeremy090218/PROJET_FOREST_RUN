@@ -2,9 +2,6 @@ class VueMenuPrincipal extends Vue {
   constructor(ctrl) {
     super(ctrl, 'menuPrincipal');
 
-    const background = this.create('img');
-    background.src = "../../textures/Ecran_accueil.png";
-    this.add(background);
     //Button option
     const buttonOption = this.create('button');
     buttonOption.id="btn0";

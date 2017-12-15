@@ -6,22 +6,38 @@ class VueRunner extends VueJeu {
     this.add(titre);
     titre.innerHTML = "Runner";*/
 
-    const buttonPause = this.create('button');
-    this.add(buttonPause);
-    buttonPause.innerHTML = "Pause";
-    buttonPause.id= "pauseRunner"
-    this.pause = 0;
-    buttonPause.onclick = () => {
-      if (this.pause == 0) {
-        this.pause = 1;
-        this.controleur.changerVue(new VuePause(this.controleur, this));
-        this.controleur.pause();
-      }
+    this.buttonPause = this.create('button');
+    this.add(this.buttonPause);
+    this.buttonPause.innerHTML = "Pause";
+    this.buttonPause.id= "pauseRunner";
+    this.buttonPause.onclick = () => {
+      this.controleur.changerVue(new VuePause(this.controleur, this));
+      this.controleur.pause();
+      this.buttonPause.className= "btnInactif";
     }
 
+<<<<<<< HEAD
     
+=======
+    //Pour se déplacer plus facilement et tester VueVictoire & VuePerdu
+    /*const buttonPerdu = this.create('button');
+    this.add(buttonPerdu);
 
-    this.controleur.switchMode("runner");
+    buttonPerdu.innerHTML = "Perdu";
+
+    buttonPerdu.onclick = () => {
+      this.controleur.changerVue(new VuePerdu(this.controleur), this);
+    }
+
+    const buttonVct = this.create('button');
+    this.add(buttonVct);
+    buttonVct.innerHTML = "Victoire";
+    buttonVct.onclick = () => {
+      this.controleur.changerVue(new VueVictoire(this.controleur),this);
+    }
+>>>>>>> af770998ef4cfe6807efec4c73bbf0838cf7901e
+
+    this.controleur.switchMode("runner");*/
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,11 +77,10 @@ class VueRunner extends VueJeu {
     }, false);
 
     document.addEventListener('touchcancel', this.touchcancel = (e) => {
-      //console.log("Cancel");
+      console.log("touchcancel");
     }, false);
 
     document.addEventListener('touchend', this.touchend = (e) => {
-      //console.log("End");
       this.mov = 0;
     }, false);
   }
@@ -83,6 +98,7 @@ class VueRunner extends VueJeu {
       this.ctx.save();
       this.ctx.translate(o.getX(), o.getY());
       this.ctx.scale(o.getZ(), o.getZ());
+      this.ctx.translate(-o.getWidth()/2, -o.getHeight());
       this.ctx.drawImage(o.getTexture(), 0, 0);
       this.ctx.restore();
     }
@@ -94,5 +110,9 @@ class VueRunner extends VueJeu {
     document.removeEventListener('touchcancel', this.touchcancel);
     document.removeEventListener('touchend', this.touchend);
     super.delete();
+  }
+
+  affBtn(){
+    this.buttonPause.className= "";
   }
 }

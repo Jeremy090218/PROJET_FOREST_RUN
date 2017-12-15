@@ -98,6 +98,7 @@ button:active {
 
 #menuPrincipal{
   background-color: black;
+  background-image: "../textures/Ecran_accueil.png";
   width: 100%;
   height: 100%;
 }

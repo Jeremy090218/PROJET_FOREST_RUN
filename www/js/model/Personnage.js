@@ -1,9 +1,12 @@
 class Personnage extends Element {
   constructor(ctrl, velociteY = 0) {
-    super(ctrl,null,180,620,0);
+    super(ctrl,null,180,620,1);
     this.velociteY = velociteY;
+    this.velociteX = 0;
     this.vie = 3;
     this.items = [];
+    this.mouvementY = false; /// a changer inserer getters et setter de mouvemet
+    this.mouvementX =false;
   }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -49,23 +52,32 @@ class Personnage extends Element {
   /////// Pour les actions
   //Action haut
   sauter(){
-    this.setY(0);
-    this.setVelocite(-140);
+    this.setY(620);
+    this.setVelocite(-70);
+    this.mouvementY = true;
   }
   //Action Bas
   seBaisser(){
     this.setVelocite(71);
+    this.mouvementY = true;
   }
   retomber(){
     this.setVelocite(Math.abs(this.getVelocite()));
+    this.mouvementY = true;
   }
   //Action Gauche
   deplacementGauche(){
-    this.setX(this.getX()-35);
+    if(this.velociteX == 0){
+      this.velociteX = -30;
+      this.mouvementX = true;
+    }
   }
   //Action Droite
   deplacementDroite(){
-    this.setX(this.getX()+35);
+    if(this.velociteX == 0){
+      this.velociteX = 0;
+      this.mouvementX = true;
+    }
   }
 
 
@@ -87,18 +99,31 @@ class Personnage extends Element {
 
   update(){
                   /// Si la Velocite est different de 0 alors le personnage effuctue le mouvement demander
-    if(this.getVelocite() != 0){
-      this.setY(this.getY() + this.getVelocite()/10); /// ajout en y la distance qu'il doit parcourir en 1 frame suivant sa velocite
+    if(this.mouvementY){
+      this.setY(this.getY() + this.getVelocite()/7); /// ajout en y la distance qu'il doit parcourir en 1 frame suivant sa velocite
       this.setVelocite(this.getVelocite()+2);  // modification de la velocite suivant le mouvement
       if(this.getY()>620){                    // si le Y est plus grand que le sol alors le mouvement de se baisser doit continuer
         this.setY(635);
       }
       if(this.getVelocite()>140){             // Si la velocite > 140 alors les mouvements doivent s'arreter
         this.setY(620);
+        this.mouvementY = false;
       }
-      if(this.setY() == 620){                 // si le Y == 620 alors le personnage est arriver au sol donc velocite = 0
+      if(this.getY() == 620){                 // si le Y == 620 alors le personnage est arriver au sol donc velocite = 0
         this.setVelocite(0);
+        this.mouvementY = false;
       }
     }
+
+    if(this.mouvementX){
+      this.setX(this.getX() + this.velociteX);
+      this.velociteX = this.velociteX + 5;
+      if(this.velociteX == 0 || this.velociteX == 35){
+
+        this.mouvementX = false;
+        this.velociteX = 0;
+      }
+    }
+
   }
 }

@@ -1,0 +1,16 @@
+class VuePerdu extends Vue {
+  constructor(ctrl) {
+    super(ctrl, 'perdu');
+
+    const titre = this.create('h1');
+    this.add(titre);
+    titre.innerHTML = "Perdu";
+
+    const buttonPerdu = this.create('button');
+    this.add(buttonPerdu);
+    buttonPerdu.innerHTML = "Menu Principal";
+    buttonPerdu.onclick = () => {
+        this.controleur.changerVueUnique(new VueMenuPrincipal(this.controleur));
+    }
+  }
+}

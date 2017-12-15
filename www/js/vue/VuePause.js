@@ -16,6 +16,7 @@ class VuePause extends Vue {
       this.delete();
       this.controleur.rafraichirVues();
       this.controleur.play();
+      this.vueRunner.affBtn();
     }
 
     const buttonMenuPrincip = this.create('button');

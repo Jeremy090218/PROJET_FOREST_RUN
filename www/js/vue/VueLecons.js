@@ -19,6 +19,7 @@ class VueLecons extends Vue {
 
     for (let lecon of cours) {
       const button = this.create('button');
+      button.id="btnL";
       this.add(button);
       button.innerHTML = lecon;
       button.onclick = () => {

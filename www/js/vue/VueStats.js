@@ -4,9 +4,9 @@ class VueStats extends Vue {
 
     const buttonRetour = this.create('button');
     this.add(buttonRetour);
-    buttonRetour.innerHTML = "Menu Principal";
+    buttonRetour.innerHTML = "Retour";
     buttonRetour.onclick = () => {
-      this.controleur.changerVue(new VueMenuPrincipal(this.controleur), this);
+      this.controleur.changerVue(new VueOptions(this.controleur), this);
     }
 }
 }

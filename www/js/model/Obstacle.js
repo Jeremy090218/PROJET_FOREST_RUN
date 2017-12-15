@@ -1,6 +1,6 @@
 class Obstacle extends ElementPartie {
-  constructor(ctrl, texture) {
-    super(ctrl, texture);
+  constructor(ctrl, texture, points, vitesse) {
+    super(ctrl, texture, points, vitesse);
   }
 
   update(){

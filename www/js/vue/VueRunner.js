@@ -16,9 +16,6 @@ class VueRunner extends VueJeu {
       this.buttonPause.className= "btnInactif";
     }
 
-<<<<<<< HEAD
-    
-=======
     //Pour se déplacer plus facilement et tester VueVictoire & VuePerdu
     /*const buttonPerdu = this.create('button');
     this.add(buttonPerdu);
@@ -35,7 +32,7 @@ class VueRunner extends VueJeu {
     buttonVct.onclick = () => {
       this.controleur.changerVue(new VueVictoire(this.controleur),this);
     }
->>>>>>> af770998ef4cfe6807efec4c73bbf0838cf7901e
+
 
     this.controleur.switchMode("runner");*/
 

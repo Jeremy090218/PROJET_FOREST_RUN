@@ -11,6 +11,7 @@
   }
 
   const classes = [
+    ['algebra-0.2.6.min'],
     ['Controleur'],
     ['Element', 'Partie', 'Bank', 'ElementPartie', 'Atelier', 'Boutique', 'ElementDecor', 'Item', 'ObjetRamassable', 'Obstacle', 'PartieRun', 'PartieShoot', 'Personnage', 'Question', 'Reponse', 'Trajectoire', 'Utilisateur'],
     ['Vue', 'VueJeu', 'VueAtelier', 'VueRunner', 'VueLecons', 'VueLecon', 'VueStats', 'VueMenuPrincipal', 'VueOptions', 'VuePause', 'VuePerdu', 'VueShooterBoss', 'VueShooterEchec', 'VueVictoire', 'VueBoutique']
@@ -21,9 +22,9 @@
   let nb = 0;
   for (let i = 0; i < classes.length; ++i) {
     switch (i) {
-      case 0: dossier = "controleur/"; break;
-      case 1: dossier = "model/"; break;
-      case 2: dossier = "vue/"; break;
+      case 1: dossier = "controleur/"; break;
+      case 2: dossier = "model/"; break;
+      case 3: dossier = "vue/"; break;
       default: dossier = "";
     }
 

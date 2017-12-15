@@ -29,6 +29,28 @@ body{
   height: 100%;
 }
 
+/*TEST EFFET RIPPLE PAUSE IHM*/
+.ihmPause:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.ihmPause:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+/**/
+
 button {
 	font-family: FredokaOne-Regular, sans-serif;
 	font-size: 14px;
@@ -63,7 +85,7 @@ button:active {
   transform: translateY(4px);
 }
 
-#btnInactif {
+.btnInactif {
   display: none;
 }
 

@@ -10,7 +10,7 @@ class VueVictoire extends Vue {
     this.add(buttonMenuPrincip);
     buttonMenuPrincip.innerHTML = "Menu principal";
     buttonMenuPrincip.onclick = () => {
-      this.controleur.changerVue(new VueMenuPrincipal(this.controleur),this);
+      this.controleur.changerVueUnique(new VueMenuPrincipal(this.controleur));
     }
   }
 

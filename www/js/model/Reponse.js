@@ -2,9 +2,9 @@ class Reponse extends ElementPartie{
   constructor(ctrl, rep) {
     super(ctrl);
     this.reponse = null;
-    this.faussesRep = new Array();
+    this.reponses = new Array();
     this.setReponse(rep);
-    this.setFaussesRep(2);
+    this.setReponses(2);
   }
 
 
@@ -20,8 +20,8 @@ class Reponse extends ElementPartie{
   }
 
 
-  getFaussesRep() {
-    return this.faussesRep;
+  getReponses() {
+    return this.reponses;
   }
 
 
@@ -30,14 +30,20 @@ class Reponse extends ElementPartie{
   }
 
 
-  setFaussesRep(nb) {
+  setReponses(nb) {
+    this.reponses.push(parseInt(this.reponse));
+
     for(let i = 0; i < nb; i ++) {
       let fRep = this.getRndBias(1,parseInt(this.reponse)+10,parseInt(this.reponse)+3,0.3);
-      while(fRep == this.reponse && fRep == this.faussesRep[i-1]) {
+
+      while(this.reponses.includes(fRep)) {
         fRep = this.getRndBias(1,parseInt(this.reponse)+10,parseInt(this.reponse)+3,0.3);
       }
-      this.faussesRep.push(fRep);
+
+      this.reponses.push(fRep);
     }
+    
+    this.reponses.sort((a, b) => {  return a - b;  });
   }
 
 }

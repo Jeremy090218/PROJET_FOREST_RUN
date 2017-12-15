@@ -75,11 +75,10 @@ class VueRunner extends VueJeu {
     }, false);
 
     document.addEventListener('touchcancel', this.touchcancel = (e) => {
-      //console.log("Cancel");
+      console.log("touchcancel");
     }, false);
 
     document.addEventListener('touchend', this.touchend = (e) => {
-      //console.log("End");
       this.mov = 0;
     }, false);
   }
@@ -97,6 +96,7 @@ class VueRunner extends VueJeu {
       this.ctx.save();
       this.ctx.translate(o.getX(), o.getY());
       this.ctx.scale(o.getZ(), o.getZ());
+      this.ctx.translate(-o.getWidth()/2, -o.getHeight()/2);
       this.ctx.drawImage(o.getTexture(), 0, 0);
       this.ctx.restore();
     }

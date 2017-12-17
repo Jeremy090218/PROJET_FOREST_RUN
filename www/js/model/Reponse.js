@@ -1,22 +1,29 @@
 class Reponse extends ElementPartie{
-  constructor(ctrl, rep) {
+  constructor(ctrl, typeQ, rep) {
     super(ctrl);
     this.reponse = null;
+    this.typeQ = null;
     this.reponses = new Array();
     this.setReponse(rep);
-    this.setReponses(2);
+    this.setTypeQ(typeQ);
+    //this.setReponses(2);
   }
 
 
   getRndBias(min, max, bias, influence) {
     let rnd = Math.random() * (max - min) + min,   // random in range
         mix = Math.random() * influence;           // random mixer
-    return Math.floor(rnd * (1 - mix) + bias * mix);           // mix full range and bias
+    return Math.round(rnd * (1 - mix) + bias * mix);           // mix full range and bias
   }
 
 
   getReponse() {
     return this.reponse;
+  }
+
+
+  getTypeQ() {
+    return this.typeQ;
   }
 
 
@@ -27,6 +34,11 @@ class Reponse extends ElementPartie{
 
   setReponse(rep) {
     this.reponse = rep;
+  }
+
+
+  setTypeQ(typeQ) {
+    this.typeQ = typeQ;
   }
 
 

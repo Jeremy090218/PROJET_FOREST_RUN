@@ -6,7 +6,7 @@ class Question extends Element {
     this.intitule = null;
     this.question = null;
     this.reponse = null;
-    this.setQuestion(this.getRndBias(1,1,0,0));    
+    this.setQuestion(this.getRndBias(0,1,0,0));    
   }
 
 
@@ -32,16 +32,16 @@ class Question extends Element {
 
   setQuestion(typeQ) {
     switch (typeQ) { 
-      case 1 :
+      case 0 :
         this.setIntitule("Combien vaut x ? Ramassez le nombre de pièces correspondant !");      
         this.question = this.createEquation();
-        this.setReponse(new Reponse(ctrl, this.solveEquation(this.question)));
+        this.setReponse(new Reponse(ctrl, typeQ, this.solveEquation(this.question)));
         break;
 
-      case 2 :
-        this.setIntitule("");      
+      case 1 :
+        this.setIntitule("Obtient-on Vrai ou Faux ?");      
         this.question = this.createBooleen();
-        this.setReponse(new Reponse(ctrl, this.solveBooleen(this.question)));
+        this.setReponse(new Reponse(ctrl, typeQ, this.solveBooleen(this.question)));
         break;
       default : break;
     }
@@ -56,7 +56,24 @@ class Question extends Element {
   getRndBias(min, max, bias, influence) {
     let rnd = Math.random() * (max - min) + min,   // random in range
         mix = Math.random() * influence;           // random mixer
-    return Math.floor(rnd * (1 - mix) + bias * mix);           // mix full range and bias
+    return Math.round(rnd * (1 - mix) + bias * mix);           // mix full range and bias
+  }
+
+
+  getRndBoolOperator() {
+    switch (this.getRndBias(0,1,0,0)) {
+        case 0 : return "&&";
+        case 1 : return "||";
+    }
+  }
+
+
+  getRndBool() {
+    let bool = this.getRndBias(0,1,0,0);
+    switch (this.getRndBias(0,10,0,0)) {
+        case 5 : return "!" + bool;
+        default : return bool;
+    }
   }
 
 
@@ -96,6 +113,12 @@ class Question extends Element {
   }
 
 
+  createBooleen() {
+    let b = this.getRndBool() + this.getRndBoolOperator() + this.getRndBool() + this.getRndBoolOperator() + this.getRndBool() + this.getRndBoolOperator() + this.getRndBool();
+    return b;
+  }
+
+
   solveEquation(e) {
     let Fraction = algebra.Fraction;
     let Expression = algebra.Expression;
@@ -104,6 +127,11 @@ class Question extends Element {
     let eq = algebra.parse(e);
     let ans = eq.solveFor("x");
     return ans.toString();
+  }
+
+
+  solveBooleen(b) {
+    return eval(b);
   }
 
   

@@ -2,7 +2,6 @@ class VueMenuPrincipal extends Vue {
   constructor(ctrl) {
     super(ctrl, 'menuPrincipal');
 
-
     //Button option
     const buttonOption = this.create('button');
     buttonOption.id="btn0";

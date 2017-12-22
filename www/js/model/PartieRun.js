@@ -11,7 +11,7 @@ class PartieRun extends Partie {
     this.temps = 0;
 
 
-    this.questionEquation = new Question(ctrl,0);
+    this.questionEquation =0;
     this.trajsPossible = [  //// faire getters
       [{x: 180, y: 300, z: 0.1}, {x: 180, y: 640, z: 2}],
       [{x: 175, y: 300, z: 0.1}, {x: 75, y: 640, z: 2}],
@@ -104,15 +104,19 @@ class PartieRun extends Partie {
 
 
 
-    if(this.temps < 1200){
-      this.temps ++;
-    }else{
+    if(this.temps == 0){
+      this.temps = 1200 ;
+      this.questionEquation = new Question(this.getControleur(),0);
+      this.nbReponse = 0;
+      this.getControleur().changerVue(new VueQuestion(this.getControleur(), this.controleur.vueRendu));
+    }else if(this.temps == 1){
       if(!this.testQuestion()){
         this.getPersonnage().decrementerVie();
       }
-      this.temps = 0 ;
-      this.questionEquation = new Question(this.getControleur(),0);
-      this.nbReponse = 0;
+      this.temps --;
+    }else{
+      this.temps --;
+
     }
 
     if(this.getPersonnage().estMort()){
@@ -124,7 +128,7 @@ class PartieRun extends Partie {
 
 
   testQuestion(){
-    return this.questionEquation.repondre(this.pieceReponse);
+    return this.questionEquation.repondre(this.nbReponse);
   }
 
   updatePersonnage(){

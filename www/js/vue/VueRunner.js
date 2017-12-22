@@ -93,7 +93,8 @@ class VueRunner extends VueJeu {
     this.iterDrawPercpec(this.controleur.partieRunner.getElementsDecors());
     this.iterDrawPercpec(this.controleur.partieRunner.getObstacles());
     this.iterDrawPercpec(this.controleur.partieRunner.getRamassables());
-    this.iterDrawPercpec([this.controleur.partieRunner.getPersonnage()]);
+    this.iterDrawPercpec(this.controleur.partieRunner.elementReponses);
+    this.iterDrawPercpecAnim([this.controleur.partieRunner.getPersonnage()]);
   }
 
   iterDrawPercpec(arr){
@@ -103,6 +104,17 @@ class VueRunner extends VueJeu {
       this.ctx.scale(o.getZ(), o.getZ());
       this.ctx.translate(-o.getWidth()/2, -o.getHeight());
       this.ctx.drawImage(o.getTexture(), 0, 0);
+      this.ctx.restore();
+    }
+  }
+
+  iterDrawPercpecAnim(arr){
+    for (let o of arr) {
+      this.ctx.save();
+      this.ctx.translate(o.getX(), o.getY());
+      this.ctx.scale(o.getZ(), o.getZ());
+      this.ctx.translate(-25, -50);
+      this.ctx.drawImage(o.getTexture(), (o.getFrame()*50), 0, 50, 50, 0, 0, 50, 50);
       this.ctx.restore();
     }
   }

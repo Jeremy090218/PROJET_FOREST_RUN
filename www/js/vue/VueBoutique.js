@@ -7,7 +7,6 @@ class VueBoutique extends Vue {
     this.add(buttonRetourAtl);
     buttonRetourAtl.innerHTML = "Retour à l'Atelier";
     buttonRetourAtl.onclick = () => {
-      this.delete();
       this.controleur.changerVueUnique(new VueAtelier(this.controleur));
     }
 

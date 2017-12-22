@@ -1,6 +1,6 @@
 class Personnage extends Element {
   constructor(ctrl, velociteY = 0) {
-    super(ctrl,"Character_0_vue_4.png",180,620,2);
+    super(ctrl,"Character_0_annimation.png",180,620,2);
     this.velociteY = velociteY;
     this.velociteX = 0;
     this.vie = 3;
@@ -125,5 +125,6 @@ class Personnage extends Element {
       }
     }
 
+    if(this.mouvementY || ++this.frame >= 40) this.frame = 0;
   }
 }

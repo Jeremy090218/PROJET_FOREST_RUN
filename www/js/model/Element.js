@@ -12,6 +12,8 @@ class Element {
     this.detruit = false;
     this.controleur = ctrl;
 
+    this.frame = 0;
+
     this.setTexture(texture);
   }
 
@@ -25,6 +27,7 @@ class Element {
   getTexture(){return this.texture}
   getWidth(){return this.texture.width;}
   getHeight(){return this.texture.height;}
+  getFrame(){return Math.floor(this.frame/10);}
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////  SETTERS  /////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////

@@ -93,6 +93,7 @@ class VueRunner extends VueJeu {
     this.iterDrawPercpec(this.controleur.partieRunner.getElementsDecors());
     this.iterDrawPercpec(this.controleur.partieRunner.getObstacles());
     this.iterDrawPercpec(this.controleur.partieRunner.getRamassables());
+    this.iterDrawPercpec(this.controleur.partieRunner.elementReponses);
     this.iterDrawPercpec([this.controleur.partieRunner.getPersonnage()]);
   }
 

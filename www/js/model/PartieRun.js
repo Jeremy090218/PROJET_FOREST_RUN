@@ -6,7 +6,8 @@ class PartieRun extends Partie {
     this.score = 0 ;
 
     this.pieceRecup = 0;
-    this.pieceReponse = 0;
+    this.nbReponse = 0;
+
     this.temps = 0;
 
 
@@ -54,13 +55,11 @@ class PartieRun extends Partie {
 
   update(){
                         ////// Mise a jour de tout les elements
-    //this.updateDecor();
-    this.updateArray(this.getElementsDecors());
     this.updatePersonnage();
-    //this.updateObstacles();
-    //this.updateObjets();
     this.updateArray(this.getObstacles());
     this.updateArray(this.getRamassables());
+    this.updateArray(this.elementReponses);
+    this.updateArray(this.getElementsDecors());
 
     for (var i = 0; i < this.getObstacles().length; i++) {
       if(this.getPersonnage().estEnColision(this.getObstacles()[i])){
@@ -74,10 +73,15 @@ class PartieRun extends Partie {
         this.getRamassablesIn(i).detruire();
         this.score = this.score + 20 ;
         this.pieceRecup ++;
-        this.pieceReponse ++;
-        console.log(this.pieceRecup);
       }
     }
+    for (var i = 0; i < this.elementReponses.length; i++) {
+      if(this.getPersonnage().estEnColision(this.elementReponses[i])){
+        this.elementReponses[i].detruire();
+        this.nbReponse ++;
+      }
+    }
+
 
     if(!this.cd){
       this.addObstacle();
@@ -86,11 +90,19 @@ class PartieRun extends Partie {
       --this.cd ;
     }
     if(this.cd == 23){
-      if(Math.random() > 0.3){
+      if(Math.random() > 0.7){
          this.addRamassables();
-         this.score ++;
       }
+      if(Math.random() > 0.7){
+        this.addElementReponse();
+      }
+      this.score ++;
     }
+    if (this.cd/10 == 1){
+      this.addArbres();
+    }
+
+
 
     if(this.temps < 1200){
       this.temps ++;
@@ -100,7 +112,7 @@ class PartieRun extends Partie {
       }
       this.temps = 0 ;
       this.questionEquation = new Question(this.getControleur(),0);
-      this.pieceReponse = 0;
+      this.nbReponse = 0;
     }
 
     if(this.getPersonnage().estMort()){
@@ -213,7 +225,7 @@ class PartieRun extends Partie {
 ////////////////////////////////////////////////////////////////////////////////
                                             /////// Gestion des elementReponses
   addElementReponse(){
-    this.elementReponses.unshift(new ObjetRamassable(this.controleur,"fkekhe.png",this.getTrajectoire(),1));
+    this.elementReponses.unshift(new ElementReponse(this.controleur,"default.png",this.getTrajectoire(),1));
   }
 
 
@@ -224,6 +236,17 @@ class PartieRun extends Partie {
       }
     }
   }
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+                                            /////// Gestion des Decors
+
+  addArbres(){
+    this.getElementsDecors().unshift(new ElementDecor(this.controleur,Math.floor(Math.random()*120)+50,250,1));
+    this.getElementsDecors().unshift(new ElementDecor(this.controleur,Math.floor(Math.random()*120)+200,-250,1));
+  }
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
                                             ////// Gestion des Obstacles

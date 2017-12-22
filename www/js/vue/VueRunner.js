@@ -8,13 +8,19 @@ class VueRunner extends VueJeu {
 
     this.buttonPause = this.create('button');
     this.add(this.buttonPause);
-    this.buttonPause.innerHTML = "Pause";
+    this.buttonPause.innerHTML = "";
     this.buttonPause.id= "pauseRunner";
     this.buttonPause.onclick = () => {
       this.controleur.changerVue(new VuePause(this.controleur, this));
       this.controleur.pause();
       this.buttonPause.className= "btnInactif";
     }
+
+    this.score = this.create('p');
+    this.add(this.score);
+
+    this.nbPotion = this.create('p');
+    this.add(this.nbPotion);
 
     //Pour se déplacer plus facilement et tester VueVictoire & VuePerdu
     /*const buttonPerdu = this.create('button');
@@ -91,9 +97,20 @@ class VueRunner extends VueJeu {
     this.ctx.fillRect(0, 0, 360, 300);
 
     this.iterDrawPercpec(this.controleur.partieRunner.getElementsDecors());
-    this.iterDrawPercpec(this.controleur.partieRunner.getObstacles());
     this.iterDrawPercpec(this.controleur.partieRunner.getRamassables());
-    this.iterDrawPercpec([this.controleur.partieRunner.getPersonnage()]);
+    this.iterDrawPercpec(this.controleur.partieRunner.getObstacles());
+
+    this.iterDrawPercpec(this.controleur.partieRunner.elementReponses);
+    this.iterDrawPercpecAnim([this.controleur.partieRunner.getPersonnage()]);
+
+    const vie = this.controleur.textures.getObjet("IconCoeur.png");
+    for (let i = 0; i < this.controleur.partieRunner.getPersonnage().getVie(); ++i) {
+      this.ctx.drawImage(vie, i*30, 0);
+    }
+
+    this.score.innerHTML = this.controleur.partieRunner.score;
+
+    this.nbPotion.innerHTML = this.controleur.partieRunner.nbReponse;
   }
 
   iterDrawPercpec(arr){
@@ -103,6 +120,17 @@ class VueRunner extends VueJeu {
       this.ctx.scale(o.getZ(), o.getZ());
       this.ctx.translate(-o.getWidth()/2, -o.getHeight());
       this.ctx.drawImage(o.getTexture(), 0, 0);
+      this.ctx.restore();
+    }
+  }
+
+  iterDrawPercpecAnim(arr){
+    for (let o of arr) {
+      this.ctx.save();
+      this.ctx.translate(o.getX(), o.getY());
+      this.ctx.scale(o.getZ(), o.getZ());
+      this.ctx.translate(-25, -50);
+      this.ctx.drawImage(o.getTexture(), (o.getFrame()*50), 0, 50, 50, 0, 0, 50, 50);
       this.ctx.restore();
     }
   }

@@ -3,6 +3,15 @@ class PartieRun extends Partie {
     super(ctrl, personnage);
     this.gravite = gravite;
     this.obstacles = new Array();
+    this.score = 0 ;
+
+    this.pieceRecup = 0;
+    this.nbReponse = 0;
+
+    this.temps = 0;
+
+
+    this.questionEquation =0;
     this.trajsPossible = [  //// faire getters
       [{x: 180, y: 300, z: 0.1}, {x: 180, y: 640, z: 2}],
       [{x: 175, y: 300, z: 0.1}, {x: 75, y: 640, z: 2}],
@@ -10,6 +19,8 @@ class PartieRun extends Partie {
     ];
     this.lastTraj = 1;
     this.ramassables = new Array();
+
+    this.elementReponses = new Array();
     this.initElement();
   }
 ////////////////////////////////////////////////////////////////////////////////
@@ -44,41 +55,80 @@ class PartieRun extends Partie {
 
   update(){
                         ////// Mise a jour de tout les elements
-    //this.updateDecor();
-    this.updateArray(this.getElementsDecors());
     this.updatePersonnage();
-    //this.updateObstacles();
-    //this.updateObjets();
     this.updateArray(this.getObstacles());
     this.updateArray(this.getRamassables());
+    this.updateArray(this.elementReponses);
+    this.updateArray(this.getElementsDecors());
 
     for (var i = 0; i < this.getObstacles().length; i++) {
       if(this.getPersonnage().estEnColision(this.getObstacles()[i])){
         this.getPersonnage().decrementerVie();
         this.getObstaclesIn(i).detruire();
-        if(this.getPersonnage().estMort()){
-          this.controleur.pause();
-          this.controleur.changerVueUnique(new VuePerdu(this.controleur));
-        }
       }
     }
 
     for (var i = 0; i < this.getRamassables().length; i++) {
       if(this.getPersonnage().estEnColision(this.getRamassables()[i])){
         this.getRamassablesIn(i).detruire();
-        console.log("1 piece en plus");
+        this.score = this.score + 20 ;
+        this.pieceRecup ++;
       }
     }
+    for (var i = 0; i < this.elementReponses.length; i++) {
+      if(this.getPersonnage().estEnColision(this.elementReponses[i])){
+        this.elementReponses[i].detruire();
+        this.nbReponse ++;
+      }
+    }
+
 
     if(!this.cd){
       this.addObstacle();
       this.cd = 45;
-    } else{
+    }else{
       --this.cd ;
     }
     if(this.cd == 23){
-      if(Math.random() > 0.5) this.addRamassables();
+      if(Math.random() > 0.7){
+         this.addRamassables();
+      }
+      if(Math.random() > 0.7){
+        this.addElementReponse();
+      }
+      this.score ++;
     }
+    if (this.cd/10 == 1){
+      this.addArbres();
+    }
+
+
+
+    if(this.temps == 0){
+      this.temps = 1200 ;
+      this.questionEquation = new Question(this.getControleur(),0);
+      this.nbReponse = 0;
+      this.getControleur().changerVue(new VueQuestion(this.getControleur(), this.controleur.vueRendu));
+    }else if(this.temps == 1){
+      if(!this.testQuestion()){
+        this.getPersonnage().decrementerVie();
+      }
+      this.temps --;
+    }else{
+      this.temps --;
+
+    }
+
+    if(this.getPersonnage().estMort()){
+      this.controleur.pause();
+      this.controleur.changerVueUnique(new VuePerdu(this.controleur));
+    }
+
+  }
+
+
+  testQuestion(){
+    return this.questionEquation.repondre(this.nbReponse);
   }
 
   updatePersonnage(){
@@ -160,13 +210,10 @@ class PartieRun extends Partie {
 ////////////////////////////////////////////////////////////////////////////////
                                             //// Gestion des Ramassable
 
-  creationRamassables(){
-
-  }
-
   addRamassables(){
     this.getRamassables().unshift(new ObjetRamassable(this.controleur,"Coin_1.png",this.getTrajectoire(),1));
   }
+
 
   supprimerRamassables(ramassable){
     for (let i = 0; i < this.getRamassables().length; ++i) {
@@ -175,6 +222,35 @@ class PartieRun extends Partie {
       }
     }
   }
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+                                            /////// Gestion des elementReponses
+  addElementReponse(){
+    this.elementReponses.unshift(new ElementReponse(this.controleur,"potion.png",this.getTrajectoire(),1));
+  }
+
+
+  supprimerElementReponse(ramassable){
+    for (let i = 0; i < this.elementReponses.length; ++i) {
+      if (ramassable.getId() == this.elementReponses[i].getId()) {
+        this.elementReponses.splice(i,1);
+      }
+    }
+  }
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+                                            /////// Gestion des Decors
+
+  addArbres(){
+    this.getElementsDecors().unshift(new ElementDecor(this.controleur,Math.floor(Math.random()*120)+50,250,1));
+    this.getElementsDecors().unshift(new ElementDecor(this.controleur,Math.floor(Math.random()*120)+200,-250,1));
+  }
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
                                             ////// Gestion des Obstacles

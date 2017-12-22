@@ -107,10 +107,8 @@ button:active {
   height: 100%;
 }
 
-#btn0 {
-
-  margin-right: inherit;
-
+#btnHD {
+  margin-right: 10px;
 }
 
 /* ************** Atelier **************/
@@ -143,6 +141,14 @@ button:active {
   display: inline-block;
 }
 
+#VueLecons #divL {
+  height: 100%;
+  /*overflow: scroll;*/
+  overflow-y:auto;
+}
+
+
+
 /******************** Lecon ****************/
 #VueLecon {
   width: 100%;
@@ -150,7 +156,7 @@ button:active {
   background-color:  #90EE90;
 }
 
-iframe {
+ iframe {
   height: 90%;
   width: 100%;
 }
@@ -160,4 +166,26 @@ iframe {
 #pauseRunner {
   margin-right: 10px;
   margin-top: 10px;
+  width: 30px;
+  height: 30px;
+
+  background-image: url("../textures/IconPause.png");
+
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: none;
+  padding: none;
+  -moz-border-radius: none;
+  -webkit-border-radius: none;
+  border-radius: none;
+  border: none;
+  -moz-box-shadow:
+    none;
+  -webkit-box-shadow:
+    none;
+  box-shadow:
+    none;
+  text-shadow:
+    none;
 }

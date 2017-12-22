@@ -1,4 +1,4 @@
-class VueLecon extends Vue {
+ class VueLecon extends Vue {
   constructor(ctrl, lecon) {
     super(ctrl, 'VueLecon');
 

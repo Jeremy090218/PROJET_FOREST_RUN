@@ -3,6 +3,14 @@ class PartieRun extends Partie {
     super(ctrl, personnage);
     this.gravite = gravite;
     this.obstacles = new Array();
+    this.score = 0 ;
+
+    this.pieceRecup = 0;
+    this.pieceReponse = 0;
+    this.temps = 0;
+
+
+    this.questionEquation = new Question(ctrl,0);
     this.trajsPossible = [  //// faire getters
       [{x: 180, y: 300, z: 0.1}, {x: 180, y: 640, z: 2}],
       [{x: 175, y: 300, z: 0.1}, {x: 75, y: 640, z: 2}],
@@ -10,6 +18,8 @@ class PartieRun extends Partie {
     ];
     this.lastTraj = 1;
     this.ramassables = new Array();
+
+    this.elementReponses = new Array();
     this.initElement();
   }
 ////////////////////////////////////////////////////////////////////////////////
@@ -56,29 +66,53 @@ class PartieRun extends Partie {
       if(this.getPersonnage().estEnColision(this.getObstacles()[i])){
         this.getPersonnage().decrementerVie();
         this.getObstaclesIn(i).detruire();
-        if(this.getPersonnage().estMort()){
-          this.controleur.pause();
-          this.controleur.changerVueUnique(new VuePerdu(this.controleur));
-        }
       }
     }
 
     for (var i = 0; i < this.getRamassables().length; i++) {
       if(this.getPersonnage().estEnColision(this.getRamassables()[i])){
         this.getRamassablesIn(i).detruire();
-        console.log("1 piece en plus");
+        this.score = this.score + 20 ;
+        this.pieceRecup ++;
+        this.pieceReponse ++;
+        console.log(this.pieceRecup);
       }
     }
 
     if(!this.cd){
       this.addObstacle();
       this.cd = 45;
-    } else{
+    }else{
       --this.cd ;
     }
     if(this.cd == 23){
-      if(Math.random() > 0.5) this.addRamassables();
+      if(Math.random() > 0.3){
+         this.addRamassables();
+         this.score ++;
+      }
     }
+
+    if(this.temps < 1200){
+      this.temps ++;
+    }else{
+      if(!this.testQuestion()){
+        this.getPersonnage().decrementerVie();
+      }
+      this.temps = 0 ;
+      this.questionEquation = new Question(this.getControleur(),0);
+      this.pieceReponse = 0;
+    }
+
+    if(this.getPersonnage().estMort()){
+      this.controleur.pause();
+      this.controleur.changerVueUnique(new VuePerdu(this.controleur));
+    }
+
+  }
+
+
+  testQuestion(){
+    return this.questionEquation.repondre(this.pieceReponse);
   }
 
   updatePersonnage(){
@@ -160,18 +194,33 @@ class PartieRun extends Partie {
 ////////////////////////////////////////////////////////////////////////////////
                                             //// Gestion des Ramassable
 
-  creationRamassables(){
-
-  }
-
   addRamassables(){
     this.getRamassables().unshift(new ObjetRamassable(this.controleur,"Coin_1.png",this.getTrajectoire(),1));
   }
+
 
   supprimerRamassables(ramassable){
     for (let i = 0; i < this.getRamassables().length; ++i) {
       if (ramassable.getId() == this.getRamassables()[i].getId()) {
         this.getRamassables().splice(i,1);
+      }
+    }
+  }
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+                                            /////// Gestion des elementReponses
+  addElementReponse(){
+    this.elementReponses.unshift(new ObjetRamassable(this.controleur,"fkekhe.png",this.getTrajectoire(),1));
+  }
+
+
+  supprimerElementReponse(ramassable){
+    for (let i = 0; i < this.elementReponses.length; ++i) {
+      if (ramassable.getId() == this.elementReponses[i].getId()) {
+        this.elementReponses.splice(i,1);
       }
     }
   }

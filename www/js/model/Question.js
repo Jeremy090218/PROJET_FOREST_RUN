@@ -1,12 +1,12 @@
 class Question extends Element {
-  constructor(ctrl) {
+  constructor(ctrl,i) {
     super(ctrl);
     if(!Element.id) Element.id = 0;
     this.id = ++Element.id;
     this.intitule = null;
     this.question = null;
     this.reponse = null;
-    this.setQuestion(this.getRndBias(0,1,0,0));    
+    this.setQuestion(i);
   }
 
 
@@ -28,26 +28,26 @@ class Question extends Element {
   setIntitule(i) {
     this.intitule = i;
   }
-  
+
 
   setQuestion(typeQ) {
-    switch (typeQ) { 
+    switch (typeQ) {
       case 0 :
-        this.setIntitule("Combien vaut x ? Ramassez le nombre de pièces correspondant !");      
+        this.setIntitule("Combien vaut x ? Ramassez le nombre de pièces correspondant !");
         this.question = this.createEquation();
         this.setReponse(new Reponse(ctrl, typeQ, this.solveEquation(this.question)));
         break;
 
       case 1 :
-        this.setIntitule("Obtient-on Vrai ou Faux ?");      
+        this.setIntitule("Obtient-on Vrai ou Faux ?");
         this.question = this.createBooleen();
         this.setReponse(new Reponse(ctrl, typeQ, this.solveBooleen(this.question)));
         break;
       default : break;
     }
   }
-  
-  
+
+
   setReponse(r) {
     this.reponse = r;
   }
@@ -134,7 +134,7 @@ class Question extends Element {
     return eval(b);
   }
 
-  
+
   repondre(rep) {
     return rep == this.reponse.getReponse();
   }

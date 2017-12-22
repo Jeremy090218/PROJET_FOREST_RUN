@@ -25,5 +25,9 @@ class VuePause extends Vue {
     buttonMenuPrincip.onclick = () => {
       this.controleur.changerVueUnique(new VueMenuPrincipal(this.controleur));
     }
+
+
   }
+
+
 }

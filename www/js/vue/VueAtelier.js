@@ -3,7 +3,7 @@ class VueAtelier extends Vue {
     super(ctrl, 'atelier');
 
     const buttonMenuPrincip = this.create('button');
-    buttonMenuPrincip.id="divA";
+    buttonMenuPrincip.id="btnHD";
     this.add(buttonMenuPrincip);
     buttonMenuPrincip.innerHTML = "Menu principal";
     buttonMenuPrincip.onclick = () => {
@@ -15,7 +15,6 @@ class VueAtelier extends Vue {
     titre.innerHTML = "Atelier";
 
     const buttonBtq = this.create('button');
-    buttonBtq.id="divA";
     this.add(buttonBtq);
     buttonBtq.innerHTML = "Boutique";
     buttonBtq.onclick = () => {

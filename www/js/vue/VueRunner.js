@@ -8,7 +8,7 @@ class VueRunner extends VueJeu {
 
     this.buttonPause = this.create('button');
     this.add(this.buttonPause);
-    this.buttonPause.innerHTML = "Pause";
+    this.buttonPause.innerHTML = "";
     this.buttonPause.id= "pauseRunner";
     this.buttonPause.onclick = () => {
       this.controleur.changerVue(new VuePause(this.controleur, this));

@@ -3,6 +3,7 @@ class VueOptions extends Vue {
       super(ctrl, 'Options');
 
       const buttonRetour = this.create('button');
+      buttonRetour.id="btnHD";
       this.add(buttonRetour);
       buttonRetour.innerHTML = "Menu Principal";
       buttonRetour.onclick = () => {

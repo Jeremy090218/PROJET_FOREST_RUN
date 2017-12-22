@@ -18,7 +18,7 @@ class Controleur {
                                                   "Obstacle_1.png",
                                                   "Tree_0_1.png",
                                                   "Coin_1.png",
-                                                  "Ecran_accueil.png"]);
+                                                  "Character_0_vue_4.png","Character_0_vue_0.png", "Character_1_vue_0.png", "Character_2_vue_0.png","Ecran_accueil.png"]);
 
     this.chargement();
   }

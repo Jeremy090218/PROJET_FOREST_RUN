@@ -2,6 +2,14 @@ class VueStats extends Vue {
   constructor(ctrl) {
     super(ctrl, 'VueStats');
 
+        const buttonRetour = this.create('button');
+        buttonRetour.id="btnHD";
+        this.add(buttonRetour);
+        buttonRetour.innerHTML = "Retour";
+        buttonRetour.onclick = () => {
+            this.controleur.changerVue(new VueOptions(this.controleur), this);
+          }
+
         const tMoy = this.create('h3');
         this.add(tMoy);
         tMoy.innerHTML = "Note moyenne aux questions";
@@ -27,12 +35,6 @@ class VueStats extends Vue {
         tExR.innerHTML = "Types exercices le plus réussi";
 
 
-        const buttonRetour = this.create('button');
-        this.add(buttonRetour);
-        buttonRetour.innerHTML = "Retour";
-        buttonRetour.onclick = () => {
-          this.controleur.changerVue(new VueOptions(this.controleur), this);
-        }
 
 
 

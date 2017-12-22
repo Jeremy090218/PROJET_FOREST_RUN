@@ -4,7 +4,7 @@ class VueMenuPrincipal extends Vue {
 
     //Button option
     const buttonOption = this.create('button');
-    buttonOption.id="btn0";
+    buttonOption.id="btnHD";
     this.add(buttonOption);
     buttonOption.innerHTML = "Options";
     buttonOption.onclick = () => {

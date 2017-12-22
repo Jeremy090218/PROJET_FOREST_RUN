@@ -3,6 +3,7 @@ class VueCredits extends Vue {
     super(ctrl, 'VueCredits');
 
     const buttonRetour = this.create('button');
+    buttonRetour.id="btnHD";
     this.add(buttonRetour);
     buttonRetour.innerHTML = "Retour";
     buttonRetour.onclick = () => {

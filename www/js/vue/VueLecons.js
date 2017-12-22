@@ -3,6 +3,7 @@ class VueLecons extends Vue {
     super(ctrl, 'VueLecons');
 
     const buttonRetour = this.create('button');
+    buttonRetour.id="btnHD";
     this.add(buttonRetour);
     buttonRetour.innerHTML = "Menu Principal";
     buttonRetour.onclick = () => {
@@ -16,11 +17,15 @@ class VueLecons extends Vue {
     cours = ["Angles Inscrits & Polygones Reguliers",  "Equations, Inequations & Systemes", "Geometrie dans l'Espace", "Fonction Numerique", "Fonctions Lineaires & Affines", "Identites Remarquables & Equations Produit", "Nombres Entiers & Rationnels", "Probabilites","Thales", "Puissances d'Exposants Relatifs", "Racines Carrees", "Sphere", "Statistiques", "Trigonometrie"];
 
     // Création d'un bouton pour chaque cours
+    const divL = this.create('div');
+    this.add(divL);
+    divL.id = "divL";
 
     for (let lecon of cours) {
       const button = this.create('button');
-      button.id="btnL";
-      this.add(button);
+      //button.id="btnL";
+      this.add(divL, button);
+
       button.innerHTML = lecon;
       button.onclick = () => {
         this.controleur.changerVue(new VueLecon(this.controleur, lecon), this);

@@ -92,12 +92,12 @@ class Question extends Element {
     let expGauche = new Expression("x");
         expGauche = expGauche.multiply(this.getRndBias(1,10,0,0));
         expGauche = expGauche.add(this.getRndBias(-10,10,0,0.5));
-        expGauche = expGauche.divide(div);
+        //expGauche = expGauche.divide(div);
 
     let expDroite = new Expression("x");
         expDroite = expDroite.multiply(this.getRndBias(-10,10,0,0.75));
         expDroite = expDroite.add(this.getRndBias(-10,10,0,0));
-        expDroite = expDroite.divide(div);
+        //expDroite = expDroite.divide(div);
 
     let eq = expGauche.toString() + " = " + expDroite.toString();
 

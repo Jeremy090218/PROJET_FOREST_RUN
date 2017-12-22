@@ -16,6 +16,12 @@ class VueRunner extends VueJeu {
       this.buttonPause.className= "btnInactif";
     }
 
+    this.score = this.create('p');
+    this.add(this.score);
+
+    this.nbPotion = this.create('p');
+    this.add(this.nbPotion);
+
     //Pour se déplacer plus facilement et tester VueVictoire & VuePerdu
     /*const buttonPerdu = this.create('button');
     this.add(buttonPerdu);
@@ -91,10 +97,20 @@ class VueRunner extends VueJeu {
     this.ctx.fillRect(0, 0, 360, 300);
 
     this.iterDrawPercpec(this.controleur.partieRunner.getElementsDecors());
-    this.iterDrawPercpec(this.controleur.partieRunner.getObstacles());
     this.iterDrawPercpec(this.controleur.partieRunner.getRamassables());
+    this.iterDrawPercpec(this.controleur.partieRunner.getObstacles());
+
     this.iterDrawPercpec(this.controleur.partieRunner.elementReponses);
     this.iterDrawPercpecAnim([this.controleur.partieRunner.getPersonnage()]);
+
+    const vie = this.controleur.textures.getObjet("IconCoeur.png");
+    for (let i = 0; i < this.controleur.partieRunner.getPersonnage().getVie(); ++i) {
+      this.ctx.drawImage(vie, i*30, 0);
+    }
+
+    this.score.innerHTML = this.controleur.partieRunner.score;
+
+    this.nbPotion.innerHTML = this.controleur.partieRunner.nbReponse;
   }
 
   iterDrawPercpec(arr){

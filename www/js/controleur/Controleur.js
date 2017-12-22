@@ -18,7 +18,7 @@ class Controleur {
                                                   "Obstacle_1.png",
                                                   "Tree_0_1.png",
                                                   "Coin_1.png",
-                                                  "Character_0_annimation.png"]);
+                                                  "Character_0_annimation.png", "IconCoeur.png", "potion.png"]);
 
     this.chargement();
   }

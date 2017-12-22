@@ -229,7 +229,7 @@ class PartieRun extends Partie {
 ////////////////////////////////////////////////////////////////////////////////
                                             /////// Gestion des elementReponses
   addElementReponse(){
-    this.elementReponses.unshift(new ElementReponse(this.controleur,"default.png",this.getTrajectoire(),1));
+    this.elementReponses.unshift(new ElementReponse(this.controleur,"potion.png",this.getTrajectoire(),1));
   }
 
 

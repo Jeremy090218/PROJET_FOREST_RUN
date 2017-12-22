@@ -20,7 +20,7 @@ class VueMenuPrincipal extends Vue {
     titre.innerHTML = "Forest Run";
 
 
-    /*this.add(this.controleur.textures.getObjet("fondtest.png");*/
+    //this.add(this.controleur.textures.getObjet("fondtest.png"));
 
 
     //button jouer

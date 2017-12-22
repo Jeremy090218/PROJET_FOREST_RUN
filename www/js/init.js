@@ -13,7 +13,7 @@
   const classes = [
     ['algebra-0.2.6.min'],
     ['Controleur'],
-    ['Element', 'Partie', 'Bank', 'ElementPartie', 'Atelier', 'Boutique', 'ElementDecor', 'Item', 'ObjetRamassable', 'Obstacle', 'PartieRun', 'PartieShoot', 'Personnage', 'Question', 'Reponse', 'Trajectoire', 'Utilisateur'],
+    ['Element', 'Partie', 'Bank', 'ElementPartie', 'Atelier', 'Boutique', 'ElementDecor','ElementReponse', 'Item', 'ObjetRamassable', 'Obstacle', 'PartieRun', 'PartieShoot', 'Personnage', 'Question', 'Reponse', 'Trajectoire', 'Utilisateur'],
     ['Vue', 'VueJeu', 'VueAtelier', 'VueRunner', 'VueLecons', 'VueLecon', 'VueStats', 'VueMenuPrincipal', 'VueOptions', 'VuePause', 'VuePerdu', 'VueShooterBoss', 'VueShooterEchec', 'VueVictoire', 'VueBoutique', 'VueConfirmationReinit', 'VueCredits']
   ];
 

@@ -21,6 +21,7 @@ class PartieRun extends Partie {
     this.ramassables = new Array();
 
     this.elementReponses = new Array();
+
     this.initElement();
   }
 ////////////////////////////////////////////////////////////////////////////////
@@ -31,6 +32,8 @@ class PartieRun extends Partie {
   getObstaclesIn(i){return this.obstacles[i]}  /// recupération par son indice
   getRamassables(){return this.ramassables;}
   getRamassablesIn(i){return this.ramassables[i];}
+
+  getFileRendu(){return this.fileRendu}
 
 ////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// SETTERS //////////////////////////////////////////////
@@ -164,9 +167,9 @@ class PartieRun extends Partie {
       if(this.getPersonnage().getY() >= 620 ){
         this.getPersonnage().sauter();
       }
-    } else {
+    } /*else {
       console.log("annulée");
-    }
+    }*/
   }
 
   actionBas(){
@@ -179,9 +182,9 @@ class PartieRun extends Partie {
         this.getPersonnage().retomber();
       }
       // sinon ne rien faire else {
-    } else {
+    } /*else {
       console.log("annulée");
-    }
+    }*/
   }
   actionGauche(){
     ///   -10 +++++++ 0 +++++++++ 10  ///
@@ -190,9 +193,9 @@ class PartieRun extends Partie {
                                 // Si le personnage n'est pas déja sur la colonne de gauche
         this.getPersonnage().deplacementGauche();
       }
-    } else {
+    } /*else {
       console.log("annulée");
-    }
+    }*/
 
   }
   actionDroite(){
@@ -201,9 +204,9 @@ class PartieRun extends Partie {
                                 // Si le personnage n'est pas déja sur la colonne de droite
         this.getPersonnage().deplacementDroite();
       }
-    } else {
+    } /*else {
       console.log("annulée");
-    }
+    }*/
   }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -211,7 +214,10 @@ class PartieRun extends Partie {
                                             //// Gestion des Ramassable
 
   addRamassables(){
-    this.getRamassables().unshift(new ObjetRamassable(this.controleur,"Coin_1.png",this.getTrajectoire(),1));
+    const o = new ObjetRamassable(this.controleur,"Coin_1.png",this.getTrajectoire(),1);
+    this.getRamassables().unshift(o);
+    this.fileRendu.unshift(o);
+
   }
 
 
@@ -229,7 +235,9 @@ class PartieRun extends Partie {
 ////////////////////////////////////////////////////////////////////////////////
                                             /////// Gestion des elementReponses
   addElementReponse(){
-    this.elementReponses.unshift(new ElementReponse(this.controleur,"potion.png",this.getTrajectoire(),1));
+    const o = new ElementReponse(this.controleur,"potion.png",this.getTrajectoire(),1);
+    this.elementReponses.unshift(o);
+    this.fileRendu.unshift(o);
   }
 
 
@@ -247,8 +255,12 @@ class PartieRun extends Partie {
                                             /////// Gestion des Decors
 
   addArbres(){
-    this.getElementsDecors().unshift(new ElementDecor(this.controleur,Math.floor(Math.random()*120)+50,250,1));
-    this.getElementsDecors().unshift(new ElementDecor(this.controleur,Math.floor(Math.random()*120)+200,-250,1));
+    const o1 = new ElementDecor(this.controleur,Math.floor(Math.random()*120)+50,250,1);
+    const o2 = new ElementDecor(this.controleur,Math.floor(Math.random()*120)+200,-250,1);
+    this.getElementsDecors().unshift(o1);
+    this.getElementsDecors().unshift(o2);
+    this.fileRendu.unshift(o1);
+    this.fileRendu.unshift(o2);
   }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -256,7 +268,9 @@ class PartieRun extends Partie {
                                             ////// Gestion des Obstacles
 
   addObstacle(){
-    this.getObstacles().unshift(new Obstacle(this.controleur, "Obstacle_1.png", this.getTrajectoire(), 1));
+    const o = new Obstacle(this.controleur, "Obstacle_1.png", this.getTrajectoire(), 1);
+    this.getObstacles().unshift(o);
+    this.fileRendu.unshift(o);
   }
 
   supprimerObstacle(obstacle){

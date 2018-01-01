@@ -5,8 +5,18 @@ class VueJeu extends Vue{
     this.canvas = document.getElementById('canvas');
     this.ctx = this.canvas.getContext('2d');
 
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    const ew = w / Partie.virtualW;
+    const eh = h / Partie.virtualH;
+
+    console.log("Echelle:", ew, eh);
+
+    this.canvas.width = w;
+    this.canvas.height = h;
+
+    this.ctx.scale(ew, eh);
 
     this.controleur.setVueRendu(this);
   }

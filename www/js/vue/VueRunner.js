@@ -45,7 +45,6 @@ class VueRunner extends VueJeu {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
     this.pointeur = {x: -1, y: -1};
     this.depart = {x: -1, y: -1};
     this.mov = 0;
@@ -64,16 +63,16 @@ class VueRunner extends VueJeu {
       if (this.mov == 3) {
         const a = Math.atan2(this.pointeur.x - this.depart.x, this.pointeur.y - this.depart.y);
         if(a >= -Math.PI/4 && a < Math.PI/4){
-          console.log("bas");
+          //console.log("bas");
           this.controleur.partieRunner.actionBas();
         } else if (a >= Math.PI/4 && a < 3*Math.PI/4) {
-          console.log("droite");
+          //console.log("droite");
           this.controleur.partieRunner.actionDroite();
         } else if (a <= -Math.PI/4 && a > -3*Math.PI/4) {
-          console.log("gauche");
+          //console.log("gauche");
           this.controleur.partieRunner.actionGauche();
         } else {
-          console.log("haut");
+          //console.log("haut");
           this.controleur.partieRunner.actionHaut();
         }
       }
@@ -86,26 +85,29 @@ class VueRunner extends VueJeu {
     document.addEventListener('touchend', this.touchend = (e) => {
       this.mov = 0;
     }, false);
+
+    this.textureVie = this.controleur.textures.getObjet("IconCoeur.png");
   }
 
   draw(){
-    super.draw();
+    //super.draw();
     this.ctx.fillStyle = "#1a5";
     this.ctx.fillRect(0, 300, 360, 340);
 
     this.ctx.fillStyle = "#15a";
     this.ctx.fillRect(0, 0, 360, 300);
 
-    this.iterDrawPercpec(this.controleur.partieRunner.getElementsDecors());
+    /*this.iterDrawPercpec(this.controleur.partieRunner.getElementsDecors());
     this.iterDrawPercpec(this.controleur.partieRunner.getRamassables());
     this.iterDrawPercpec(this.controleur.partieRunner.getObstacles());
 
-    this.iterDrawPercpec(this.controleur.partieRunner.elementReponses);
+    this.iterDrawPercpec(this.controleur.partieRunner.elementReponses);*/
+    this.iterDrawPercpec(this.controleur.partieRunner.getFileRendu());
     this.iterDrawPercpecAnim([this.controleur.partieRunner.getPersonnage()]);
 
-    const vie = this.controleur.textures.getObjet("IconCoeur.png");
+    //const vie = this.controleur.textures.getObjet("IconCoeur.png");
     for (let i = 0; i < this.controleur.partieRunner.getPersonnage().getVie(); ++i) {
-      this.ctx.drawImage(vie, i*30, 0);
+      this.ctx.drawImage(this.textureVie, i*30, 0);
     }
 
     this.score.innerHTML = this.controleur.partieRunner.score;
@@ -114,24 +116,34 @@ class VueRunner extends VueJeu {
   }
 
   iterDrawPercpec(arr){
-    for (let o of arr) {
-      this.ctx.save();
-      this.ctx.translate(o.getX(), o.getY());
-      this.ctx.scale(o.getZ(), o.getZ());
-      this.ctx.translate(-o.getWidth()/2, -o.getHeight());
-      this.ctx.drawImage(o.getTexture(), 0, 0);
-      this.ctx.restore();
+    for (let i = 0; i < arr.length; ++i) {
+      const o = arr[i];
+      if(!o.estDetruit()) {
+        this.ctx.save();
+        this.ctx.translate(o.getX(), o.getY());
+        this.ctx.scale(o.getZ(), o.getZ());
+        this.ctx.translate(-o.getWidth()/2, -o.getHeight());
+        this.ctx.drawImage(o.getTexture(), 0, 0);
+        this.ctx.restore();
+      } else {
+        arr.splice(i--, 1);
+      }
     }
   }
 
   iterDrawPercpecAnim(arr){
-    for (let o of arr) {
-      this.ctx.save();
-      this.ctx.translate(o.getX(), o.getY());
-      this.ctx.scale(o.getZ(), o.getZ());
-      this.ctx.translate(-25, -50);
-      this.ctx.drawImage(o.getTexture(), (o.getFrame()*50), 0, 50, 50, 0, 0, 50, 50);
-      this.ctx.restore();
+    for (let i = 0; i < arr.length; ++i) {
+      const o = arr[i];
+      if(!o.estDetruit()) {
+        this.ctx.save();
+        this.ctx.translate(o.getX(), o.getY());
+        this.ctx.scale(o.getZ(), o.getZ());
+        this.ctx.translate(-25, -50);
+        this.ctx.drawImage(o.getTexture(), (o.getFrame()*50), 0, 50, 50, 0, 0, 50, 50);
+        this.ctx.restore();
+      } else {
+        arr.splice(i--, 1);
+      }
     }
   }
 

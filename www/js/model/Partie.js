@@ -1,7 +1,7 @@
 class Partie {
   constructor(ctrl, perso) {
-    if (Partie.VirtualW || Partie.virtualH) {
-      Partie.VirtualW = 360;
+    if (!Partie.virtualW || !Partie.virtualH) {
+      Partie.virtualW = 360;
       Partie.virtualH = 640;
     }
 
@@ -9,6 +9,8 @@ class Partie {
     this.personnage = perso;
     this.questions = new Array();
     this.elementsDecors = new Array();
+
+    this.fileRendu = new Array();
   }
 
 
@@ -30,8 +32,8 @@ class Partie {
   setConstroleur(i){this.controleur = i;}
   //setQuestions(i){this.questions = i;}
   //setElementsDecors(i){this.elementsDecors = i;}
-  addQuestion(q){this.questions.unshift(q);}
-  addElementDecor(e){this.elementsDecors.unshift(e);}
+  //dQuestion(q){this.questions.unshift(q);}
+  //addElementDecor(e){this.elementsDecors.unshift(e);}
 
   initElement(){
 

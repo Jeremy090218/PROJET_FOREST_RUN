@@ -103,7 +103,7 @@ class VueRunner extends VueJeu {
 
     this.iterDrawPercpec(this.controleur.partieRunner.elementReponses);*/
     this.iterDrawPercpec(this.controleur.partieRunner.getFileRendu());
-    this.iterDrawPercpecAnim([this.controleur.partieRunner.getPersonnage()]);
+    //this.iterDrawPercpecAnim([this.controleur.partieRunner.getPersonnage()]);
 
     //const vie = this.controleur.textures.getObjet("IconCoeur.png");
     for (let i = 0; i < this.controleur.partieRunner.getPersonnage().getVie(); ++i) {
@@ -116,9 +116,16 @@ class VueRunner extends VueJeu {
   }
 
   iterDrawPercpec(arr){
+    let affUnique = true;
+    const p = this.controleur.partieRunner.getPersonnage();
     for (let i = 0; i < arr.length; ++i) {
       const o = arr[i];
       if(!o.estDetruit()) {
+        if(affUnique && o.getY() > p.getY() && !p.mouvementY){
+          this.iterDrawPercpecAnim([p]);
+          affUnique = false;
+        }
+
         this.ctx.save();
         this.ctx.translate(o.getX(), o.getY());
         this.ctx.scale(o.getZ(), o.getZ());
@@ -129,6 +136,8 @@ class VueRunner extends VueJeu {
         arr.splice(i--, 1);
       }
     }
+
+    if(affUnique) this.iterDrawPercpecAnim([p]);
   }
 
   iterDrawPercpecAnim(arr){

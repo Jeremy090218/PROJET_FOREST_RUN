@@ -6,7 +6,7 @@ class Personnage extends Element {
     this.vie = 3;
     this.items = [];
     this.mouvementY = false; /// a changer inserer getters et setter de mouvemet
-    this.mouvementX =false;
+    this.mouvementX = false;
   }
 
 ////////////////////////////////////////////////////////////////////////////////

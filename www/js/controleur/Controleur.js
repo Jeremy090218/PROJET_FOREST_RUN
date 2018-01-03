@@ -18,7 +18,9 @@ class Controleur {
                                                   "Obstacle_1.png",
                                                   "Tree_0_1.png",
                                                   "Coin_1.png", "IconCoeur.png", "potion.png", "Character_0_annimation.png",
-                                                  "Character_0_vue_4.png","Character_0_vue_0.png", "Character_1_vue_0.png", "Character_2_vue_0.png","Ecran_accueil.png"]);
+                                                  "Character_0_vue_4.png","Character_0_vue_0.png", "Character_1_vue_0.png", "Character_2_vue_0.png","Ecran_accueil.png",
+                                                  "Character_1_annimation.png",
+                                                  "Character_2_annimation.png"]);
 
     this.chargement();
   }
@@ -72,11 +74,11 @@ class Controleur {
         else this.partieRendu = this.partieRunner;
         break;
       case "shooter":
-        if(!this.partieShooter) this.partieShooter = new PartieShoot(this, new Personnage(), null);
+        if(!this.partieShooter) this.partieShooter = new PartieShoot(this, new Personnage(this), null);
         this.partieRendu = this.partieShooter;
         break;
       case "nouvellePartie":
-        this.partieRunner = new PartieRun(this, new Personnage(this), null);
+        this.partieRunner = new PartieRun(this, new Personnage(this, this.getDataUtilisateur().persoCourant.textureAnime), null);
         this.partieShooter = null;
         this.partieRendu = this.partieRunner;
         break;
@@ -134,8 +136,9 @@ class Controleur {
   chargerDonneesSauvegarde(cb){
     // TODO: utiliser plugin cordova pour faire un read ou utiliser un XMLHttpRequest
     this.dataUtilisateur = {
-      achete: ["wowo", "ofhvoqjdhv", "qfdsghgfdfgh"],
-      equipe: ["iihiu", "gqdfgqdf", "qsdgoqu", "sqgq"]
+      persoCourant: {nom: "Chat", texture: "Character_0_vue_0.png", textureAnime: "Character_0_annimation.png"},
+      achete: [],
+      equipe: []
     }
 
     cb();

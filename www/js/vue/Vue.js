@@ -18,6 +18,10 @@ class Vue {
     else this.div.appendChild(balise1);
   }
 
+  remove(balise){
+    this.div.removeChild(balise);
+  }
+
   afficher(){
     this.divIHM.appendChild(this.div);
   }

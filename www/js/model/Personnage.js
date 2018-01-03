@@ -1,6 +1,6 @@
 class Personnage extends Element {
-  constructor(ctrl, velociteY = 0) {
-    super(ctrl,"Character_0_annimation.png",180,620,2);
+  constructor(ctrl, texture = null, velociteY = 0) {
+    super(ctrl, texture ,180,620,2);
     this.velociteY = velociteY;
     this.velociteX = 0;
     this.vie = 3;

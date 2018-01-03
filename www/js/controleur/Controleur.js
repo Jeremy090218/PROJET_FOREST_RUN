@@ -23,6 +23,7 @@ class Controleur {
                                                   "Character_2_annimation.png"]);
 
     this.chargement();
+    this.perso = this.textures.getObjet("Character_0_vue_0.png");
   }
 
   chargement(){

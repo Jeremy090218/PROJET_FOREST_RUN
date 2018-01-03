@@ -2,11 +2,13 @@ class VueAtelier extends Vue {
   constructor(ctrl) {
     super(ctrl, 'atelier');
 
+    //Interface
     const buttonMenuPrincip = this.create('button');
     buttonMenuPrincip.id="btnHD";
     this.add(buttonMenuPrincip);
     buttonMenuPrincip.innerHTML = "Menu principal";
     buttonMenuPrincip.onclick = () => {
+      this.controleur.perso = perso;
       this.controleur.changerVue(new VueMenuPrincipal(this.controleur),this);
     }
 
@@ -36,11 +38,7 @@ class VueAtelier extends Vue {
     //choix_perso.options[0].selected = true;
     this.add(choix_perso);
 
-
-    // Stockage de la vueAtelier et du controleur dans des variables
-    // (nécessaire à la fonction permettant de changer de perso à partir du bandeau déroulant)
     const vueAtelier = this;
-    const controleur = this.controleur;
 
     // Fonction permettant de changer de perso à partir du bandeau déroulant
     choix_perso.onchange = function(){
@@ -50,10 +48,10 @@ class VueAtelier extends Vue {
 
           const texturePerso = "Character_"+ choix.value +"_vue_0.png";
 
-          perso = controleur.textures.getObjet(texturePerso);
+          perso = vueAtelier.controleur.textures.getObjet(texturePerso);
           perso.id="perso_choisi";
           vueAtelier.add(perso);
-          controleur.getDataUtilisateur().persoCourant = {
+          vueAtelier.controleur.getDataUtilisateur().persoCourant = {
             nom: choix.innerHTML,
             texture: texturePerso,
             textureAnime: "Character_"+ choix.value +"_annimation.png"

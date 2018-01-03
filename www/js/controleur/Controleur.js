@@ -17,6 +17,7 @@ class Controleur {
     this.textures = new Bank("img", "textures/", ["default.png", "fondtest.png", "Ground_0_1.png",
                                                   "Obstacle_1.png",
                                                   "Tree_0_1.png",
+                                                  "Nuage_0_1.png",
                                                   "Coin_1.png", "IconCoeur.png", "potion.png", "Character_0_annimation.png",
                                                   "Character_0_vue_4.png","Character_0_vue_0.png", "Character_1_vue_0.png", "Character_2_vue_0.png","Ecran_accueil.png",
                                                   "Character_1_annimation.png",

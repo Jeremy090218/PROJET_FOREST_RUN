@@ -116,6 +116,7 @@ setFileRendu(i){this.fileRendu=i;}
     //////////////////////// Gestion des elements Decors
     if(this.getTemps()%20 == 0){ // Tout les 10 Tics: ajouter un arbre et un nuage
       this.addArbres();
+      this.addCiel();
     }
 
     if(this.getTemps() == 0){
@@ -215,12 +216,23 @@ setFileRendu(i){this.fileRendu=i;}
                                             /////// Gestion des Decors
 
   addArbres(){
-    const o1 = new ElementDecor(this.controleur,Math.floor(Math.random()*120)+50,250,1);
-    const o2 = new ElementDecor(this.controleur,Math.floor(Math.random()*120)+200,-250,1);
+    const o1 = new ElementDecor(this.controleur,Math.floor(Math.random()*120)+50,1);
+    const o2 = new ElementDecor(this.controleur,Math.floor(Math.random()*120)+200,1);
     this.getElementsDecors().unshift(o1);
     this.getElementsDecors().unshift(o2);
     this.getFileRendu().unshift(o1);
     this.getFileRendu().unshift(o2);
+  }
+
+  addCiel(){
+    let o1 = 0;
+    if(Math.random()>0.5){
+      o1 = new ElementCiel(this.controleur,Math.floor(Math.random()*120)+50,1);
+    }else{
+      o1 = new ElementCiel(this.controleur,Math.floor(Math.random()*120)+200,1);
+    }
+    this.getElementsDecors().unshift(o1);
+    this.getFileRendu().unshift(o1);
   }
 
 ////////////////////////////////////////////////////////////////////////////////

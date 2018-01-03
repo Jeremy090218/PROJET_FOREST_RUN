@@ -16,6 +16,8 @@ class VueJeu extends Vue{
     this.canvas.width = w;
     this.canvas.height = h;
 
+    this.ctx.imageSmoothingEnabled = false;
+
     this.ctx.scale(ew, eh);
 
     this.controleur.setVueRendu(this);

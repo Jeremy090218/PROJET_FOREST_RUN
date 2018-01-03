@@ -2,11 +2,13 @@ class VueAtelier extends Vue {
   constructor(ctrl) {
     super(ctrl, 'atelier');
 
+    //Interface
     const buttonMenuPrincip = this.create('button');
     buttonMenuPrincip.id="btnHD";
     this.add(buttonMenuPrincip);
     buttonMenuPrincip.innerHTML = "Menu principal";
     buttonMenuPrincip.onclick = () => {
+      this.controleur.perso = perso;
       this.controleur.changerVue(new VueMenuPrincipal(this.controleur),this);
     }
 
@@ -23,7 +25,7 @@ class VueAtelier extends Vue {
 
     // Création de la variable stockant l'image du perso choisi
     // Initialisation par défaut de cette variable avec l'image du chat
-    let perso = this.controleur.textures.getObjet("Character_0_vue_0.png");
+    let perso = this.controleur.perso;
     perso.id="perso_choisi";
     this.add(perso);
 
@@ -42,30 +44,26 @@ class VueAtelier extends Vue {
     const chevre = this.controleur.textures.getObjet("Character_1_vue_0.png");
     const lapin = this.controleur.textures.getObjet("Character_2_vue_0.png");
 
-    // Stockage de la vueAtelier et du controleur dans des variables
-    // (nécessaire à la fonction permettant de changer de perso à partir du bandeau déroulant)
-    const vueAtelier = this;
-    const controleur = this.controleur;
-
     // Fonction permettant de changer de perso à partir du bandeau déroulant
     choix_perso.onchange = function(){
       if (choix_perso.options[0].selected) {
+        //console.log(this.parentElement);
+        this.parentElement.removeChild(perso_choisi);
         perso = chat;
         perso.id="perso_choisi";
-        vueAtelier.add(perso);
-        controleur.rafraichirVues();
+        this.parentElement.appendChild(perso);
       }
       if (choix_perso.options[1].selected) {
+        this.parentElement.removeChild(perso_choisi);
         perso = chevre;
         perso.id="perso_choisi";
-        vueAtelier.add(perso);
-        controleur.rafraichirVues();
+        this.parentElement.appendChild(perso);
       }
       if (choix_perso.options[2].selected) {
+        this.parentElement.removeChild(perso_choisi);
         perso = lapin;
         perso.id="perso_choisi";
-        vueAtelier.add(perso);
-        controleur.rafraichirVues();
+        this.parentElement.appendChild(perso);
       }
     };
   }

@@ -7,7 +7,11 @@ class PartieRun extends Partie {
     this.setPieceRecup(0);
     this.setNbReponse(0);
     this.setQuestionEquation(0);
-    this.setTrajPossible([[{x: 180, y: 300, z: 0.1}, {x: 180, y: 640, z: 2}],[{x: 175, y: 300, z: 0.1}, {x: 75, y: 640, z: 2}],[{x: 185, y: 300, z: 0.1}, {x: 285, y: 640, z: 2}]]);
+    this.setTrajPossible([
+      [{x: 180, y: 300, z: 0.1}, {x: 180, y: 810, z: 3}],
+      [{x: 175, y: 300, z: 0.1}, {x: 20, y: 800, z: 3}],
+      [{x: 185, y: 300, z: 0.1}, {x: 340, y: 800, z: 3}]
+    ]);
     this.setLastTraj(1);
     this.setTemps(1200);
     this.setElementsDecors(new Array());    // Pour les decors

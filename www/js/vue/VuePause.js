@@ -4,6 +4,13 @@ class VuePause extends Vue {
 
     this.vueRunner = vueRunner;
 
+    const ctx = this.vueRunner.ctx;
+    ctx.save();
+    ctx.globalCompositeOperation = "hue";
+    ctx.fillStyle = "#000";
+    ctx.fillRect(0, 0, 360, 640);
+    ctx.restore();
+
     const titre = this.create('h1');
     this.add(titre);
     titre.innerHTML = "Pause";

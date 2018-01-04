@@ -11,6 +11,8 @@ class Partie {
     this.elementsDecors = new Array();
 
     this.fileRendu = new Array();
+
+    this.controleur.play();
   }
 
 
@@ -23,6 +25,7 @@ class Partie {
   getControleur(){return this.controleur;}
   getQuestions(){return this.questions;}
   getElementsDecors(){return this.elementsDecors;}
+  getFileRendu(){return this.fileRendu}
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// SETTERS /////////////////////////////////////////
@@ -34,6 +37,7 @@ class Partie {
   //setElementsDecors(i){this.elementsDecors = i;}
   //dQuestion(q){this.questions.unshift(q);}
   //addElementDecor(e){this.elementsDecors.unshift(e);}
+  setFileRendu(i){this.fileRendu=i;}
 
   initElement(){
 

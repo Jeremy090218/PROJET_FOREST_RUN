@@ -6,16 +6,6 @@ class VueRunner extends VueJeu {
     this.add(titre);
     titre.innerHTML = "Runner";*/
 
-    this.buttonPause = this.create('button');
-    this.add(this.buttonPause);
-    this.buttonPause.innerHTML = "";
-    this.buttonPause.id= "pauseRunner";
-    this.buttonPause.onclick = () => {
-      this.controleur.changerVue(new VuePause(this.controleur, this));
-      this.controleur.pause();
-      this.buttonPause.className= "btnInactif";
-    }
-
     this.score = this.create('p');
     this.add(this.score);
 
@@ -102,7 +92,9 @@ class VueRunner extends VueJeu {
     this.iterDrawPercpec(this.controleur.partieRunner.getObstacles());
 
     this.iterDrawPercpec(this.controleur.partieRunner.elementReponses);*/
+
     this.iterDrawPercpec(this.controleur.partieRunner.getFileRendu());
+
     //this.iterDrawPercpecAnim([this.controleur.partieRunner.getPersonnage()]);
 
     //const vie = this.controleur.textures.getObjet("IconCoeur.png");
@@ -115,56 +107,11 @@ class VueRunner extends VueJeu {
     this.nbPotion.innerHTML = this.controleur.partieRunner.nbReponse;
   }
 
-  iterDrawPercpec(arr){
-    let affUnique = true;
-    const p = this.controleur.partieRunner.getPersonnage();
-    for (let i = 0; i < arr.length; ++i) {
-      const o = arr[i];
-      if(!o.estDetruit()) {
-        if(affUnique && o.getY() > p.getY() && !p.mouvementY){
-          this.iterDrawPercpecAnim([p]);
-          affUnique = false;
-        }
-
-        this.ctx.save();
-        this.ctx.translate(o.getX(), o.getY());
-        this.ctx.scale(o.getZ(), o.getZ());
-        this.ctx.translate(-o.getWidth()/2, -o.getHeight());
-        this.ctx.drawImage(o.getTexture(), 0, 0);
-        this.ctx.restore();
-      } else {
-        arr.splice(i--, 1);
-      }
-    }
-
-    if(affUnique) this.iterDrawPercpecAnim([p]);
-  }
-
-  iterDrawPercpecAnim(arr){
-    for (let i = 0; i < arr.length; ++i) {
-      const o = arr[i];
-      if(!o.estDetruit()) {
-        this.ctx.save();
-        this.ctx.translate(o.getX(), o.getY());
-        this.ctx.scale(o.getZ(), o.getZ());
-        this.ctx.translate(-25, -50);
-        this.ctx.drawImage(o.getTexture(), (o.getFrame()*50), 0, 50, 50, 0, 0, 50, 50);
-        this.ctx.restore();
-      } else {
-        arr.splice(i--, 1);
-      }
-    }
-  }
-
   delete(){
     document.removeEventListener('touchstart', this.touchstart);
     document.removeEventListener('touchmove', this.touchmove);
     document.removeEventListener('touchcancel', this.touchcancel);
     document.removeEventListener('touchend', this.touchend);
     super.delete();
-  }
-
-  affBtn(){
-    this.buttonPause.className= "";
   }
 }

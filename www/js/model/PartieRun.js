@@ -31,7 +31,6 @@ class PartieRun extends Partie {
   getTemps(){return this.temps;}
   getElementsDecors(){return this.elementsDecors;}
   getElementsPartie(){return this.elementsPartie;}
-  getFileRendu(){return this.fileRendu}
 
   getTrajectoire(){
     let i = Math.round(Math.random()*2);
@@ -56,7 +55,6 @@ setLastTraj(i){this.lastTraj=i;}
 setTemps(i){this.temps=i;}
 setElementsDecors(i){this.elementsDecors=i;}
 setElementsPartie(i){this.elementsPartie=i;}
-setFileRendu(i){this.fileRendu=i;}
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////

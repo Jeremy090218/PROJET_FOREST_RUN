@@ -54,8 +54,11 @@ class Reponse extends ElementPartie{
 
       this.reponses.push(fRep);
     }
-    
+
     this.reponses.sort((a, b) => {  return a - b;  });
   }
 
+  update(){
+    
+  }
 }

@@ -7,6 +7,8 @@ class Personnage extends Element {
     this.items = [];
     this.mouvementY = false; /// a changer inserer getters et setter de mouvemet
     this.mouvementX = false;
+
+    this.run();
   }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -80,6 +82,17 @@ class Personnage extends Element {
     }
   }
 
+  run(){
+    this.running = true;
+  }
+
+  stop(){
+    this.running = false;
+  }
+
+  isRunning(){
+    return this.running;
+  }
 
   // test de la colision avec un element
   // return true si x,y,z sont en inferieur a 10 apres la soustraction
@@ -125,6 +138,6 @@ class Personnage extends Element {
       }
     }
 
-    if(this.mouvementY || ++this.frame >= 40) this.frame = 0;
+    if(this.mouvementY || ++this.frame >= (this.isRunning() ? 40 : 0)) this.frame = 0;
   }
 }

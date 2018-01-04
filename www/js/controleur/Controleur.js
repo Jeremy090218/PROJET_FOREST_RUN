@@ -126,6 +126,8 @@ class Controleur {
       requestAnimationFrame((m) => {
         this.boucleDeJeu(m);
       });
+    } else {
+      this.vueRendu.EcranPause();
     }
   }
 

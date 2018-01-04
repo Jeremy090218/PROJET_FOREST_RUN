@@ -1,7 +1,7 @@
 class Controleur {
   constructor() {
 ////Pour la boucle de jeu///////////////
-    this.TPS = 64;
+    this.TPS = 65;
     this.temps = 0;
     this.acumulateur = 0;
     this.PAS = ((1 / this.TPS) * 1000);
@@ -24,7 +24,6 @@ class Controleur {
                                                   "Character_2_annimation.png"]);
 
     this.chargement();
-    this.perso = this.textures.getObjet("Character_0_vue_0.png");
   }
 
   chargement(){
@@ -73,21 +72,16 @@ class Controleur {
     switch (m) {
       case "runner":
         if(!this.partieRunner) console.log("Erreur: aucune nouvelle partie initialisée");
-        else {
-          this.partieRendu = this.partieRunner;
-          this.changerVueUnique(new VueRunner(this));
-        }
+        else this.partieRendu = this.partieRunner;
         break;
       case "shooter":
-        if(!this.partieShooter) this.partieShooter = new PartieShoot(this, new Personnage(this, this.getDataUtilisateur().persoCourant.texture), null);
+        if(!this.partieShooter) this.partieShooter = new PartieShoot(this, new Personnage(this), null);
         this.partieRendu = this.partieShooter;
-        this.changerVueUnique(new VueShooter(this));
         break;
       case "nouvellePartie":
         this.partieRunner = new PartieRun(this, new Personnage(this, this.getDataUtilisateur().persoCourant.textureAnime), null);
         this.partieShooter = null;
         this.partieRendu = this.partieRunner;
-        this.changerVueUnique(new VueRunner(this));
         break;
       default:
         console.log("switchMode incorrecte");
@@ -127,8 +121,6 @@ class Controleur {
       requestAnimationFrame((m) => {
         this.boucleDeJeu(m);
       });
-    } else {
-      this.vueRendu.EcranPause();
     }
   }
 
@@ -146,8 +138,8 @@ class Controleur {
     // TODO: utiliser plugin cordova pour faire un read ou utiliser un XMLHttpRequest
     this.dataUtilisateur = {
       persoCourant: {nom: "Chat", texture: "Character_0_vue_0.png", textureAnime: "Character_0_annimation.png"},
-      achete: [],
-      equipe: []
+      achete: [new Item("Esquive +",true,true),new Item("Vie +",true,false)],
+      equipe: [new Item("Esquive +",true,true)]
     }
 
     cb();

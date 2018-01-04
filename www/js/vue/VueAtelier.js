@@ -8,7 +8,7 @@ class VueAtelier extends Vue {
     this.add(buttonMenuPrincip);
     buttonMenuPrincip.innerHTML = "Menu principal";
     buttonMenuPrincip.onclick = () => {
-      this.controleur.perso = perso;
+      console.log("Item choisi : " + this.controleur.getDataUtilisateur().equipe[0].getNom());
       this.controleur.changerVue(new VueMenuPrincipal(this.controleur),this);
     }
 
@@ -56,6 +56,30 @@ class VueAtelier extends Vue {
             texture: texturePerso,
             textureAnime: "Character_"+ choix.value +"_annimation.png"
           }
+        }
+      }
+    };
+
+    // Bandeau déroulant de sélection d'item pour le perso
+    const item_choisi = this.create('select');
+    let i = 0;
+    for (let achete of this.controleur.getDataUtilisateur().achete) {
+      item_choisi.options[i] = new Option(achete.getNom(), i, false, achete.getEquiper());
+      i++;
+    }
+    this.add(item_choisi);
+
+    // Fonction permettant de changer d'item à partir du bandeau déroulant
+    item_choisi.onchange = function(){
+      for (let choix of item_choisi.options) {
+        if(choix.selected){
+          let item = null;
+          for (let achete of vueAtelier.controleur.getDataUtilisateur().achete) {
+            if (choix.innerHTML == achete.getNom()) {
+              item = achete;
+            }
+          }
+          vueAtelier.controleur.getDataUtilisateur().equipe[0] = item;
         }
       }
     };

@@ -72,16 +72,21 @@ class Controleur {
     switch (m) {
       case "runner":
         if(!this.partieRunner) console.log("Erreur: aucune nouvelle partie initialisée");
-        else this.partieRendu = this.partieRunner;
+        else {
+            this.partieRendu = this.partieRunner;
+            this.changerVueUnique(new VueRunner(this));
+        }
         break;
       case "shooter":
-        if(!this.partieShooter) this.partieShooter = new PartieShoot(this, new Personnage(this), null);
+        if(!this.partieShooter) this.partieShooter = new PartieShoot(this, new Personnage(this, this.getDataUtilisateur().persoCourant.texture), null);
         this.partieRendu = this.partieShooter;
+        this.changerVueUnique(new VueShooter(this));
         break;
       case "nouvellePartie":
         this.partieRunner = new PartieRun(this, new Personnage(this, this.getDataUtilisateur().persoCourant.textureAnime), null);
         this.partieShooter = null;
         this.partieRendu = this.partieRunner;
+        this.changerVueUnique(new VueRunner(this));
         break;
       default:
         console.log("switchMode incorrecte");

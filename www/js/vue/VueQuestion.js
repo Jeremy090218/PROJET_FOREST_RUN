@@ -10,6 +10,10 @@ class VueQuestion extends Vue {
     this.add(titre);
     titre.innerHTML = "Question :";
 
+    const intitule = this.create('p');
+    this.add(intitule);
+    intitule.innerHTML = this.controleur.partieRunner.getQuestionEquation().getIntitule();
+
     this.vueRunner.buttonPause.className= "btnInactif";
 
     const question = this.create('p');

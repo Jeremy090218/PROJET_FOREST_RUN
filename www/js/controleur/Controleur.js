@@ -1,7 +1,7 @@
 class Controleur {
   constructor() {
 ////Pour la boucle de jeu///////////////
-    this.TPS = 65;
+    this.TPS = 64;
     this.temps = 0;
     this.acumulateur = 0;
     this.PAS = ((1 / this.TPS) * 1000);
@@ -122,6 +122,8 @@ class Controleur {
       requestAnimationFrame((m) => {
         this.boucleDeJeu(m);
       });
+    } else {
+      this.vueRendu.EcranPause();
     }
   }
 

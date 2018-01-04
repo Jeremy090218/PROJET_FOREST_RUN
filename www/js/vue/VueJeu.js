@@ -27,4 +27,13 @@ class VueJeu extends Vue{
     this.ctx.fillStyle = "#a35";
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
   }
+
+  EcranPause(){
+    const ctx = this.ctx;
+    ctx.save();
+    ctx.globalCompositeOperation = "hue";
+    ctx.fillStyle = "#000";
+    ctx.fillRect(0, 0, 360, 640);
+    ctx.restore();
+  }
 }

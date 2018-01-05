@@ -1,8 +1,9 @@
 class Item {
-  constructor(nom,achat,equipe) {
-    this.nom = nom;
-    this.achat = achat;
-    this.equiper = equipe;
+  constructor(nom,achat,equipe,prix) {
+    this.setNom(nom);
+    this.setAchat(achat);
+    this.setEquiper(equipe);
+    this.setPrix(prix);
   }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -12,6 +13,7 @@ class Item {
   getNom(){return this.nom ; }
   getAchat(){return this.achat ; }
   getEquiper(){return this.equiper ; }
+  getPrix(){return this.prix;}
 
 ////////////////////////////////////////////////////////////////////////////////
 //////////////////////////SETTERS //////////////////////////////////////////////
@@ -19,7 +21,8 @@ class Item {
 
   setNom(i){this.nom = i ;}
   setAchat(i){this.achat = i ;}
-  setEquiper(i){this.Equiper = i;}
+  setEquiper(i){this.equiper = i;}
+  setPrix(i){this.prix = i;}
 
 
 

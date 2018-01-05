@@ -24,6 +24,7 @@ class Controleur {
                                                   "Character_2_annimation.png"]);
 
     this.chargement();
+    this.utilisateur = new Utilisateur(this,"Character_0_annimation.png",100);
   }
 
   chargement(){
@@ -78,12 +79,17 @@ class Controleur {
         }
         break;
       case "shooter":
-        if(!this.partieShooter) this.partieShooter = new PartieShoot(this, new Personnage(this, this.getDataUtilisateur().persoCourant.texture), null);
+        if(!this.partieShooter){
+          this.utilisateur.getPersonnage().setTexture();
+          this.partieShooter = new PartieShooter(this, this.utilisateur.getPersonnage(),null);
+        }
         this.partieRendu = this.partieShooter;
         this.changerVueUnique(new VueShooter(this));
         break;
       case "nouvellePartie":
-        this.partieRunner = new PartieRun(this, new Personnage(this, this.getDataUtilisateur().persoCourant.textureAnime), null);
+        this.utilisateur.getPersonnage().setTexture(this.getDataUtilisateur().persoCourant.textureAnime);
+        this.utilisateur.getPersonnage().initialisation();
+        this.partieRunner = new PartieRun(this, this.utilisateur.getPersonnage(), null);
         this.partieShooter = null;
         this.partieRendu = this.partieRunner;
         this.changerVueUnique(new VueRunner(this));

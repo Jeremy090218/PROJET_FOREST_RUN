@@ -52,7 +52,7 @@ class Personnage extends Element {
     if(this.getItems()){
       switch (this.getItems().getNom()) {
         case "Esquive +":
-          this.setDeplacementX(15);
+          this.setDeplacementX(5);
         break;
 
         case "Vie +":
@@ -177,8 +177,7 @@ class Personnage extends Element {
     if(this.getMouvementX()){
       this.setX(this.getX() + this.getVelociteX());
       this.setVelociteX(this.getVelociteX()+this.getDeplacementX());
-      if(this.getVelociteX() <= 0 || this.getVelociteX() >= 35){
-
+      if(this.getVelociteX() == 0 || this.getVelociteX() == 35){
         this.setMouvementX(false);
         this.setVelociteX(0);
       }

@@ -24,8 +24,8 @@ class Boutique {
 
   initialiserItem(){
     this.ajoutItem(new Item("Esquive +",true,false,20));
-    this.ajoutItem(new Item("Vie +",true,false,20));
-    this.ajoutItem(new Item("Saut +",true,true,20));
+    this.ajoutItem(new Item("Vie +",true,true,20));
+    this.ajoutItem(new Item("Saut +",true,false,20));
   }
 
 

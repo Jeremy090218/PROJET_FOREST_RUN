@@ -1,10 +1,10 @@
 class Utilisateur {
-  constructor(ctrl,texture,argent) {
+  constructor(ctrl/*,texture,argent*/) {
     this.setControleur(ctrl);
     this.setBoutique(new Boutique());
-    this.setItems(this.getBoutique().recupItemAchat());
-    this.setArgent(argent);
-    this.setPersonnage(new Personnage(ctrl,texture,this.recupItemPerso()));
+    //this.setItems(this.getBoutique().recupItemAchat());
+    //this.setArgent(argent);
+    //this.setPersonnage(new Personnage(ctrl));
   }
 
 
@@ -12,20 +12,35 @@ class Utilisateur {
 ///////////////////////// GETTERS //////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
   getControleur(){return this.controleur;}
-  getPersonnage(){return this.personnage;}
   getBoutique(){return this.boutique;}
   getItems(){return this.items;}
+  getItemEquipe(){return this.itemEquipe;}
   getArgent(){return this.argent;}
+  getSkins(){return this.skins;}
+
+  getPersonnageRunner(){
+    return new Personnage(this.controleur, this.getSkins().textureAnim, this.getItemEquipe());
+  }
+
+  getPersonnageShooter(){
+    return new Personnage(this.controleur, this.getSkins().textureFixe, this.getItemEquipe());
+  }
 
 ////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// SETTERS //////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
   setControleur(i){this.controleur = i;}
-  setPersonnage(i){this.personnage = i ;}
   setBoutique(i){this.boutique = i;}
   setItems(i){this.items = i;}
-  setArgent(i){this.argent =i;}
+  setItemEquipe(i){this.itemEquipe = i;}
+  setArgent(i){this.argent = i;}
+  setSkins(s){this.skins = s;}
 
+  setFromSauvegarde(data){
+    this.setItems(data.achete);
+    this.setItemEquipe(data.equipe);
+    this.setSkins(data.persoCourant);
+  }
 
 ////////////////////////////////////////////////////////////////////////////////
 /////////// gestion Items
@@ -50,35 +65,29 @@ class Utilisateur {
     this.getItems().equiperItem();
   }
 
-
 ////////////////////////////////////////////////////////////////////////////////
 //////////// gestion Argent
 ////////////////////////////////////////////////////////////////////////////////
 
-ajouterArgent(i){
-  this.setArgent(this.getArgent() + i);
-}
+  ajouterArgent(i){
+    this.setArgent(this.getArgent() + i);
+  }
 
-enleverArgent(i){
-  this.setArgent(this.getArgent() -i);
-}
+  enleverArgent(i){
+    this.setArgent(this.getArgent() -i);
+  }
 
+  ///////////////////////////////////////////////////////////////////////////////
+  //////////achats
+  ////////////////////////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////////////////
-//////////achats
-////////////////////////////////////////////////////////////////////////////////
+  achatPossible(item){
+    return this.getBoutique().achatItemPossible(item);
+  }
 
-achatPossible(item){
-  return this.getBoutique().achatItemPossible(item);
-}
-
-achatItem(item){
-  this.ajouterItem(item);
-  this.getBoutique().enleverItem(item);
-  this.enleverArgent(item.getPrix());
-}
-
-
-
-
+  achatItem(item){
+    this.ajouterItem(item);
+    this.getBoutique().enleverItem(item);
+    this.enleverArgent(item.getPrix());
+  }
 }

@@ -8,7 +8,7 @@ class VueAtelier extends Vue {
     this.add(buttonMenuPrincip);
     buttonMenuPrincip.innerHTML = "Menu principal";
     buttonMenuPrincip.onclick = () => {
-      console.log("Item choisi : " + this.controleur.getDataUtilisateur().equipe[0].getNom());
+      console.log("Item choisi : " + this.controleur.getUtilisateur().getItemEquipe().getNom());
       this.controleur.changerVue(new VueMenuPrincipal(this.controleur),this);
     }
 
@@ -25,16 +25,16 @@ class VueAtelier extends Vue {
 
     // Création de la variable stockant l'image du perso choisi
     // Initialisation par défaut de cette variable avec l'image du chat
-    let perso = this.controleur.textures.getObjet(this.controleur.getDataUtilisateur().persoCourant.texture);
+    let perso = this.controleur.textures.getObjet(this.controleur.getUtilisateur().getSkins().textureFixe);
     perso.id="perso_choisi";
     this.add(perso);
 
     // Création du bandeau déroulant de choix du perso
     // (par défaut le chat est sélectionné)
     const choix_perso = this.create('select');
-    choix_perso.options[0] = new Option("Chat", 0, false, this.controleur.getDataUtilisateur().persoCourant.nom == "Chat");
-    choix_perso.options[1] = new Option("Chèvre", 1, false, this.controleur.getDataUtilisateur().persoCourant.nom == "Chèvre");
-    choix_perso.options[2] = new Option("Lapin", 2, false, this.controleur.getDataUtilisateur().persoCourant.nom == "Lapin");
+    choix_perso.options[0] = new Option("Chat", 0, false, this.controleur.getUtilisateur().getSkins().nom == "Chat");
+    choix_perso.options[1] = new Option("Chèvre", 1, false, this.controleur.getUtilisateur().getSkins().nom == "Chèvre");
+    choix_perso.options[2] = new Option("Lapin", 2, false, this.controleur.getUtilisateur().getSkins().nom == "Lapin");
     //choix_perso.options[0].selected = true;
     this.add(choix_perso);
 
@@ -51,11 +51,11 @@ class VueAtelier extends Vue {
           perso = vueAtelier.controleur.textures.getObjet(texturePerso);
           perso.id="perso_choisi";
           vueAtelier.add(perso);
-          vueAtelier.controleur.getDataUtilisateur().persoCourant = {
+          vueAtelier.controleur.getUtilisateur().setSkins({
             nom: choix.innerHTML,
-            texture: texturePerso,
-            textureAnime: "Character_"+ choix.value +"_annimation.png"
-          }
+            textureFixe: texturePerso,
+            textureAnim: "Character_"+ choix.value +"_annimation.png"
+          });
         }
       }
     };
@@ -63,8 +63,8 @@ class VueAtelier extends Vue {
     // Bandeau déroulant de sélection d'item pour le perso
     const item_choisi = this.create('select');
     let i = 0;
-    for (let achete of this.controleur.getDataUtilisateur().achete) {
-      item_choisi.options[i] = new Option(achete.getNom(), i, false, achete.getEquiper());
+    for (let achete of this.controleur.getUtilisateur().getItems()) {
+      item_choisi.options[i] = new Option(achete.getNom(), i, false, achete.getNom() == this.controleur.getUtilisateur().getItemEquipe().getNom());
       i++;
     }
     this.add(item_choisi);
@@ -74,15 +74,14 @@ class VueAtelier extends Vue {
       for (let choix of item_choisi.options) {
         if(choix.selected){
           let item = null;
-          for (let achete of vueAtelier.controleur.getDataUtilisateur().achete) {
+          for (let achete of vueAtelier.controleur.getUtilisateur().getItems()) {
             if (choix.innerHTML == achete.getNom()) {
               item = achete;
             }
           }
-          vueAtelier.controleur.getDataUtilisateur().equipe[0] = item;
+          vueAtelier.controleur.getUtilisateur().setItemEquipe(item);
         }
       }
     };
   }
-
 }

@@ -39,7 +39,7 @@ class VueJeu extends Vue{
     /*this.ctx.fillStyle = "#a35";
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);*/
 
-    this.iterDrawPercpec(this.controleur.partieRendu.getFileRendu());
+    //this.iterDrawPercpec(this.controleur.partieRendu.getFileRendu());
   }
 
   EcranPause(){

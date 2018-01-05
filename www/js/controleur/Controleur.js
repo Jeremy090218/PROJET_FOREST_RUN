@@ -24,12 +24,12 @@ class Controleur {
                                                   "Character_2_annimation.png"]);
 
     this.chargement();
-    this.utilisateur = new Utilisateur(this,"Character_0_annimation.png",100);
   }
 
   chargement(){
     this.textures.chargement(() => {
       console.log("Fin chargement des textures");
+      this.utilisateur = new Utilisateur(this);
       this.chargerDonneesSauvegarde(() => {
         console.log("Fin chargement des données utilisateur");
         this.changerVue(new VueMenuPrincipal(this));
@@ -64,11 +64,6 @@ class Controleur {
     this.vues.push(vue);
   }
 
-  /*nouvellePartie(){
-    this.switchMode("nouvellePartie");
-    this.play();
-  }*/
-
   switchMode(m){
     switch (m) {
       case "runner":
@@ -80,16 +75,13 @@ class Controleur {
         break;
       case "shooter":
         if(!this.partieShooter){
-          this.utilisateur.getPersonnage().setTexture();
-          this.partieShooter = new PartieShooter(this, this.utilisateur.getPersonnage(),null);
+          this.partieShooter = new PartieShoot(this, this.utilisateur.getPersonnageShooter(),null);
         }
         this.partieRendu = this.partieShooter;
         this.changerVueUnique(new VueShooter(this));
         break;
       case "nouvellePartie":
-        this.utilisateur.getPersonnage().setTexture(this.getDataUtilisateur().persoCourant.textureAnime);
-        this.utilisateur.getPersonnage().initialisation();
-        this.partieRunner = new PartieRun(this, this.utilisateur.getPersonnage(), null);
+        this.partieRunner = new PartieRun(this, this.utilisateur.getPersonnageRunner(), null);
         this.partieShooter = null;
         this.partieRendu = this.partieRunner;
         this.changerVueUnique(new VueRunner(this));
@@ -149,22 +141,24 @@ class Controleur {
 
   chargerDonneesSauvegarde(cb){
     // TODO: utiliser plugin cordova pour faire un read ou utiliser un XMLHttpRequest
-    this.dataUtilisateur = {
-      persoCourant: {nom: "Chat", texture: "Character_0_vue_0.png", textureAnime: "Character_0_annimation.png"},
-      achete: [new Item("Esquive +",true,true),new Item("Vie +",true,false)],
-      equipe: [new Item("Esquive +",true,true)]
+    const dataUtilisateur = {
+      persoCourant: {nom: "Chat", textureFixe: "Character_0_vue_0.png", textureAnim: "Character_0_annimation.png"},
+      achete: [new Item("Esquive +",true,true), new Item("Vie +",true,false)],
+      equipe: new Item("Esquive +",true,true),
+      argent: 100
     }
+
+    this.utilisateur.setFromSauvegarde(dataUtilisateur);
 
     cb();
   }
 
   sauvegarderDonnees(){
     // TODO: utiliser plugin cordova pour faire un write
-    //this.dataUtilisateur;
   }
 
-  getDataUtilisateur(){
-    return this.dataUtilisateur;
+  getUtilisateur(){
+    return this.utilisateur;
   }
 
   resetDataUtilisateur(){
@@ -185,5 +179,6 @@ class Controleur {
     console.log("Vues:", this.vues);
     console.log("Vue du rendu graphique courant:", this.vueRendu);
     console.log("Acumulateur: "+ this.acumulateur);
+    console.log("Utilisateur:", this.utilisateur);
   }
 }

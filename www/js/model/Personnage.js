@@ -1,13 +1,12 @@
 class Personnage extends Element {
-  constructor(ctrl,texture = null,item) {
-    super(ctrl, texture ,180,620,2);
+  constructor(ctrl, texture = "null", item = null) {
+    super(ctrl, texture, 180, 620, 2);
     this.setItems(item);
     this.initialisation();
     this.setMouvementY(false);
     this.setMouvementX(false);
     this.setDeplacementY(2);
     this.setDeplacementX(5);
-
     this.run();
   }
 

@@ -24,6 +24,8 @@ class Controleur {
                                                   "Character_2_annimation.png"]);
 
     this.chargement();
+
+
   }
 
   chargement(){
@@ -143,13 +145,16 @@ class Controleur {
     // TODO: utiliser plugin cordova pour faire un read ou utiliser un XMLHttpRequest
     const dataUtilisateur = {
       persoCourant: {nom: "Chat", textureFixe: "Character_0_vue_0.png", textureAnim: "Character_0_annimation.png"},
-      achete: [new Item("Esquive +",true,true), new Item("Vie +",true,false)],
-      equipe: new Item("Esquive +",true,true),
-      argent: 100
+      achete: [new Item("Esquive +",true,true,20), new Item("Vie +",true,false,100)],
+      equipe: new Item("Esquive +",true,true,20),
+      //boutique: [new Item("Saut +",true,false,50),new Item("Esquive ++",true,false,100)],
+      //argent: 100
     }
 
     this.utilisateur.setFromSauvegarde(dataUtilisateur);
 
+    // VALEUR POUR TESTER
+    this.utilisateur.setArgent(100);
     cb();
   }
 

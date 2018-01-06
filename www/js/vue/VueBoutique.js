@@ -35,6 +35,7 @@ class VueBoutique extends Vue {
       btnAcheter.onclick = () => {
         if (vueBoutique.controleur.getUtilisateur().getArgent() >= produit.getPrix()) {
           vueBoutique.controleur.getUtilisateur().achatItem(produit);
+          argent.innerHTML = "Ton argent : "+this.controleur.getUtilisateur().getArgent();
         }
 
       }

@@ -9,10 +9,10 @@ class Boutique {
   enleverItem(i){
     let j = 0;
     console.log(i.getNom());
-    for (let produit of this.getProduits()) {
-      produit.getNom();
+    for (let produit of this.produits) {
       if (i.getNom() == produit.getNom()) {
-        delete this.getProduits[j];
+        console.log(produit.getNom());
+        delete this.produits[j];
       }
       j++;
     }

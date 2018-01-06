@@ -21,23 +21,24 @@ class VueBoutique extends Vue {
     titre.innerHTML = "Boutique";
 
     for (let produit of this.controleur.getUtilisateur().getBoutique().getProduits()) {
-      const titre_produit = this.create('h3');
-      this.add(titre_produit);
-      titre_produit.innerHTML = produit.getNom();
+      if (produit) {
+        const titre_produit = this.create('h3');
+        this.add(titre_produit);
+        titre_produit.innerHTML = produit.getNom();
 
-      const prix_produit = this.create('h4');
-      this.add(prix_produit);
-      prix_produit.innerHTML = "Prix : " + produit.getPrix();
+        const prix_produit = this.create('h4');
+        this.add(prix_produit);
+        prix_produit.innerHTML = "Prix : " + produit.getPrix();
 
-      const btnAcheter = this.create('button');
-      this.add(btnAcheter);
-      btnAcheter.innerHTML = "Acheter";
-      btnAcheter.onclick = () => {
-        if (vueBoutique.controleur.getUtilisateur().getArgent() >= produit.getPrix()) {
-          vueBoutique.controleur.getUtilisateur().achatItem(produit);
-          argent.innerHTML = "Ton argent : "+this.controleur.getUtilisateur().getArgent();
+        const btnAcheter = this.create('button');
+        this.add(btnAcheter);
+        btnAcheter.innerHTML = "Acheter";
+        btnAcheter.onclick = () => {
+          if (vueBoutique.controleur.getUtilisateur().getArgent() >= produit.getPrix()) {
+            vueBoutique.controleur.getUtilisateur().achatItem(produit);
+            vueBoutique.controleur.changerVueUnique(new VueBoutique(this.controleur));
+          }
         }
-
       }
     }
  }

@@ -6,16 +6,21 @@ class VueRunner extends VueJeu {
     this.add(titre);
     titre.innerHTML = "Runner";*/
 
+    const imagePotion = this.create('img');
+    imagePotion.src = "textures/potion.png";
+    this.add(imagePotion);
+    imagePotion.innerHTML = "";
+    imagePotion.id = "imagePotion";
+
     this.score = this.create('p');
     this.add(this.score);
+    this.score.innerHTML = "";
+    this.score.id = "score";
 
     this.nbPotion = this.create('p');
     this.add(this.nbPotion);
-
-    const imagePiece = this.create('img');
-    imagePiece.src = "textures/Coin_1.png";
-    this.add(imagePiece);
-    imagePiece.innerHTML = "imagePiece";
+    this.nbPotion.innerHTML = "";
+    this.nbPotion.id = "nbPotion";
 
     //Pour se déplacer plus facilement et tester VueVictoire & VuePerdu
     /*const buttonPerdu = this.create('button');

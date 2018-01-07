@@ -200,3 +200,23 @@ button:active {
   background-repeat: no-repeat;
   transform: none;
 }
+
+#imagePiece {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
+#imagePotion {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
+#nbPotion {
+  display: inline-block;
+}
+
+#score {
+  display: inline-block;
+}

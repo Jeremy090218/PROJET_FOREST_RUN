@@ -32,7 +32,15 @@ class VueJeu extends Vue{
       this.controleur.changerVue(new VuePause(this.controleur, this));
       this.controleur.pause();
       this.buttonPause.className= "btnInactif";
+      imagePierre.id = "scorePause";
     }
+
+    const imagePiece = this.create('img');
+    imagePiece.src = "textures/Coin_1.png";
+    this.add(imagePiece);
+    imagePiece.innerHTML = "";
+    imagePiece.id = "imagePiece";
+
   }
 
   draw(){

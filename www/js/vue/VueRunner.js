@@ -6,12 +6,6 @@ class VueRunner extends VueJeu {
     this.add(titre);
     titre.innerHTML = "Runner";*/
 
-    const imagePotion = this.create('img');
-    imagePotion.src = "textures/potion.png";
-    this.add(imagePotion);
-    imagePotion.innerHTML = "";
-    imagePotion.id = "imagePotion";
-
     this.score = this.create('p');
     this.add(this.score);
     this.score.innerHTML = "";
@@ -87,6 +81,8 @@ class VueRunner extends VueJeu {
     }, false);
 
     this.textureVie = this.controleur.textures.getObjet("IconCoeur.png");
+    this.texturePiece = this.controleur.textures.getObjet("Coin_1.png");
+    this.texturePotion = this.controleur.textures.getObjet("potion.png");
   }
 
   draw(){
@@ -111,6 +107,9 @@ class VueRunner extends VueJeu {
     for (let i = 0; i < this.controleur.partieRunner.getPersonnage().getVie(); ++i) {
       this.ctx.drawImage(this.textureVie, i*30, 0);
     }
+
+    this.ctx.drawImage(this.texturePiece, 10, 50);
+    this.ctx.drawImage(this.texturePotion, 300, 50);
 
     this.score.innerHTML = this.controleur.partieRunner.score;
 

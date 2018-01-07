@@ -201,18 +201,6 @@ button:active {
   transform: none;
 }
 
-#imagePiece {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-}
-
-#imagePotion {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-}
-
 #nbPotion {
   display: inline-block;
 }

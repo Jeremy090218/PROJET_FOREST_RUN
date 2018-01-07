@@ -12,6 +12,11 @@ class VueRunner extends VueJeu {
     this.nbPotion = this.create('p');
     this.add(this.nbPotion);
 
+    const imagePiece = this.create('img');
+    imagePiece.src = "textures/Coin_1.png";
+    this.add(imagePiece);
+    imagePiece.innerHTML = "imagePiece";
+
     //Pour se déplacer plus facilement et tester VueVictoire & VuePerdu
     /*const buttonPerdu = this.create('button');
     this.add(buttonPerdu);

@@ -1,6 +1,6 @@
-class Reponse extends ElementPartie{
+class Reponse /*extends ElementPartie*/{
   constructor(ctrl, typeQ, rep) {
-    super(ctrl);
+    //super(ctrl);
     this.reponse = null;
     this.typeQ = null;
     this.reponses = new Array();
@@ -59,6 +59,6 @@ class Reponse extends ElementPartie{
   }
 
   update(){
-    
+
   }
 }

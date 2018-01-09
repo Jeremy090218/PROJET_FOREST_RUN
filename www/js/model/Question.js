@@ -1,8 +1,6 @@
-class Question extends Element {
+class Question /*extends Element */{
   constructor(ctrl,i) {
-    super(ctrl);
-    if(!Element.id) Element.id = 0;
-    this.id = ++Element.id;
+    //super(ctrl);
     this.intitule = null;
     this.question = null;
     this.reponse = null;

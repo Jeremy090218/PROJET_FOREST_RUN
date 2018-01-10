@@ -30,12 +30,30 @@ class VueMenuPrincipal extends Vue {
       this.controleur.play();
     }
 
-    //button Atelier
+    //button atelier
     const buttonAtl = this.create('button');
     this.add(buttonAtl);
     buttonAtl.innerHTML = "Atelier";
     buttonAtl.onclick = () => {
       this.controleur.changerVue(new VueAtelier(this.controleur), this);
+    }
+
+    //button univers
+    const buttonUnivers = this.create('button');
+    this.add(buttonUnivers);
+    buttonUnivers.innerHTML = "Univers";
+    buttonUnivers.onclick = () => {
+      this.controleur.switchMode("nouvellePartie");
+      this.controleur.play();
+    }
+
+    //button règle
+    const buttonRegle = this.create('button');
+    this.add(buttonRegle);
+    buttonRegle.innerHTML = "Règle";
+    buttonRegle.onclick = () => {
+      this.controleur.switchMode("nouvellePartie");
+      this.controleur.play();
     }
 
     //button leçons

@@ -1,11 +1,11 @@
 class Question /*extends Element */{
-  constructor(ctrl,i) {
+  constructor(ctrl, i = -1) {
     //super(ctrl);
     if(!Question.nbType) Question.nbType = 1;
     this.intitule = null;
     this.question = null;
     this.reponse = null;
-    this.setQuestion(i);
+    this.setQuestion(i == -1 ? Math.floor(Math.random()*(Question.nbType + 0.99)) : i);
   }
 
 
@@ -150,7 +150,7 @@ class Question /*extends Element */{
 
 
   solveNombrePremier(n) {
-    for(var i = 2; i <= Math.sqrt(n); i++)
+    for(var i = 2; i <= Math.sqrt(n); i++) {
         if(num % i === 0) return false;
       return num !== 1;
   }

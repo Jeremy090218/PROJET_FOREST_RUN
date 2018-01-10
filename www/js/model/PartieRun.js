@@ -87,14 +87,17 @@ setElementsPartie(i){this.elementsPartie=i;}
                           // Parcours de la liste des elements partie
       if(this.getPersonnage().estEnColision(this.getElementsPartie()[i])){      // Test de la colision avec les objets
 
-        if(this.getElementsPartie()[i] instanceof ElementReponse ){             // Test du type : Si ElementReponse
+        if(this.getElementsPartie()[i] instanceof FioleBleu ){             // Test du type : Si ElementReponse
                                                                                 // alors ajouter 1 a la reponse
           this.incrementerNbReponse();
+        }else if(this.getElementsPartie()[i] instanceof FioleRouge ){
+          this.decrementerNbReponse();
 
-        }else if(this.getElementsPartie()[i] instanceof ObjetRamassable ){      // Test du type : sinonSi ObjetRamassable
+        }else if(this.getElementsPartie()[i] instanceof Piece ){      // Test du type : sinonSi ObjetRamassable
                                                                                 // alors augmenter le score et ajouter un Piece
           this.setScore(this.getScore() + 20);
           this.incrementerPieceRecup();
+
         }else{                                                                  // Test du type :  Sinon Obstacle
           this.getPersonnage().decrementerVie();                                // alors  decrementer Vie
         }
@@ -108,13 +111,16 @@ setElementsPartie(i){this.elementsPartie=i;}
     }
     if(this.getTemps()%45 == 0){   // Tout les 23 Tics: ajouter Ramassable et ElementReponse
       if(Math.random() > 0.7){
-         this.addRamassables();
+         this.addPiece();
       }
       this.incrementerScore();
     }
     if(this.getTemps()%42 == 0 && this.getQuestionEquation() != 0){
       if(Math.random() > 0.6){
-        this.addElementReponse();
+        this.addFioleBleu();
+      }
+      if(Math.random() > 0.85){
+        this.addFioleRouge();
       }
     }
 
@@ -203,8 +209,8 @@ setElementsPartie(i){this.elementsPartie=i;}
 ////////////////////////////////////////////////////////////////////////////////
                                             //// Gestion des Ramassable
 
-  addRamassables(){
-    const o = new ObjetRamassable(this.controleur,"Coin_1.png",this.getTrajectoire(), this.vitesse);
+  addPiece(){
+    const o = new Piece(this.controleur,this.getTrajectoire(), this.vitesse);
     this.getElementsPartie().unshift(o);
     this.getFileRendu().unshift(o);
 
@@ -213,8 +219,14 @@ setElementsPartie(i){this.elementsPartie=i;}
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
                                             /////// Gestion des elementReponses
-  addElementReponse(){
-    const o = new ElementReponse(this.controleur,"potion.png",this.getTrajectoire(), this.vitesse);
+  addFioleBleu(){
+    const o = new FioleBleu(this.controleur,this.getTrajectoire(), this.vitesse);
+    this.getElementsPartie().unshift(o);
+    this.getFileRendu().unshift(o);
+  }
+
+  addFioleRouge(){
+    const o = new FioleRouge(this.controleur,this.getTrajectoire(), this.vitesse);
     this.getElementsPartie().unshift(o);
     this.getFileRendu().unshift(o);
   }
@@ -248,7 +260,7 @@ setElementsPartie(i){this.elementsPartie=i;}
                                             ////// Gestion des Obstacles
 
   addObstacle(){
-    const o = new Obstacle(this.controleur, "Obstacle_1.png", this.getTrajectoire(), this.vitesse);
+    const o = new Obstacle(this.controleur, this.getTrajectoire(), this.vitesse);
     this.getElementsPartie().unshift(o);
     this.getFileRendu().unshift(o);
   }

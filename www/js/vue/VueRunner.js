@@ -1,7 +1,7 @@
 class VueRunner extends VueJeu {
   constructor(ctrl) {
     super(ctrl, 'runner');
-    
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     this.controleur.changerMusique("musique_jeu01.mp3");
@@ -51,7 +51,7 @@ class VueRunner extends VueJeu {
 
     this.textureVie = this.controleur.textures.getObjet("IconCoeur.png");
     this.texturePiece = this.controleur.textures.getObjet("Coin_1.png");
-    this.texturePotion = this.controleur.textures.getObjet("potion.png");
+    this.texturePotion = this.controleur.textures.getObjet("potionBleu.png");
   }
 
   draw(){

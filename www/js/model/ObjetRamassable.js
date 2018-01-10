@@ -1,5 +1,5 @@
-class ObjetRamassable extends ElementPartie {
-  constructor(ctrl, texture, points, vitesse) {
-    super(ctrl, texture, points, vitesse);
+class Piece extends ElementPartie {
+  constructor(ctrl, points, vitesse) {
+    super(ctrl,"Coin_1.png", points, vitesse);
   }
 }

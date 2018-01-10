@@ -9,6 +9,7 @@ class Partie {
     this.personnage = perso;
     this.questions = new Array();
     this.elementsDecors = new Array();
+    this.emetteurParticules = new Array();
 
     this.fileRendu = new Array();
 
@@ -25,7 +26,8 @@ class Partie {
   getControleur(){return this.controleur;}
   getQuestions(){return this.questions;}
   getElementsDecors(){return this.elementsDecors;}
-  getFileRendu(){return this.fileRendu}
+  getFileRendu(){return this.fileRendu;}
+  getEmetteurParticules(){return this.emetteurParticules;}
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////// SETTERS /////////////////////////////////////////
@@ -41,6 +43,10 @@ class Partie {
 
   initElement(){
 
+  }
+
+  addEmetteurParticules(nb, temps, texture, x, y, z){
+    this.emetteurParticules.unshift(new EmetteurParticules(this.controleur, nb, temps, texture, x, y, z));
   }
 
   updateArray(a){

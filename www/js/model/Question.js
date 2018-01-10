@@ -1,10 +1,12 @@
 class Question{
-  constructor(ctrl, i = -1) {
-    if(!Question.nbType) Question.nbType = 1;
+  constructor(ctrl, typeQ) {
+    if(!this.nbType) this.nbType = 4;
     this.intitule = null;
     this.question = null;
     this.reponse = null;
-    this.setQuestion(i == -1 ? Math.floor(Math.random()*(Question.nbType + 0.99)) : i);
+    this.setQuestion(this.getRndBias(0,1,0,0));
+    //this.setQuestion(i == -1 ? Math.floor(Math.random()*(Question.nbType + 0.99)) : i);
+
   }
 
 
@@ -40,11 +42,13 @@ class Question{
         this.setIntitule("Quel est le reste de la division ?");
         this.question = this.createDivisionE();
         this.setReponse(new Reponse(ctrl, typeQ, this.solveDivisionE(this.question)));
+        break;
 
       case 2 :
         this.setIntitule("Quel résultat obtient-on ?");
         this.question = this.createPuissance();
         this.setReponse(new Reponse(ctrl, typeQ, this.solvePuissance(this.question)));
+        break;
 
       case 3 :
         this.setIntitule("Ce nombre est-il premier ?");
@@ -125,17 +129,17 @@ class Question{
 
 
   createDivisionE() {
-    let dividende = getRndBias(10,30,0,0);
-    let diviseur = getRndBias(1,10,0,0);
+    let dividende = this.getRndBias(10,30,0,0);
+    let diviseur = this.getRndBias(1,10,0,0);
     return dividende + " / " + diviseur;
   }
 
 
   createPuissance() {
-    let n = getRndBias(1,10,0,0);
+    let n = this.getRndBias(1,10,0,0);
     let puissance;
     if(n == 10 || n == 2) {
-      puissance = getRndBias(1,5,0,0);
+      puissance = this.getRndBias(1,5,0,0);
     } else {
       puissance = 2;
     }
@@ -144,7 +148,7 @@ class Question{
 
 
   createNombrePremier() {
-    return getRndBias(1,50,0,0);
+    return this.getRndBias(1,50,0,0);
   }
 
 
@@ -167,9 +171,9 @@ class Question{
 
   solveNombrePremier(n) {
     for(var i = 2; i <= Math.sqrt(n); i++) {
-        if(num % i === 0) return false;
+        if(n % i === 0) return false;
     }
-      return num !== 1;
+      return n !== 1;
   }
 
 

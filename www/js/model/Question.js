@@ -31,7 +31,7 @@ class Question /*extends Element */{
   setQuestion(typeQ) {
     switch (typeQ) {
       case 0 :
-        this.setIntitule("Combien vaut x ? Ramassez le nombre de pièces correspondant !");
+        this.setIntitule("Combien vaut x ? Ramassez le nombre de fioles correspondant !");
         this.question = this.createEquation();
         this.setReponse(new Reponse(ctrl, typeQ, this.solveEquation(this.question)));
         break;

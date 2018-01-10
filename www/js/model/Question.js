@@ -1,6 +1,7 @@
 class Question /*extends Element */{
   constructor(ctrl, i = -1) {
     //super(ctrl);
+    if(!Question.nbType) Question.nbType = 1;
     this.intitule = null;
     this.question = null;
     this.reponse = null;
@@ -117,6 +118,17 @@ class Question /*extends Element */{
   }
 
 
+  createNombrePremier() {
+    return getRndBias(1,50,0,0);
+  }
+
+  createDivisionE() {
+    let dividende = getRndBias(10,30,0,0);
+    let diviseur = getRndBias(1,10,0,0);
+    return dividende + "/" + diviseur;
+  }
+
+
   solveEquation(e) {
     let Fraction = algebra.Fraction;
     let Expression = algebra.Expression;
@@ -130,6 +142,13 @@ class Question /*extends Element */{
 
   solveBooleen(b) {
     return eval(b);
+  }
+
+  solveNombrePremier(n) {
+    for(var i = 2; i <= Math.sqrt(n); i++)
+        if(num % i === 0) return false;
+      return num !== 1;
+    }
   }
 
 

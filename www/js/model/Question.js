@@ -152,6 +152,7 @@ class Question /*extends Element */{
   solveNombrePremier(n) {
     for(var i = 2; i <= Math.sqrt(n); i++) {
         if(num % i === 0) return false;
+    }
       return num !== 1;
   }
 

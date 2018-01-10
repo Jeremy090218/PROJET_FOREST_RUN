@@ -126,7 +126,7 @@ setElementsPartie(i){this.elementsPartie=i;}
 
     if(this.getTemps() == 0){
       this.setTemps(1200) ;
-      this.setQuestionEquation(new Question(this.getControleur(),0));
+      this.setQuestionEquation(new Question(this.getControleur()));
       this.setNbReponse(0);
       this.getControleur().changerVue(new VueQuestion(this.getControleur(), this.controleur.vueRendu));
     }else if(this.getTemps() == 1){

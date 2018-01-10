@@ -1,4 +1,4 @@
-class ElementReponseShooter extends Reponse {
+class ElementReponseShooter extends Element {
   constructor(ctrl, texture, valeur, vitesse = 5) {
     super(ctrl, "null");
     this.valeur = valeur;

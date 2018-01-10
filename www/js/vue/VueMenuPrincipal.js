@@ -2,7 +2,7 @@ class VueMenuPrincipal extends Vue {
   constructor(ctrl) {
     super(ctrl, 'menuPrincipal');
 
-
+    this.controleur.changerMusique("musique_menu.mp3");
 
     //Button option
     const buttonOption = this.create('button');

@@ -1,6 +1,5 @@
-class Question /*extends Element */{
+class Question{
   constructor(ctrl, i = -1) {
-    //super(ctrl);
     if(!Question.nbType) Question.nbType = 1;
     this.intitule = null;
     this.question = null;
@@ -32,16 +31,33 @@ class Question /*extends Element */{
   setQuestion(typeQ) {
     switch (typeQ) {
       case 0 :
-        this.setIntitule("Combien vaut x ? Ramassez le nombre de fioles correspondant !");
+        this.setIntitule("Combien vaut x ?");
         this.question = this.createEquation();
         this.setReponse(new Reponse(ctrl, typeQ, this.solveEquation(this.question)));
         break;
-
+      
       case 1 :
-        this.setIntitule("Obtient-on Vrai ou Faux ?");
+        this.setIntitule("Quel est le reste de la division ?");
+        this.question = this.createDivisionE();
+        this.setReponse(new Reponse(ctrl, typeQ, this.solveDivisionE(this.question)));
+
+      case 2 :
+        this.setIntitule("Quel résultat obtient-on ?");
+        this.question = this.createPuissance();
+        this.setReponse(new Reponse(ctrl, typeQ, this.solvePuissance(this.question)));
+
+      case 3 :
+        this.setIntitule("Ce nombre est-il premier ?");
+        this.question = this.createNombrePremier();
+        this.setReponse(new Reponse(ctrl, typeQ, this.solveNombrePremier(this.question)));
+        break;
+      
+      case 4 :
+        this.setIntitule("Que retourne cette équation logique ?");
         this.question = this.createBooleen();
         this.setReponse(new Reponse(ctrl, typeQ, this.solveBooleen(this.question)));
         break;
+
       default : break;
     }
   }
@@ -108,11 +124,6 @@ class Question /*extends Element */{
   }
 
 
-  createNombrePremier() {
-    return getRndBias(1,50,0,0);
-  }
-
-
   createDivisionE() {
     let dividende = getRndBias(10,30,0,0);
     let diviseur = getRndBias(1,10,0,0);
@@ -129,6 +140,11 @@ class Question /*extends Element */{
       puissance = 2;
     }
     return n + " ** " + puissance;
+  }
+
+
+  createNombrePremier() {
+    return getRndBias(1,50,0,0);
   }
 
 

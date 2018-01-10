@@ -39,8 +39,6 @@ class Controleur {
         this.chargerDonneesSauvegarde(() => {
           console.log("Fin chargement des données utilisateur");
           this.changerVue(new VueMenuPrincipal(this));
-
-          this.changerMusique("musique_menu.mp3");
         });
       }, (prog) => {
         console.log(prog +"%");
@@ -96,6 +94,7 @@ class Controleur {
         this.partieShooter = null;
         this.partieRendu = this.partieRunner;
         this.changerVueUnique(new VueRunner(this));
+        this.changerMusique("musique_jeu01.mp3");
         break;
       default:
         console.log("switchMode incorrecte");
@@ -198,8 +197,14 @@ class Controleur {
   }
 
   changerMusique(musique){
-    this.musiqueCourante = this.sons.getObjet(musique);
-    this.musiqueCourante.play();
-    this.musiqueCourante.loop = true;
+    if(!this.musiqueCourante) this.musiqueCourante = {nom: "wow", pause: () => {}};
+
+    if(musique != this.musiqueCourante.nom){
+      this.musiqueCourante.pause();
+      this.musiqueCourante = this.sons.getObjet(musique);
+      this.musiqueCourante.currentTime = 0;
+      this.musiqueCourante.play();
+      this.musiqueCourante.loop = true;
+    }
   }
 }

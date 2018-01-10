@@ -35,5 +35,3 @@ class Vue {
     return this.alive;
   }
 }
-
-//pomme

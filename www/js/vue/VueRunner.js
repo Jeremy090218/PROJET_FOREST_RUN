@@ -98,16 +98,18 @@ class VueRunner extends VueJeu {
 
     //this.ctx.save();
     //this.ctx.scale(0.66, 0.66);
-    this.ctx.textAlign="left";
+
     this.ctx.drawImage(this.texturePiece, 10, 50);
     this.ctx.drawImage(this.texturePotion, 10, 100);
     //this.ctx.restore();
 
-    this.ctx.textAlign="center";
+
+    this.ctx.textAlign="left";
     this.ctx.fillStyle = "#26A65B";
     this.ctx.fillText(this.controleur.partieRunner.pieceRecup,70,88);
     this.ctx.fillText(this.controleur.partieRunner.nbReponse,70,140);
 
+    this.ctx.textAlign="center";
     this.ctx.fillText(this.controleur.partieRunner.score,Partie.virtualW/2,50);
   }
 

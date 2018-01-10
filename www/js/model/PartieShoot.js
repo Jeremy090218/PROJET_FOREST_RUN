@@ -11,7 +11,7 @@ class PartieShoot extends Partie {
     this.elementsReponse = [o];
     this.fileRendu.push(o);
 
-    
+    //this.setNe
   }
 
   setNewQuestion(){

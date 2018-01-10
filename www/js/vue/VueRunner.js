@@ -25,6 +25,8 @@ class VueRunner extends VueJeu {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    this.controleur.changerMusique("musique_jeu01.mp3");
+
     this.ctx.font = "40px FredokaOne-Regular";
 
     this.pointeur = {x: -1, y: -1};

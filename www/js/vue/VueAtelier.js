@@ -34,6 +34,14 @@ class VueAtelier extends Vue {
     //choix_perso.options[0].selected = true;
     this.add(choix_perso);
 
+    const item_choisi = this.create('select');
+    let i = 0;
+    for (let achete of this.controleur.getUtilisateur().getItems()) {
+      item_choisi.options[i] = new Option(achete.getNom(), i, false, achete.getNom() == this.controleur.getUtilisateur().getItemEquipe().getNom());
+      i++;
+    }
+    this.add(item_choisi);
+
     // Création de la variable stockant l'image du perso choisi
     // Initialisation par défaut de cette variable avec l'image du chat
     let perso = this.controleur.textures.getObjet(this.controleur.getUtilisateur().getSkins().textureFixe);
@@ -63,13 +71,7 @@ class VueAtelier extends Vue {
     };
 
     // Bandeau déroulant de sélection d'item pour le perso
-    const item_choisi = this.create('select');
-    let i = 0;
-    for (let achete of this.controleur.getUtilisateur().getItems()) {
-      item_choisi.options[i] = new Option(achete.getNom(), i, false, achete.getNom() == this.controleur.getUtilisateur().getItemEquipe().getNom());
-      i++;
-    }
-    this.add(item_choisi);
+
 
     // Fonction permettant de changer d'item à partir du bandeau déroulant
     item_choisi.onchange = function(){

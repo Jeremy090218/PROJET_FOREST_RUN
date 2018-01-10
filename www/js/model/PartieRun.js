@@ -80,6 +80,7 @@ setElementsPartie(i){this.elementsPartie=i;}
     this.updatePersonnage();
     this.updateArray(this.getElementsDecors());
     this.updateArray(this.getElementsPartie());
+    this.updateArray(this.getEmetteurParticules());
 
 
     for (var i = 0; i < this.getElementsPartie().length; i++) {

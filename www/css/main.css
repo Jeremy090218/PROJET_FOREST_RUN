@@ -87,7 +87,8 @@ button {
 }
 
 button:active {
-  color: green;
+  color : green;
+    background: white;
   transform: translateY(4px);
 }
 
@@ -137,7 +138,7 @@ select {
 }
 
 #boutique #divB {
-  height: 60%;
+  height: 53%;
   overflow: scroll;
   overflow-y:auto;
   background-color: #184A24;
@@ -145,7 +146,6 @@ select {
 
 
 /* ************** lecons **************/
-/* Peut être mettre les boutons dans un conteneur mais les btns sont un seul et même div.. Réfléchis.. */
 #VueLecons  {
   background-color: #B0E0E6;
   width: 100%;
@@ -164,8 +164,7 @@ select {
 }
 
 #btnL:active {
-  color: white;
-  background: white;
+  color: #C4FBC9;
   transform: translateY(4px);
 }
 
@@ -180,6 +179,14 @@ select {
   height: 90%;
   width: 100%;
 }
+
+/************ Univers *************/
+#VueUnivers {
+  background-color: #A7E688;
+  width: 100%;
+  height: 100%;
+}
+
 
 /* ************** Runner **************/
 

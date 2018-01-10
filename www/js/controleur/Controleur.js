@@ -22,19 +22,26 @@ class Controleur {
                                                   "Character_0_vue_4.png","Character_0_vue_0.png", "Character_1_vue_0.png", "Character_2_vue_0.png","Ecran_accueil.png",
                                                   "Character_1_annimation.png",
                                                   "Character_2_annimation.png"]);
+    this.sons = new Bank("audio", "sons/", ["chat.mp3", "crash.mp3", "lapin.mp3", "mouton.mp3", "piece.mp3",
+                                            "musique_jeu01.mp3", "musique_jeu02.mp3", "musique_jeu03.mp3", "musique_menu.mp3"]);
+
+
 
     this.chargement();
-
-
   }
 
   chargement(){
     this.textures.chargement(() => {
       console.log("Fin chargement des textures");
       this.utilisateur = new Utilisateur(this);
-      this.chargerDonneesSauvegarde(() => {
-        console.log("Fin chargement des données utilisateur");
-        this.changerVue(new VueMenuPrincipal(this));
+      this.sons.chargement(() => {
+        console.log("Fin chargement des sons");
+        this.chargerDonneesSauvegarde(() => {
+          console.log("Fin chargement des données utilisateur");
+          this.changerVue(new VueMenuPrincipal(this));
+        });
+      }, (prog) => {
+        console.log(prog +"%");
       });
     }, (prog) => {
       console.log(prog +"%");
@@ -87,6 +94,7 @@ class Controleur {
         this.partieShooter = null;
         this.partieRendu = this.partieRunner;
         this.changerVueUnique(new VueRunner(this));
+        this.changerMusique("musique_jeu01.mp3");
         break;
       default:
         console.log("switchMode incorrecte");
@@ -155,6 +163,7 @@ class Controleur {
 
     // VALEUR POUR TESTER
     this.utilisateur.setArgent(100);
+
     cb();
   }
 
@@ -185,5 +194,17 @@ class Controleur {
     console.log("Vue du rendu graphique courant:", this.vueRendu);
     console.log("Acumulateur: "+ this.acumulateur);
     console.log("Utilisateur:", this.utilisateur);
+  }
+
+  changerMusique(musique){
+    if(!this.musiqueCourante) this.musiqueCourante = {nom: "wow", pause: () => {}};
+
+    if(musique != this.musiqueCourante.nom){
+      this.musiqueCourante.pause();
+      this.musiqueCourante = this.sons.getObjet(musique);
+      this.musiqueCourante.currentTime = 0;
+      this.musiqueCourante.play();
+      this.musiqueCourante.loop = true;
+    }
   }
 }

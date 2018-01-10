@@ -7,19 +7,26 @@ class PartieShoot extends Partie {
     this.personnage.setY(Partie.virtualH - 10);
     this.personnage.setZ(2);
 
+    this.elementsReponse = new Array();
+
     this.setNewQuestion();
   }
 
   setNewQuestion(){
-    this.question = new Question(this.controleur);
+    this.question = new Question(this.controleur, 0);
+    console.log(this.question.getIntitule());
+    console.log(this.question.getQuestion());
+    for (let i = 0; i < 5; ++i) {
+      this.addElementReponse(i == 0);
+    }
   }
 
   addElementReponse(correct = false){
-    let reponse = this.question.getReponse();
+    let reponse = parseInt(this.question.getReponse().reponse);
 
-    //if(!correct)
+    if(!correct) reponse += Math.floor(Math.random()* 2 - 1);
 
-    const o = new ElementReponseShooter(ctrl, "Coin_1.png", 5);
+    const o = new ElementReponseShooter(ctrl, "Coin_1.png", reponse);
     this.elementsReponse.push(o);
     this.fileRendu.push(o);
   }

@@ -17,6 +17,8 @@ class PartieRun extends Partie {
     this.setElementsDecors(new Array());    // Pour les decors
     this.setElementsPartie(new Array());    // Pour les elements en interraction avec le personnage
     this.setFileRendu(new Array());         // Pour l'update
+
+    this.vitesse = 1;
   }
 ////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// GETTERS //////////////////////////////////////////////
@@ -130,6 +132,8 @@ setElementsPartie(i){this.elementsPartie=i;}
       if(this.getQuestionEquation()){
         if(!this.testQuestion()){
           this.getPersonnage().decrementerVie();
+        } else {
+          this.vitesse += 0.2;
         }
       }
     }
@@ -198,7 +202,7 @@ setElementsPartie(i){this.elementsPartie=i;}
                                             //// Gestion des Ramassable
 
   addRamassables(){
-    const o = new ObjetRamassable(this.controleur,"Coin_1.png",this.getTrajectoire(),1);
+    const o = new ObjetRamassable(this.controleur,"Coin_1.png",this.getTrajectoire(), this.vitesse);
     this.getElementsPartie().unshift(o);
     this.getFileRendu().unshift(o);
 
@@ -208,7 +212,7 @@ setElementsPartie(i){this.elementsPartie=i;}
 ////////////////////////////////////////////////////////////////////////////////
                                             /////// Gestion des elementReponses
   addElementReponse(){
-    const o = new ElementReponse(this.controleur,"potion.png",this.getTrajectoire(),1);
+    const o = new ElementReponse(this.controleur,"potion.png",this.getTrajectoire(), this.vitesse);
     this.getElementsPartie().unshift(o);
     this.getFileRendu().unshift(o);
   }
@@ -218,8 +222,8 @@ setElementsPartie(i){this.elementsPartie=i;}
                                             /////// Gestion des Decors
 
   addArbres(){
-    const o1 = new ElementDecor(this.controleur,Math.floor(Math.random()*120)+50,1);
-    const o2 = new ElementDecor(this.controleur,Math.floor(Math.random()*120)+200,1);
+    const o1 = new ElementDecor(this.controleur,Math.floor(Math.random()*120)+50, this.vitesse);
+    const o2 = new ElementDecor(this.controleur,Math.floor(Math.random()*120)+200, this.vitesse);
     this.getElementsDecors().unshift(o1);
     this.getElementsDecors().unshift(o2);
     this.getFileRendu().unshift(o1);
@@ -229,9 +233,9 @@ setElementsPartie(i){this.elementsPartie=i;}
   addCiel(){
     let o1 = 0;
     if(Math.random()>0.5){
-      o1 = new ElementCiel(this.controleur,Math.floor(Math.random()*120)+50,1);
+      o1 = new ElementCiel(this.controleur,Math.floor(Math.random()*120)+50, this.vitesse);
     }else{
-      o1 = new ElementCiel(this.controleur,Math.floor(Math.random()*120)+200,1);
+      o1 = new ElementCiel(this.controleur,Math.floor(Math.random()*120)+200, this.vitesse);
     }
     this.getElementsDecors().unshift(o1);
     this.getFileRendu().unshift(o1);
@@ -242,7 +246,7 @@ setElementsPartie(i){this.elementsPartie=i;}
                                             ////// Gestion des Obstacles
 
   addObstacle(){
-    const o = new Obstacle(this.controleur, "Obstacle_1.png", this.getTrajectoire(), 1);
+    const o = new Obstacle(this.controleur, "Obstacle_1.png", this.getTrajectoire(), this.vitesse);
     this.getElementsPartie().unshift(o);
     this.getFileRendu().unshift(o);
   }

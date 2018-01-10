@@ -2,26 +2,6 @@ class VueRunner extends VueJeu {
   constructor(ctrl) {
     super(ctrl, 'runner');
 
-    /*const titre = this.create('h1');
-    this.add(titre);
-    titre.innerHTML = "Runner";*/
-
-    const imagePotion = this.create('img');
-    imagePotion.src = "textures/potion.png";
-    this.add(imagePotion);
-    imagePotion.innerHTML = "";
-    imagePotion.id = "imagePotion";
-
-    this.score = this.create('p');
-    this.add(this.score);
-    this.score.innerHTML = "";
-    this.score.id = "score";
-
-    this.nbPotion = this.create('p');
-    this.add(this.nbPotion);
-    this.nbPotion.innerHTML = "";
-    this.nbPotion.id = "nbPotion";
-
     //Pour se déplacer plus facilement et tester VueVictoire & VuePerdu
     /*const buttonPerdu = this.create('button');
     this.add(buttonPerdu);
@@ -44,6 +24,8 @@ class VueRunner extends VueJeu {
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    this.ctx.font = "40px FredokaOne-Regular";
 
     this.pointeur = {x: -1, y: -1};
     this.depart = {x: -1, y: -1};
@@ -87,6 +69,8 @@ class VueRunner extends VueJeu {
     }, false);
 
     this.textureVie = this.controleur.textures.getObjet("IconCoeur.png");
+    this.texturePiece = this.controleur.textures.getObjet("Coin_1.png");
+    this.texturePotion = this.controleur.textures.getObjet("potion.png");
   }
 
   draw(){
@@ -112,9 +96,21 @@ class VueRunner extends VueJeu {
       this.ctx.drawImage(this.textureVie, i*30, 0);
     }
 
-    this.score.innerHTML = this.controleur.partieRunner.score;
+    //this.ctx.save();
+    //this.ctx.scale(0.66, 0.66);
 
-    this.nbPotion.innerHTML = this.controleur.partieRunner.nbReponse;
+    this.ctx.drawImage(this.texturePiece, 10, 50);
+    this.ctx.drawImage(this.texturePotion, 10, 100);
+    //this.ctx.restore();
+
+
+    this.ctx.textAlign="left";
+    this.ctx.fillStyle = "#26A65B";
+    this.ctx.fillText(this.controleur.partieRunner.pieceRecup,70,88);
+    this.ctx.fillText(this.controleur.partieRunner.nbReponse,70,140);
+
+    this.ctx.textAlign="center";
+    this.ctx.fillText(this.controleur.partieRunner.score,Partie.virtualW/2,50);
   }
 
   delete(){

@@ -1,7 +1,7 @@
 class Element {
 
   /////// Constructeur D'element avec x y et z par default a 0 ///////////
-  constructor(ctrl, texture = null, x = 0 ,y = 0 ,z = 0) {
+  constructor(ctrl, texture = null, x = 0 ,y = 0 ,z = 1) {
                                     // Pour donner un id différent à chaques éléments
     if(!Element.id) Element.id = 0;
     this.id = ++Element.id;

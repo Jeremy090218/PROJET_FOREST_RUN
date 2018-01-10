@@ -6,13 +6,6 @@ class VuePerdu extends Vue {
     this.add(divB);
     divB.id = "divB";
 
-    const buttonPerdu = this.create('button');
-    this.add(divB, buttonPerdu);
-    buttonPerdu.innerHTML = "Menu Principal";
-    buttonPerdu.onclick = () => {
-        this.controleur.changerVueUnique(new VueMenuPrincipal(this.controleur));
-    }
-
     const titre = this.create('h1');
     this.add(divB,titre);
     titre.innerHTML = "PERDU";
@@ -32,10 +25,16 @@ class VuePerdu extends Vue {
 
     this.add(this.pieces, this.controleur.textures.getObjet("Coin_1.png"));
 
-    this.pieces = this.create('p');
-    this.add(divB,this.pieces);
-    this.pieces.innerHTML = "Votre meilleur score est de "+this.controleur.getUtilisateur().getHighScore()+" points";
+    this.hscore = this.create('p');
+    this.add(divB,this.hscore);
+    this.hscore.innerHTML = "Votre meilleur score est de "+this.controleur.getUtilisateur().getHighScore()+" points";
 
+    const buttonPerdu = this.create('button');
+    this.add(divB, buttonPerdu);
+    buttonPerdu.innerHTML = "Menu Principal";
+    buttonPerdu.onclick = () => {
+       this.controleur.changerVueUnique(new VueMenuPrincipal(this.controleur));
+    }
 
   }
 }

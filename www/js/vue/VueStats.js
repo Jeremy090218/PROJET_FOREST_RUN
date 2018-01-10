@@ -22,9 +22,9 @@ class VueStats extends Vue {
         this.add(tDP);
         tDP.innerHTML = "Distance parcourue";
 
-        const tBossB = this.create('h3');
-        this.add(tBossB);
-        tBossB.innerHTML = "Progression dans le jeu";
+        const hscore = this.create('h3');
+        this.add(hscore);
+        hscore.innerHTML = "Votre meilleur score est de "+this.controleur.getUtilisateur().getHighScore()+" points";
 
         const tExNR = this.create('h3');
         this.add(tExNR);

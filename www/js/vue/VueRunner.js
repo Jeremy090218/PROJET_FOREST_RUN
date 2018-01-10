@@ -1,28 +1,7 @@
 class VueRunner extends VueJeu {
   constructor(ctrl) {
     super(ctrl, 'runner');
-
-    //Pour se déplacer plus facilement et tester VueVictoire & VuePerdu
-    /*const buttonPerdu = this.create('button');
-    this.add(buttonPerdu);
-
-    buttonPerdu.innerHTML = "Perdu";
-
-    buttonPerdu.onclick = () => {
-      this.controleur.changerVue(new VuePerdu(this.controleur), this);
-    }
-
-    const buttonVct = this.create('button');
-    this.add(buttonVct);
-    buttonVct.innerHTML = "Victoire";
-    buttonVct.onclick = () => {
-      this.controleur.changerVue(new VueVictoire(this.controleur),this);
-    }
-
-
-    this.controleur.switchMode("runner");*/
-
-
+    
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     this.controleur.changerMusique("musique_jeu01.mp3");

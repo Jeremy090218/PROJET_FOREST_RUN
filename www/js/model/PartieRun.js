@@ -113,7 +113,7 @@ setElementsPartie(i){this.elementsPartie=i;}
       this.incrementerScore();
     }
     if(this.getTemps()%42 == 0 && this.getQuestionEquation() != 0){
-      if(Math.random() > 0.7){
+      if(Math.random() > 0.6){
         this.addElementReponse();
       }
     }

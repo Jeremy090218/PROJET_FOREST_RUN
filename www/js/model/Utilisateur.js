@@ -45,6 +45,7 @@ class Utilisateur {
     this.setItemEquipe(data.equipe);
     this.setSkins(data.persoCourant);
     this.setHighScore(data.highScore);
+    this.setArgent(data.argent);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

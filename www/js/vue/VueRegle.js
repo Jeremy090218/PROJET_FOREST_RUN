@@ -9,5 +9,10 @@ class VueRegle extends Vue {
     buttonRetour.onclick = () => {
       this.controleur.changerVue(new VueMenuPrincipal(this.controleur), this);
     }
+
+    const titre = this.create('h2');
+    this.add(titre);
+    titre.innerHTML = "Règle du jeu";
+
   }
 }

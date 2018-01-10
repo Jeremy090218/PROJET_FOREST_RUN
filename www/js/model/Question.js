@@ -86,22 +86,18 @@ class Question /*extends Element */{
     let Expression = algebra.Expression;
     let Equation = algebra.Equation;
 
-    let div = this.getRndBias(1,3,1,1);
-
     let expGauche = new Expression("x");
         expGauche = expGauche.multiply(this.getRndBias(1,10,0,0));
         expGauche = expGauche.add(this.getRndBias(-10,10,0,0.5));
-        //expGauche = expGauche.divide(div);
 
     let expDroite = new Expression("x");
         expDroite = expDroite.multiply(this.getRndBias(-10,10,0,0.75));
         expDroite = expDroite.add(this.getRndBias(-10,10,0,0));
-        //expDroite = expDroite.divide(div);
 
     let eq = expGauche.toString() + " = " + expDroite.toString();
 
     try {
-      if (this.solveEquation(eq) > 0 && this.isInt(this.solveEquation(eq))) {
+      if (this.solveEquation(eq) > 0 && this.solveEquation(eq) < 8 && this.isInt(this.solveEquation(eq))) {
         return eq;
       } else {
         return this.createEquation();
@@ -112,20 +108,33 @@ class Question /*extends Element */{
   }
 
 
-  createBooleen() {
-    let b = this.getRndBool() + this.getRndBoolOperator() + this.getRndBool() + this.getRndBoolOperator() + this.getRndBool() + this.getRndBoolOperator() + this.getRndBool();
-    return b;
-  }
-
-
   createNombrePremier() {
     return getRndBias(1,50,0,0);
   }
 
+
   createDivisionE() {
     let dividende = getRndBias(10,30,0,0);
     let diviseur = getRndBias(1,10,0,0);
-    return dividende + "/" + diviseur;
+    return dividende + " / " + diviseur;
+  }
+
+
+  createPuissance() {
+    let n = getRndBias(1,10,0,0);
+    let puissance;
+    if(n == 10 || n == 2) {
+      puissance = getRndBias(1,5,0,0);
+    } else {
+      puissance = 2;
+    }
+    return n + " ** " + puissance;
+  }
+
+
+  createBooleen() {
+    let b = this.getRndBool() + this.getRndBoolOperator() + this.getRndBool() + this.getRndBoolOperator() + this.getRndBool() + this.getRndBoolOperator() + this.getRndBool();
+    return b;
   }
 
 
@@ -140,15 +149,26 @@ class Question /*extends Element */{
   }
 
 
-  solveBooleen(b) {
-    return eval(b);
-  }
-
   solveNombrePremier(n) {
     for(var i = 2; i <= Math.sqrt(n); i++)
         if(num % i === 0) return false;
       return num !== 1;
-    }
+  }
+
+
+  solveDivisionE(d) {
+    let div = d.split(" / ");
+    return div[0] % div[1];
+  }
+
+
+  solvePuissance(p) {
+    return eval(p);
+  }
+
+
+  solveBooleen(b) {
+    return eval(b);
   }
 
 

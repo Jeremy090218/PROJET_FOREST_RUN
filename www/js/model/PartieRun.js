@@ -20,6 +20,8 @@ class PartieRun extends Partie {
     this.setElementsPartie(new Array());    // Pour les elements en interraction avec le personnage
     this.setFileRendu(new Array());         // Pour l'update
 
+    this.monde = 0;
+
     this.vitesse = 1;
   }
 ////////////////////////////////////////////////////////////////////////////////
@@ -155,6 +157,12 @@ setElementsPartie(i){this.elementsPartie=i;}
       this.controleur.updateMission(this.getPieceRecup(),this.getScore(),this.nbQuestionReussi);
       this.controleur.changerVueUnique(new VuePerdu(this.controleur));
     }
+    if(this.getScore()>150 && this.monde == 0){
+      this.monde = 1;
+    }
+    if(this.getScore()> 300 && this.monde == 1){
+      this.monde = 2;
+    }
   }
 
 
@@ -240,8 +248,8 @@ setElementsPartie(i){this.elementsPartie=i;}
                                             /////// Gestion des Decors
 
   addArbres(){
-    const o1 = new ElementDecor(this.controleur,Math.floor(Math.random()*120)+50, this.vitesse);
-    const o2 = new ElementDecor(this.controleur,Math.floor(Math.random()*120)+200, this.vitesse);
+    const o1 = new ElementDecor(this.controleur,Math.floor(Math.random()*120)+50, this.vitesse,this.monde);
+    const o2 = new ElementDecor(this.controleur,Math.floor(Math.random()*120)+200, this.vitesse,this.monde);
     this.getElementsDecors().unshift(o1);
     this.getElementsDecors().unshift(o2);
     this.getFileRendu().unshift(o1);

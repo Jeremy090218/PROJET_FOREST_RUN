@@ -1,12 +1,25 @@
 class ElementDecor extends ElementPartie {
-  constructor(ctrl,xx, vitesse) {
-    if(xx > 180){
-      //super(ctrl, "Tree_0_1.png",[{x: xx, y: 300, z: 1}, {x: xx+250, y: 640, z: 10}], vitesse);
-      super(ctrl, "Tree_0_1.png",[{x: xx, y: 300, z: 1}, {x: xx+400, y: 800, z: 10}], vitesse);
-    }else{
-      //super(ctrl, "Tree_0_1.png",[{x: xx, y: 300, z: 1}, {x: xx-250, y: 640, z: 10}], vitesse);
-      super(ctrl, "Tree_0_1.png",[{x: xx, y: 300, z: 1}, {x: xx-400, y: 800, z: 10}], vitesse);
+  constructor(ctrl,xx, vitesse,monde) {
+    if(monde == 0){
+      if(xx > 180){
+        super(ctrl, "Tree_0_1.png",[{x: xx, y: 300, z: 1}, {x: xx+400, y: 800, z: 10}], vitesse);
+      }else{
+        super(ctrl, "Tree_0_1.png",[{x: xx, y: 300, z: 1}, {x: xx-400, y: 800, z: 10}], vitesse);
+      }
+    }else if(monde == 1){
+      if(xx > 180){
+        super(ctrl, "Bambou.png",[{x: xx, y: 300, z: 1}, {x: xx+500, y: 800, z: 8}], vitesse);
+      }else{
+        super(ctrl, "Bambou.png",[{x: xx, y: 300, z: 1}, {x: xx-500, y: 800, z: 8}], vitesse);
+      }
+    }else if(monde ==2){
+      if(xx > 180){
+        super(ctrl, "Palmier_gauche.png",[{x: xx, y: 300, z: 1}, {x: xx+400, y: 800, z: 10}], vitesse);
+      }else{
+        super(ctrl, "Palmier_droit.png",[{x: xx, y: 300, z: 1}, {x: xx-400, y: 800, z: 10}], vitesse);
+      }
     }
+
   }
 
   update(){

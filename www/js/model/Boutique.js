@@ -1,6 +1,6 @@
 class Boutique {
   constructor(ctrl) {
-    this.produits =  [new Item("Saut +",true,false,50),new Item("Esquive ++",true,false,100)];
+    this.produits =  [new Item("Saut +",true,false,50),new Item("Esquive ++",true,false,50),new Item("Saut ++",true,false,50),new Item("Vie ++",true,false,70),new Item("Teleportation",true,false,100),];
 
   }
 

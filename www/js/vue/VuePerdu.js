@@ -23,7 +23,7 @@ class VuePerdu extends Vue {
 
     this.pieces = this.create('p');
     this.add(this.pieces);
-    this.pieces.innerHTML = "Votre meilleur score est de : "+this.controleur.getUtilisateur().getHighScore()+" points";
+    this.pieces.innerHTML = "Votre meilleur score est de "+this.controleur.getUtilisateur().getHighScore()+" points";
 
     const buttonPerdu = this.create('button');
     this.add(buttonPerdu);

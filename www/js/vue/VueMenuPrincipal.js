@@ -43,8 +43,7 @@ class VueMenuPrincipal extends Vue {
     this.add(buttonUnivers);
     buttonUnivers.innerHTML = "Univers";
     buttonUnivers.onclick = () => {
-      this.controleur.switchMode("nouvellePartie");
-      this.controleur.play();
+      this.controleur.changerVue(new VueUnivers(this.controleur), this);
     }
 
     //button règle
@@ -52,8 +51,7 @@ class VueMenuPrincipal extends Vue {
     this.add(buttonRegle);
     buttonRegle.innerHTML = "Règle";
     buttonRegle.onclick = () => {
-      this.controleur.switchMode("nouvellePartie");
-      this.controleur.play();
+      this.controleur.changerVue(new VueRegle(this.controleur), this);
     }
 
     //button leçons

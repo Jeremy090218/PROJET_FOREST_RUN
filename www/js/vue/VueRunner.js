@@ -18,7 +18,7 @@ class VueRunner extends VueJeu {
 
     this.nbPiece = this.create('p');
     this.add(this.nbPiece);
-    this.nbPiece.innerHTML = "wwwww";
+    this.nbPiece.innerHTML = "";
     this.nbPiece.id = "nbPiece";
 
     //Pour se déplacer plus facilement et tester VueVictoire & VuePerdu
@@ -113,8 +113,11 @@ class VueRunner extends VueJeu {
       this.ctx.drawImage(this.textureVie, i*30, 0);
     }
 
+    this.ctx.save();
+    this.ctx.scale(0.66, 0.66);
     this.ctx.drawImage(this.texturePiece, 10, 50);
-    this.ctx.drawImage(this.texturePotion, 300, 50);
+    this.ctx.drawImage(this.texturePotion, 10, 100);
+    this.ctx.restore();
 
     this.score.innerHTML = this.controleur.partieRunner.score;
 

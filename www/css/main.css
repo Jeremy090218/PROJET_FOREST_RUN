@@ -125,6 +125,11 @@ button:active {
   height: 40%;
 }
 
+select {
+
+
+}
+
 
 /* ************** lecons **************/
 /* Peut être mettre les boutons dans un conteneur mais les btns sont un seul et même div.. Réfléchis.. */
@@ -144,7 +149,7 @@ button:active {
 
 #VueLecons #divL {
   height: 100%;
-  /*overflow: scroll;*/
+  overflow: scroll;
   overflow-y:auto;
 }
 

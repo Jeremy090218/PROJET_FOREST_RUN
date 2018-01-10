@@ -23,11 +23,7 @@ class VueAtelier extends Vue {
       this.controleur.changerVue(new VueBoutique(this.controleur), this);
     }
 
-    // Création de la variable stockant l'image du perso choisi
-    // Initialisation par défaut de cette variable avec l'image du chat
-    let perso = this.controleur.textures.getObjet(this.controleur.getUtilisateur().getSkins().textureFixe);
-    perso.id="perso_choisi";
-    this.add(perso);
+    const vueAtelier = this;
 
     // Création du bandeau déroulant de choix du perso
     // (par défaut le chat est sélectionné)
@@ -38,7 +34,13 @@ class VueAtelier extends Vue {
     //choix_perso.options[0].selected = true;
     this.add(choix_perso);
 
-    const vueAtelier = this;
+    // Création de la variable stockant l'image du perso choisi
+    // Initialisation par défaut de cette variable avec l'image du chat
+    let perso = this.controleur.textures.getObjet(this.controleur.getUtilisateur().getSkins().textureFixe);
+    perso.id="perso_choisi";
+    this.add(perso);
+
+
 
     // Fonction permettant de changer de perso à partir du bandeau déroulant
     choix_perso.onchange = function(){

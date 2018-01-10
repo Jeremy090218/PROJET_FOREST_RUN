@@ -7,14 +7,10 @@ class Boutique {
   getProduits(){return this.produits;}
 
   enleverItem(i){
-    let j = 0;
-    console.log(i.getNom());
-    for (let produit of this.produits) {
-      if (i.getNom() == produit.getNom()) {
-        console.log(produit.getNom());
-        delete this.produits[j];
+    for (let j = 0; j < this.produits.length; j++) {
+      if (i == this.produits[j]) {
+        this.produits.splice(j, 1);
       }
-      j++;
     }
   }
 }

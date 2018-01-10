@@ -14,6 +14,8 @@ class Element {
 
     this.frame = 0;
 
+    this.opacite = 0;
+
     this.setTexture(texture);
   }
 
@@ -28,6 +30,8 @@ class Element {
   getWidth(){return this.texture.width;}
   getHeight(){return this.texture.height;}
   getFrame(){return Math.floor(this.frame/10);}
+
+  getOpacite(){return this.opacite;}
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////  SETTERS  /////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -37,7 +41,9 @@ class Element {
   setZ(i){this.z = i;}
   setTexture(t){this.texture = this.controleur.textures.getObjet(t);}
 
-  update(){}
+  update(){
+    if(this.opacite < 1) this.opacite += 0.1;
+  }
 
   detruire(){
     this.detruit = true;

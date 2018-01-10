@@ -18,6 +18,7 @@ class ElementPartie extends Element {
   setTrajectoire(i){this.trajectoire = i;}
 
   update(){
+    super.update();
     this.trajectoire.update();
   }
 }

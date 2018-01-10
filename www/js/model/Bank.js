@@ -15,11 +15,8 @@ class Bank {
       this.obj[index] = document.createElement(this.type);
       this.obj[index].src = this.rep + this.liste[i];
       this.obj[index].nom = this.liste[i];
-      if(this.type == "img"){
-        this.obj[index].onload = () => {this.compte(cb);};
-      } else {
-        this.obj[index].onloadedmetadata = () => {this.compte(cb);};
-      }
+      if(this.type == "img") this.obj[index].onload = () => {this.compte(cb);};
+      else this.obj[index].onloadedmetadata = () => {this.compte(cb);};
     }
   }
 
@@ -31,7 +28,7 @@ class Bank {
 
   getObjet(nom){
     if (this.obj[nom]) return this.obj[nom];
-    else return this.getObjet('default.png');
+    else return this.getObjet(this.liste[0]);
   }
 
   getAll(){

@@ -10,6 +10,12 @@ class PartieShoot extends Partie {
     const o = new ElementReponseShooter(ctrl, "Coin_1.png", 5);
     this.elementsReponse = [o];
     this.fileRendu.push(o);
+
+    //this.setNe
+  }
+
+  setNewQuestion(){
+
   }
 
   update(){

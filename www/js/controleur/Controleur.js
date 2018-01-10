@@ -40,8 +40,7 @@ class Controleur {
           console.log("Fin chargement des données utilisateur");
           this.changerVue(new VueMenuPrincipal(this));
 
-          this.musiqueCourante = this.sons.getObjet("musique_menu.mp3");
-          this.musiqueCourante.play();
+          this.changerMusique("musique_menu.mp3");
         });
       }, (prog) => {
         console.log(prog +"%");
@@ -196,5 +195,11 @@ class Controleur {
     console.log("Vue du rendu graphique courant:", this.vueRendu);
     console.log("Acumulateur: "+ this.acumulateur);
     console.log("Utilisateur:", this.utilisateur);
+  }
+
+  changerMusique(musique){
+    this.musiqueCourante = this.sons.getObjet(musique);
+    this.musiqueCourante.play();
+    this.musiqueCourante.loop = true;
   }
 }

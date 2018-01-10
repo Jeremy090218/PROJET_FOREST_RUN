@@ -66,11 +66,7 @@ class Controleur {
     this.changerVue(vue);
   }
 
-  setVueRendu(v){let musique = this.create('audio');
-    musique.src = this.sons.getObjet("musique_menu.mp3");
-    musique.autoplay = true;
-    this.add(musique);
-
+  setVueRendu(v){
     this.vueRendu = v;
   }
 

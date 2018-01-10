@@ -22,19 +22,29 @@ class Controleur {
                                                   "Character_0_vue_4.png","Character_0_vue_0.png", "Character_1_vue_0.png", "Character_2_vue_0.png","Ecran_accueil.png",
                                                   "Character_1_annimation.png",
                                                   "Character_2_annimation.png"]);
+    this.sons = new Bank("audio", "sons/", ["chat.mp3", "crash.mp3", "lapin.mp3", "mouton.mp3", "piece.mp3",
+                                            "musique_jeu01.mp3", "musique_jeu02.mp3", "musique_jeu03.mp3", "musique_menu.mp3"]);
+
+
 
     this.chargement();
-
-
   }
 
   chargement(){
     this.textures.chargement(() => {
       console.log("Fin chargement des textures");
       this.utilisateur = new Utilisateur(this);
-      this.chargerDonneesSauvegarde(() => {
-        console.log("Fin chargement des données utilisateur");
-        this.changerVue(new VueMenuPrincipal(this));
+      this.sons.chargement(() => {
+        console.log("Fin chargement des sons");
+        this.chargerDonneesSauvegarde(() => {
+          console.log("Fin chargement des données utilisateur");
+          this.changerVue(new VueMenuPrincipal(this));
+
+          this.musiqueCourante = this.sons.getObjet("musique_menu.mp3");
+          this.musiqueCourante.play();
+        });
+      }, (prog) => {
+        console.log(prog +"%");
       });
     }, (prog) => {
       console.log(prog +"%");
@@ -56,7 +66,11 @@ class Controleur {
     this.changerVue(vue);
   }
 
-  setVueRendu(v){
+  setVueRendu(v){let musique = this.create('audio');
+    musique.src = this.sons.getObjet("musique_menu.mp3");
+    musique.autoplay = true;
+    this.add(musique);
+
     this.vueRendu = v;
   }
 
@@ -155,6 +169,7 @@ class Controleur {
 
     // VALEUR POUR TESTER
     this.utilisateur.setArgent(100);
+
     cb();
   }
 

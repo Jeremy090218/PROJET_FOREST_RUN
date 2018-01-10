@@ -1,5 +1,5 @@
 class Question /*extends Element */{
-  constructor(ctrl,i) {
+  constructor(ctrl, i = -1) {
     //super(ctrl);
     this.intitule = null;
     this.question = null;

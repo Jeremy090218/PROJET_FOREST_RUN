@@ -22,12 +22,11 @@ class VueLecons extends Vue {
     divL.id = "divL";
 
     for (let lecon of cours) {
-      const button = this.create('button');
-      //button.id="btnL";
-      this.add(divL, button);
+      const buttonL = this.create('button');
+      this.add(divL, buttonL);
 
-      button.innerHTML = lecon;
-      button.onclick = () => {
+      buttonL.innerHTML = lecon;
+      buttonL.onclick = () => {
         this.controleur.changerVue(new VueLecon(this.controleur, lecon), this);
       }
     }

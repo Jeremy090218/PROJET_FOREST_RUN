@@ -7,7 +7,7 @@ class VuePerdu extends Vue {
     divB.id = "divB";
 
     const buttonPerdu = this.create('button');
-    this.add(divB;buttonPerdu);
+    this.add(divB, buttonPerdu);
     buttonPerdu.innerHTML = "Menu Principal";
     buttonPerdu.onclick = () => {
         this.controleur.changerVueUnique(new VueMenuPrincipal(this.controleur));

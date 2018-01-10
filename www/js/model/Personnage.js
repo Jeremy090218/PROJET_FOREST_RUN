@@ -2,11 +2,14 @@ class Personnage extends Element {
   constructor(ctrl, texture = "null", item = null) {
     super(ctrl, texture, 180, 620, 2);
     this.setItems(item);
-    this.initialisation();
     this.setMouvementY(false);
     this.setMouvementX(false);
+    this.setMouvGauche(false);
+    this.setMouvDroite(false);
+    this.setDeplacementX(2);
     this.setDeplacementY(2);
-    this.setDeplacementX(5);
+    this.setTeleportation(false);
+    this.initialisation();
     this.run();
   }
 
@@ -20,6 +23,9 @@ class Personnage extends Element {
   getItems(){return this.item;}
   getMouvementY(){return this.mouvementY;}
   getMouvementX(){return this.mouvementX;}
+  getMouvGauche(){return this.mouvGauche;}
+  getMouvDroite(){return this.mouvDroite;}
+  getTeleportation(){return this.teleportation;}
   getDeplacementX(){return this.deplacementX;}
   getDeplacementY(){return this.deplacementY;}
 
@@ -34,6 +40,9 @@ class Personnage extends Element {
   setItems(i){this.item = i;}
   setMouvementY(i){this.mouvementY = i;}
   setMouvementX(i){this.mouvementX = i;}
+  setMouvGauche(i){this.mouvGauche=i;}
+  setMouvDroite(i){this.mouvDroite=i;}
+  setTeleportation(i){this.teleportation = i;}
   setDeplacementX(i){this.deplacementX = i;}
   setDeplacementY(i){this.deplacementY = i}
 
@@ -50,16 +59,26 @@ class Personnage extends Element {
     this.setVelociteY(0);
     if(this.getItems()){
       switch (this.getItems().getNom()) {
-        case "Esquive +":
-          this.setDeplacementX(5);
+        case "Teleportation":
+          this.setTeleportation(true);
         break;
-
         case "Vie +":
           this.setVie(4);
         break;
-
+        case "Vie ++":
+          this.setVie(5);
+        break;
         case "Saut +":
-          this.setDeplacementY(1);
+          this.setDeplacementY(1.8);
+        break;
+        case "Saut ++":
+          this.setDeplacementY(1.5);
+        break;
+        case "Esquive +":
+          this.setDeplacementX(5);
+        break;
+        case "Esquive ++":
+          this.setDeplacementX(10);
         break;
         default :
           console.log("aucun item choisi");
@@ -114,16 +133,30 @@ class Personnage extends Element {
   }
   //Action Gauche
   deplacementGauche(){
-    if(this.getVelociteX() == 0){
-      this.setVelociteX(-30);
-      this.setMouvementX(true);
+    if(!this.getTeleportation()){
+      if(this.getVelociteX() == 0){
+        this.setVelociteX(0);
+        this.setMouvGauche(true);
+        this.setMouvementX(true);
+      }
+    }else{
+      if(this.getX()>179){
+        this.setX(this.getX()-105);
+      }
     }
   }
   //Action Droite
   deplacementDroite(){
-    if(this.getVelociteX() == 0){
-      this.setVelociteX(0);
-      this.setMouvementX(true);
+    if(!this.getTeleportation()){
+      if(this.getVelociteX() == 0){
+        this.setVelociteX(0);
+        this.setMouvDroite(true);
+        this.setMouvementX(true);
+      }
+    }else{
+      if(this.getX()<181){
+        this.setX(this.getX()+105);
+      }
     }
   }
 
@@ -174,12 +207,54 @@ class Personnage extends Element {
     }
 
     if(this.getMouvementX()){
+      if(this.getMouvDroite()){
+        if(this.getX()<180){                                        // Si le X du personnage <180 alors il est sur la voie de gauche
+          if(this.getX() + this.getVelociteX()>=180){                        // si la velocite fait depasser 180 alors le X doit prendre 180
+            this.setX(180);
+            this.setVelociteX(0);
+            this.setMouvementX(false);this.setMouvDroite(false);
+          }else{
+            this.setX(this.getX() + this.getVelociteX());                   // sinon on ajoute la velocite a son X
+            this.setVelociteX(this.getVelociteX()+ this.getDeplacementX());
+          }
+        }else{                                                      // Sinon le personnage est sur l'axe du milieu
+          if(this.getX() + this.getVelociteX()>285){
+            this.setX(285);                                                 // si la velocite fait depasser 285 alors le X doit prendre 285
+            this.setVelociteX(0);
+            this.setMouvementX(false);this.setMouvDroite(false);
+          }else{
+            this.setX(this.getX() + this.getVelociteX());                   // sinon on ajoute la velocite a son X
+            this.setVelociteX(this.getVelociteX()+ this.getDeplacementX());
+          }
+        }
+      }else if(this.getMouvGauche()){
+        if(this.getX()<=180){
+          if(this.getX() + this.getVelociteX()<105){
+            this.setX(75);
+            this.setVelociteX(0);
+            this.setMouvementX(false);this.setMouvGauche(false);
+          }else{
+            this.setX(this.getX() + this.getVelociteX());                   // sinon on ajoute la velocite a son X
+            this.setVelociteX(this.getVelociteX() - this.getDeplacementX());
+          }
+        }else{
+          if(this.getX() + this.getVelociteX()<=180){
+            this.setX(180);
+            this.setVelociteX(0);
+            this.setMouvementX(false);this.setMouvGauche(false);
+          }else{
+            this.setX(this.getX() + this.getVelociteX());
+            this.setVelociteX(this.getVelociteX() - this.getDeplacementX());
+          }
+        }
+      }
+/*
       this.setX(this.getX() + this.getVelociteX());
       this.setVelociteX(this.getVelociteX()+this.getDeplacementX());
       if(this.getVelociteX() == 0 || this.getVelociteX() == 35){
         this.setMouvementX(false);
         this.setVelociteX(0);
-      }
+      }*/
     }
 
     if(this.mouvementY || ++this.frame >= (this.isRunning() ? 40 : 0)) this.frame = 0;

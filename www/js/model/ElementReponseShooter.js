@@ -36,6 +36,7 @@ class ElementReponseShooter extends Element {
   }
 
   update(){
+    super.update();
     this.setX(this.getX() + this.v.x);
     this.setY(this.getY() + this.v.y);
 

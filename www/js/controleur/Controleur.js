@@ -11,6 +11,10 @@ class Controleur {
     this.partieShooter = null;
     this.partieRendu = null;
 
+    this.missionPiece = new MissionPiece(20);
+    this.missionScore = new MissionScore(1000);
+    this.missionQuestion =  new MissionQuestion(10);
+
     this.vues = new Array();
     this.vueRendu = null;
 
@@ -204,5 +208,25 @@ class Controleur {
       this.musiqueCourante.play();
       this.musiqueCourante.loop = true;
     }
+  }
+
+  updateMission(piece,score,nbQuestion){
+    this.missionPiece.enleverPiece(piece);
+    this.missionQuestion.enleverQuestion(nbQuestion);
+
+    if(this.missionScore.verifierMission(score)){
+      this.getUtilisateur().setArgent(this.getUtilisateur() + 100);
+      this.missionScore = new MissionScore(this.missionScore.getScore() + 500);
+    }
+    if(this.missionPiece.verifierMission()){
+      this.getUtilisateur().setArgent(this.getUtilisateur() + 100);
+      this.missionPiece = new MissionPiece(this.missionPiece.getNbPieceD() + 20);
+    }
+    if(this.missionQuestion.verifierMission()){
+      this.getUtilisateur().setArgent(this.getUtilisateur() + 100);
+      this.missionQuestion = new MissionQuestion(this.missionQuestion.getNbQ() + 5);
+    }
+
+
   }
 }

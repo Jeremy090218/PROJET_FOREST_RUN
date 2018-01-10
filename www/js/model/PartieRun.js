@@ -6,6 +6,8 @@ class PartieRun extends Partie {
     this.setScore(0) ;
     this.setPieceRecup(0);
     this.setNbReponse(0);
+    this.nbQuestionReussi = 0;
+
     this.setQuestionEquation(0);
     this.setTrajPossible([
       [{x: 180, y: 300, z: 0.1}, {x: 180, y: 810, z: 3}],
@@ -140,6 +142,7 @@ setElementsPartie(i){this.elementsPartie=i;}
         if(!this.testQuestion()){
           this.getPersonnage().decrementerVie();
         } else {
+          this.nbQuestionReussi ++;
           this.vitesse += 0.2;
         }
       }
@@ -149,6 +152,7 @@ setElementsPartie(i){this.elementsPartie=i;}
     if(this.getPersonnage().estMort()){
       this.controleur.pause();
       this.controleur.getUtilisateur().setHighScore(this.getScore());
+      this.controleur.updateMission(this.getPieceRecup(),this.getScore(),this.nbQuestionReussi);
       this.controleur.changerVueUnique(new VuePerdu(this.controleur));
     }
   }

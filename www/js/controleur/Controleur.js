@@ -94,7 +94,6 @@ class Controleur {
         this.partieShooter = null;
         this.partieRendu = this.partieRunner;
         this.changerVueUnique(new VueRunner(this));
-        this.changerMusique("musique_jeu01.mp3");
         break;
       default:
         console.log("switchMode incorrecte");
@@ -155,6 +154,7 @@ class Controleur {
       persoCourant: {nom: "Chat", textureFixe: "Character_0_vue_0.png", textureAnim: "Character_0_annimation.png"},
       achete: [new Item("Esquive +",true,true,20), new Item("Vie +",true,false,100)],
       equipe: new Item("Esquive +",true,true,20),
+      highScore: 150
       //boutique: [new Item("Saut +",true,false,50),new Item("Esquive ++",true,false,100)],
       //argent: 100
     }

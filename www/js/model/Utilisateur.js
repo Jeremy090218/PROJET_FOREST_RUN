@@ -17,6 +17,7 @@ class Utilisateur {
   getItemEquipe(){return this.itemEquipe;}
   getArgent(){return this.argent;}
   getSkins(){return this.skins;}
+  getHighScore(){return this.highScore;}
 
   getPersonnageRunner(){
     return new Personnage(this.controleur, this.getSkins().textureAnim, this.getItemEquipe());
@@ -35,12 +36,16 @@ class Utilisateur {
   setItemEquipe(i){this.itemEquipe = i;}
   setArgent(i){this.argent = i;}
   setSkins(s){this.skins = s;}
+  setHighScore(s){
+    if(!this.highScore ||this.highScore < s) this.highScore = s;
+  }
 
   setFromSauvegarde(data){
     this.setItems(data.achete);
     this.setItemEquipe(data.equipe);
     this.setSkins(data.persoCourant);
-  }
+    this.setHighScore(200);
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 /////////// gestion Items

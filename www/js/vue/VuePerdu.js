@@ -4,7 +4,26 @@ class VuePerdu extends Vue {
 
     const titre = this.create('h1');
     this.add(titre);
-    titre.innerHTML = "Perdu";
+    titre.innerHTML = "PERDU";
+
+    this.message = this.create('h2');
+    this.add(this.message);
+    this.message.innerHTML = "Vous avez obtenu";
+
+    this.score = this.create('p');
+    this.add(this.score);
+    this.score.innerHTML = this.controleur.partieRunner.getScore()+" points";
+
+    this.pieces = this.create('p');
+    this.add(this.pieces);
+    this.pieces.innerHTML = this.controleur.partieRunner.getPieceRecup();
+    this.pieces.id = "nbPiecesVuePerdu";
+
+    this.add(this.pieces, this.controleur.textures.getObjet("Coin_1.png"));
+
+    this.pieces = this.create('p');
+    this.add(this.pieces);
+    this.pieces.innerHTML = "Votre meilleur score est de : "+this.controleur.getUtilisateur().getHighScore()+" points";
 
     const buttonPerdu = this.create('button');
     this.add(buttonPerdu);

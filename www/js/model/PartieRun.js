@@ -142,6 +142,7 @@ setElementsPartie(i){this.elementsPartie=i;}
 
     if(this.getPersonnage().estMort()){
       this.controleur.pause();
+      this.controleur.getUtilisateur().setHighScore(this.getScore());
       this.controleur.changerVueUnique(new VuePerdu(this.controleur));
     }
   }

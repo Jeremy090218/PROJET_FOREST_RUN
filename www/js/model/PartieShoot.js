@@ -3,7 +3,7 @@ class PartieShoot extends Partie {
     super(ctrl, personnage);
 
     this.personnage.stop();
-    this.personnage.setX(Partie.virtualW/2);
+    this.personnage.setX(50);
     this.personnage.setY(Partie.virtualH - 10);
     this.personnage.setZ(2);
 
@@ -26,7 +26,7 @@ class PartieShoot extends Partie {
 
     if(!correct) reponse += Math.floor(Math.random()* 2 - 1);
 
-    const o = new ElementReponseShooter(ctrl, "Coin_1.png", reponse);
+    const o = new ElementReponseShooter(ctrl, "Nuage_0_1.png", reponse);
     this.elementsReponse.push(o);
     this.fileRendu.push(o);
   }

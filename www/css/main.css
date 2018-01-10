@@ -87,7 +87,8 @@ button {
 }
 
 button:active {
-  color: green;
+  color : green;
+    background: white;
   transform: translateY(4px);
 }
 
@@ -137,7 +138,7 @@ select {
 }
 
 #boutique #divB {
-  height: 60%;
+  height: 53%;
   overflow: scroll;
   overflow-y:auto;
   background-color: #184A24;
@@ -164,8 +165,7 @@ select {
 }
 
 #btnL:active {
-  color: white;
-  background: white;
+  color: #C4FBC9;
   transform: translateY(4px);
 }
 

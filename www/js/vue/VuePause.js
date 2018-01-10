@@ -26,7 +26,22 @@ class VuePause extends Vue {
       this.controleur.changerVueUnique(new VueMenuPrincipal(this.controleur));
     }
 
+    ////////////////////
+    const testS = this.create('button');
+    this.add(testS);
+    testS.innerHTML = "Shooter";
+    testS.onclick = () => {
+      this.controleur.switchMode('shooter');
+      this.controleur.play();
+    }
 
+    const testR = this.create('button');
+    this.add(testR);
+    testR.innerHTML = "Runner";
+    testR.onclick = () => {
+      this.controleur.switchMode('runner');
+      this.controleur.play();
+    }
   }
 
 

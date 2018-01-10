@@ -14,7 +14,7 @@ class EmetteurParticules extends Element {
 
   update(){
     if(this.tempsActuel%this.dt == 0 && this.nb-- > 0) {
-      this.particules.push({x: this.getX(), y: this.getY(), z: this.getZ(), lifespan: 10 + Math.floor(Math.random()*20)});
+      this.particules.push({x: this.getX(), y: this.getY(), z: this.getZ(), lifespan: 10 + Math.floor(Math.random()*20), opacite: 1});
     }
 
     for (let i = 0; i < this.particules.length; ++i) {
@@ -23,6 +23,8 @@ class EmetteurParticules extends Element {
         p.lifespan--;
         p.x += (Math.random()*2 - 1)*(p.lifespan/2);
         p.y += (Math.random()*2 - 1)*(p.lifespan/2);
+
+        if(p.lifespan < 10) p.opacite -= 0.1;
       } else {
         this.particules.splice(i--, 1);
       }

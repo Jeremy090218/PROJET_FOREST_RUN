@@ -14,7 +14,7 @@ class Controleur {
     this.vues = new Array();
     this.vueRendu = null;
 
-    this.textures = new Bank("img", "textures/", ["default.png", "fondtest.png", "Ground_0_1.png",
+    this.textures = new Bank("img", "textures/", ["default.png", "fondtest.png", "Ground_0_1.png","caillou.png",
                                                   "Obstacle_1.png",
                                                   "Tree_0_1.png",
                                                   "Nuage_0_1.png",

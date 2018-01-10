@@ -65,6 +65,7 @@ class VueJeu extends Vue{
         }
 
         this.ctx.save();
+        this.ctx.globalAlpha = o.getOpacite();
         this.ctx.translate(o.getX(), o.getY());
         this.ctx.scale(o.getZ(), o.getZ());
         this.ctx.translate(-o.getWidth()/2, -o.getHeight());
@@ -99,9 +100,10 @@ class VueJeu extends Vue{
       for (let i = 0; i < e.getParticules().length; ++i) {
         const o = e.getParticules()[i];
         this.ctx.save();
+        this.ctx.globalAlpha = o.opacite;
         this.ctx.translate(o.x, o.y);
         this.ctx.scale(o.z, o.z);
-        this.ctx.translate(-e.getWidth()/2, -e.getHeight());
+        this.ctx.translate(-e.getWidth()/2, -e.getHeight()/2);
         this.ctx.drawImage(e.getTexture(), 0, 0);
         this.ctx.restore();
       }

@@ -46,6 +46,9 @@ class Personnage extends Element {
   setDeplacementX(i){this.deplacementX = i;}
   setDeplacementY(i){this.deplacementY = i}
 
+  setEffetSaut(e){this.effetSaut = e;}
+  setEffetDeplacement(e){this.effetDeplacement = e;}
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -53,14 +56,21 @@ class Personnage extends Element {
 ///////////// Initialiser Perso
 ////////////////////////////////////////////////////////////////////////////////
 
+  resetEffets(){
+    this.setEffetSaut(()=>{});
+    this.setEffetDeplacement(()=>{});
+  }
+
   initialisation(){
     this.setVie(3);
     this.setVelociteX(0);
     this.setVelociteY(0);
+    this.resetEffets();
     if(this.getItems()){
       switch (this.getItems().getNom()) {
         case "Teleportation":
           this.setTeleportation(true);
+          this.setEffetDeplacement(function(){this.controleur.partieRendu.addEmetteurParticules(20, 1, "Nuage_0_1.png", this.getX(), this.getY()-50, 1);});
         break;
         case "Vie +":
           this.setVie(4);
@@ -70,9 +80,11 @@ class Personnage extends Element {
         break;
         case "Saut +":
           this.setDeplacementY(1.8);
+          this.setEffetSaut(function(){this.controleur.partieRendu.addEmetteurParticules(3, 10, "caillou.png", this.getX(), this.getY(), 1);});
         break;
         case "Saut ++":
           this.setDeplacementY(1.5);
+          this.setEffetSaut(function(){this.controleur.partieRendu.addEmetteurParticules(6, 10, "caillou.png", this.getX(), this.getY(), 1);});
         break;
         case "Esquive +":
           this.setDeplacementX(5);
@@ -122,7 +134,7 @@ class Personnage extends Element {
     this.setVelociteY(-70);
     this.setMouvementY(true);
 
-    this.controleur.partieRendu.addEmetteurParticules(5, 10, "Nuage_0_1.png", this.getX(), this.getY(), 0.5);
+    this.effetSaut();
   }
   //Action Bas
   seBaisser(){
@@ -140,9 +152,11 @@ class Personnage extends Element {
         this.setVelociteX(0);
         this.setMouvGauche(true);
         this.setMouvementX(true);
+        this.effetDeplacement();
       }
     }else{
       if(this.getX()>179){
+        this.effetDeplacement();
         this.setX(this.getX()-105);
       }
     }
@@ -154,9 +168,11 @@ class Personnage extends Element {
         this.setVelociteX(0);
         this.setMouvDroite(true);
         this.setMouvementX(true);
+        this.effetDeplacement();
       }
     }else{
       if(this.getX()<181){
+        this.effetDeplacement();
         this.setX(this.getX()+105);
       }
     }

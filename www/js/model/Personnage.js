@@ -121,6 +121,8 @@ class Personnage extends Element {
     this.setY(620);
     this.setVelociteY(-70);
     this.setMouvementY(true);
+
+    this.controleur.partieRendu.addEmetteurParticules(5, 10, "Nuage_0_1.png", this.getX(), this.getY(), 0.5);
   }
   //Action Bas
   seBaisser(){

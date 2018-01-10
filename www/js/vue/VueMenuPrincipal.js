@@ -2,7 +2,7 @@ class VueMenuPrincipal extends Vue {
   constructor(ctrl) {
     super(ctrl, 'menuPrincipal');
 
-
+    this.controleur.changerMusique("musique_menu.mp3");
 
     //Button option
     const buttonOption = this.create('button');
@@ -30,12 +30,28 @@ class VueMenuPrincipal extends Vue {
       this.controleur.play();
     }
 
-    //button Atelier
+    //button atelier
     const buttonAtl = this.create('button');
     this.add(buttonAtl);
     buttonAtl.innerHTML = "Atelier";
     buttonAtl.onclick = () => {
       this.controleur.changerVue(new VueAtelier(this.controleur), this);
+    }
+
+    //button univers
+    const buttonUnivers = this.create('button');
+    this.add(buttonUnivers);
+    buttonUnivers.innerHTML = "Univers";
+    buttonUnivers.onclick = () => {
+      this.controleur.changerVue(new VueUnivers(this.controleur), this);
+    }
+
+    //button règle
+    const buttonRegle = this.create('button');
+    this.add(buttonRegle);
+    buttonRegle.innerHTML = "Règle";
+    buttonRegle.onclick = () => {
+      this.controleur.changerVue(new VueRegle(this.controleur), this);
     }
 
     //button leçons

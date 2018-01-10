@@ -80,6 +80,7 @@ setElementsPartie(i){this.elementsPartie=i;}
     this.updatePersonnage();
     this.updateArray(this.getElementsDecors());
     this.updateArray(this.getElementsPartie());
+    this.updateArray(this.getEmetteurParticules());
 
 
     for (var i = 0; i < this.getElementsPartie().length; i++) {
@@ -125,7 +126,7 @@ setElementsPartie(i){this.elementsPartie=i;}
 
     if(this.getTemps() == 0){
       this.setTemps(1200) ;
-      this.setQuestionEquation(new Question(this.getControleur(),0));
+      this.setQuestionEquation(new Question(this.getControleur()));
       this.setNbReponse(0);
       this.getControleur().changerVue(new VueQuestion(this.getControleur(), this.controleur.vueRendu));
     }else if(this.getTemps() == 1){
@@ -141,6 +142,7 @@ setElementsPartie(i){this.elementsPartie=i;}
 
     if(this.getPersonnage().estMort()){
       this.controleur.pause();
+      this.controleur.getUtilisateur().setHighScore(this.getScore());
       this.controleur.changerVueUnique(new VuePerdu(this.controleur));
     }
   }

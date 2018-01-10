@@ -1,11 +1,12 @@
-class Question /*extends Element */{
-  constructor(ctrl, i = -1) {
-    //super(ctrl);
-    if(!Question.nbType) Question.nbType = 1;
+class Question{
+  constructor(ctrl, typeQ) {
+    if(!this.nbType) this.nbType = 4;
     this.intitule = null;
     this.question = null;
     this.reponse = null;
-    this.setQuestion(i == -1 ? Math.floor(Math.random()*(Question.nbType + 0.99)) : i);
+    this.setQuestion(this.getRndBias(0,1,0,0));
+    //this.setQuestion(i == -1 ? Math.floor(Math.random()*(Question.nbType + 0.99)) : i);
+
   }
 
 
@@ -32,16 +33,35 @@ class Question /*extends Element */{
   setQuestion(typeQ) {
     switch (typeQ) {
       case 0 :
-        this.setIntitule("Combien vaut x ? Ramassez le nombre de fioles correspondant !");
+        this.setIntitule("Combien vaut x ?");
         this.question = this.createEquation();
         this.setReponse(new Reponse(ctrl, typeQ, this.solveEquation(this.question)));
         break;
-
+      
       case 1 :
-        this.setIntitule("Obtient-on Vrai ou Faux ?");
+        this.setIntitule("Quel est le reste de la division ?");
+        this.question = this.createDivisionE();
+        this.setReponse(new Reponse(ctrl, typeQ, this.solveDivisionE(this.question)));
+        break;
+
+      case 2 :
+        this.setIntitule("Quel résultat obtient-on ?");
+        this.question = this.createPuissance();
+        this.setReponse(new Reponse(ctrl, typeQ, this.solvePuissance(this.question)));
+        break;
+
+      case 3 :
+        this.setIntitule("Ce nombre est-il premier ?");
+        this.question = this.createNombrePremier();
+        this.setReponse(new Reponse(ctrl, typeQ, this.solveNombrePremier(this.question)));
+        break;
+      
+      case 4 :
+        this.setIntitule("Que retourne cette équation logique ?");
         this.question = this.createBooleen();
         this.setReponse(new Reponse(ctrl, typeQ, this.solveBooleen(this.question)));
         break;
+
       default : break;
     }
   }
@@ -86,22 +106,18 @@ class Question /*extends Element */{
     let Expression = algebra.Expression;
     let Equation = algebra.Equation;
 
-    let div = this.getRndBias(1,3,1,1);
-
     let expGauche = new Expression("x");
         expGauche = expGauche.multiply(this.getRndBias(1,10,0,0));
         expGauche = expGauche.add(this.getRndBias(-10,10,0,0.5));
-        //expGauche = expGauche.divide(div);
 
     let expDroite = new Expression("x");
         expDroite = expDroite.multiply(this.getRndBias(-10,10,0,0.75));
         expDroite = expDroite.add(this.getRndBias(-10,10,0,0));
-        //expDroite = expDroite.divide(div);
 
     let eq = expGauche.toString() + " = " + expDroite.toString();
 
     try {
-      if (this.solveEquation(eq) > 0 && this.isInt(this.solveEquation(eq))) {
+      if (this.solveEquation(eq) > 0 && this.solveEquation(eq) < 8 && this.isInt(this.solveEquation(eq))) {
         return eq;
       } else {
         return this.createEquation();
@@ -112,20 +128,33 @@ class Question /*extends Element */{
   }
 
 
-  createBooleen() {
-    let b = this.getRndBool() + this.getRndBoolOperator() + this.getRndBool() + this.getRndBoolOperator() + this.getRndBool() + this.getRndBoolOperator() + this.getRndBool();
-    return b;
+  createDivisionE() {
+    let dividende = this.getRndBias(10,30,0,0);
+    let diviseur = this.getRndBias(1,10,0,0);
+    return dividende + " / " + diviseur;
+  }
+
+
+  createPuissance() {
+    let n = this.getRndBias(1,10,0,0);
+    let puissance;
+    if(n == 10 || n == 2) {
+      puissance = this.getRndBias(1,5,0,0);
+    } else {
+      puissance = 2;
+    }
+    return n + " ** " + puissance;
   }
 
 
   createNombrePremier() {
-    return getRndBias(1,50,0,0);
+    return this.getRndBias(1,50,0,0);
   }
 
-  createDivisionE() {
-    let dividende = getRndBias(10,30,0,0);
-    let diviseur = getRndBias(1,10,0,0);
-    return dividende + "/" + diviseur;
+
+  createBooleen() {
+    let b = this.getRndBool() + this.getRndBoolOperator() + this.getRndBool() + this.getRndBoolOperator() + this.getRndBool() + this.getRndBoolOperator() + this.getRndBool();
+    return b;
   }
 
 
@@ -140,15 +169,27 @@ class Question /*extends Element */{
   }
 
 
-  solveBooleen(b) {
-    return eval(b);
-  }
-
   solveNombrePremier(n) {
     for(var i = 2; i <= Math.sqrt(n); i++) {
-        if(num % i === 0) return false;
-      return num !== 1;
+        if(n % i === 0) return false;
     }
+      return n !== 1;
+  }
+
+
+  solveDivisionE(d) {
+    let div = d.split(" / ");
+    return div[0] % div[1];
+  }
+
+
+  solvePuissance(p) {
+    return eval(p);
+  }
+
+
+  solveBooleen(b) {
+    return eval(b);
   }
 
 

@@ -87,8 +87,8 @@ button {
 }
 
 button:active {
-  color: green;
-  background: white;
+  color : green;
+    background: white;
   transform: translateY(4px);
 }
 
@@ -115,7 +115,7 @@ button:active {
 /* ************** Atelier **************/
 
 #atelier {
-  background-color: black;
+  background-color: #A13232;
   width: 100%;
   height: 100%;
 }
@@ -125,35 +125,47 @@ button:active {
   height: 40%;
 }
 
-select {
+#nbPiecesVuePerdu {
+  font-size: 40px;
+}
 
+/* ****************** Boutique ********************************/
+#boutique {
+  background-color: #A7E688;
+  width: 100%;
+  height: 100%;
+}
 
+#boutique #divB {
+  height: 53%;
+  overflow: scroll;
+  overflow-y:auto;
+  background-color: #184A24;
 }
 
 
 /* ************** lecons **************/
-/* Peut être mettre les boutons dans un conteneur mais les btns sont un seul et même div.. Réfléchis.. */
 #VueLecons  {
   background-color: #B0E0E6;
   width: 100%;
   height: 100%;
 }
 
-#VueLecons #btnL {
-  background: -webkit-gradient(		linear, left top, left bottom,		from(#90EE90),		to(#003366));
-  border: 2px solid #2E8B57;
-  margin-bottom: 0%;
-  margin : inherit;
-  display: inline-block;
-}
-
 #VueLecons #divL {
-  height: 100%;
+  height: 90%;
   overflow: scroll;
   overflow-y:auto;
 }
+#VueLecons #btnL {
+  background: -webkit-gradient(		linear, left top, left bottom,		from(#90EE90),		to(#003366));
+  border: 1px solid #B0E0E6;
+  display: inline-block;
+}
 
-
+#btnL:active {
+  color: #C4FBC9;
+  transform: translateY(4px);
+}
 
 /******************** Lecon ****************/
 #VueLecon {
@@ -165,6 +177,20 @@ select {
  iframe {
   height: 90%;
   width: 100%;
+}
+
+/************ Univers *************/
+#VueUnivers {
+  background-color: #A7E688;
+  width: 100%;
+  height: 100%;
+}
+
+/********* Regle *******/
+#VueRegle {
+  background-color: #A7E688;
+  width: 100%;
+  height: 100%;
 }
 
 /* ************** Runner **************/

@@ -25,6 +25,8 @@ class VueRunner extends VueJeu {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    this.controleur.changerMusique("musique_jeu01.mp3");
+
     this.ctx.font = "40px FredokaOne-Regular";
 
     this.pointeur = {x: -1, y: -1};
@@ -89,11 +91,13 @@ class VueRunner extends VueJeu {
 
     this.iterDrawPercpec(this.controleur.partieRunner.getFileRendu());
 
+    this.iterDrawEmetteur(this.controleur.partieRunner.getEmetteurParticules());
+
     //this.iterDrawPercpecAnim([this.controleur.partieRunner.getPersonnage()]);
 
     //const vie = this.controleur.textures.getObjet("IconCoeur.png");
     for (let i = 0; i < this.controleur.partieRunner.getPersonnage().getVie(); ++i) {
-      this.ctx.drawImage(this.textureVie, i*30, 0);
+      this.ctx.drawImage(this.textureVie, i*25, 0);
     }
 
     //this.ctx.save();

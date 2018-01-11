@@ -183,7 +183,7 @@ class Question{
   createPuissance() {
     let n = this.getRndBias(1,10,0,0);
     let puissance;
-    if(n == 10 || n == 2) {
+    if(n == 2) {
       puissance = this.getRndBias(1,5,0,0);
     } else {
       puissance = 2;
@@ -211,11 +211,12 @@ class Question{
   createWhile() {
     let x = this.getRndBias(10,100,0,0);
     let y = this.getRndBias(1,100,0,0);
-    if(x/y > 8) {
-      this.createWhile();
-    } else {
-      return "i = 0 - Tant que i <= " + x + ", i = i + " + y;
+    while(x/y > 8) {
+      x = this.getRndBias(10,100,0,0);
+      y = this.getRndBias(1,100,0,0);
     }
+
+    return "i = 0 - Tant que i <= " + x + ", i = i + " + y;
   }
 
 
@@ -232,9 +233,13 @@ class Question{
 
   solveNombrePremier(n) {
     for(var i = 2; i <= Math.sqrt(n); i++) {
-        if(n % i === 0) return false;
+        if(n % i === 0) return "Faux";
     }
-      return n !== 1;
+      if(n !== 1) {
+        return "Vrai";
+      } else {
+        return "Faux"
+      }
   }
 
 
@@ -257,7 +262,11 @@ class Question{
 
 
   solveBooleen(b) {
-    return eval(b);
+    if(eval(b)) {
+      return "Vrai";
+    } else {
+      return "Faux";
+    }
   }
 
 

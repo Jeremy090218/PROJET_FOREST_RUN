@@ -56,10 +56,14 @@ class Reponse {
       this.reponses.sort((a, b) => {  return a - b;  });
 
     } else if(this.typeQ == 4 || this.typeQ == 5) {
-      this.reponses.push(!this.bonneRep);
+      if(this.bonneRep == "Vrai") {
+        this.reponses.push("Faux");
+      } else {
+        this.reponses.push("Vrai");
+      }
+      this.reponses.push("Vrai");
       this.reponses.push("Vrai");
       this.reponses.push("Faux");
-      this.reponses.push("Vrai");
       this.reponses.push("Faux");
     }
   }

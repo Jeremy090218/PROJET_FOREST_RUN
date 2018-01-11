@@ -33,7 +33,7 @@ class PartieShoot extends Partie {
   addElementReponse() {
     let reponses = this.question.getReponse().getReponses();
     console.log("yo : " + reponses);
-    for(let i = 0; i < 5; i++) {
+    for(let i = 0; i < 6; i++) {
       const o = new ElementReponseShooter(ctrl, "cible.png", reponses[i]);
       this.elementsReponse.push(o);
       this.fileRendu.push(o);

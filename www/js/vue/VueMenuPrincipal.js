@@ -3,7 +3,6 @@ class VueMenuPrincipal extends Vue {
     super(ctrl, 'menuPrincipal');
 
     this.controleur.changerMusique("musique_menu.mp3");
-    console.log(this.controleur.utilisateur.getSkins());
     //Button option
     const buttonOption = this.create('button');
     buttonOption.id="btnHD";
@@ -12,10 +11,14 @@ class VueMenuPrincipal extends Vue {
     buttonOption.onclick = () => {
     this.controleur.changerVue(new VueOptions(this.controleur), this);
     }
+
     //titre
-    const titre = this.create('h1');
+    /*const titre = this.create('h1');
     this.add(titre);
-    titre.innerHTML = "Forest Run";
+    titre.innerHTML = "Forest Run";*/
+    const bannier = this.controleur.textures.getObjet("Bannier.png")
+    this.add(bannier);
+    bannier.style = "width: 100%";
 
 
     //this.add(this.controleur.textures.getObjet("fondtest.png"));

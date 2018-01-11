@@ -56,4 +56,18 @@ class ElementReponseShooter extends Element {
       this.v.y *= -1;
     }
   }
+
+  verifierCoord(x,y){
+    let cx = this.controleur.vueRendu.ew;
+    let cy = this.controleur.vueRendu.eh;
+    if(this.getX()*cx-40*cx <= x && this.getX()*cx + 40*cx >= x){
+      if(this.getY()*cy >= y && this.getY()*cy -80*cy <= y){
+        return true;
+      }else{
+        return false;
+      }
+    }else{
+      return false;
+    }
+  }
 }

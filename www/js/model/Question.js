@@ -49,17 +49,29 @@ class Question{
         this.question = this.createPuissance();
         this.setReponse(new Reponse(ctrl, typeQ, this.solvePuissance(this.question)));
         break;
-
+      
       case 3 :
+        this.setIntitule("Combien de fois rentre-t-on dans la boucle ?");
+        this.question = this.createWhile();
+        this.setReponse(new Reponse(ctrl, typeQ, this.solveWhile(this.question)));
+        break;
+
+      case 4 :
         this.setIntitule("Ce nombre est-il premier ?");
         this.question = this.createNombrePremier();
         this.setReponse(new Reponse(ctrl, typeQ, this.solveNombrePremier(this.question)));
         break;
       
-      case 4 :
+      case 5 :
         this.setIntitule("Que retourne cette équation logique ?");
         this.question = this.createBooleen();
         this.setReponse(new Reponse(ctrl, typeQ, this.solveBooleen(this.question)));
+        break;
+
+      case 6 :
+        this.setIntitule("Combien vaut la médiane ?");
+        this.question = this.createMediane();
+        this.setReponse(new Reponse(ctrl, typeQ, this.solveMediane(this.question)));
         break;
 
       default : break;
@@ -114,10 +126,14 @@ class Question{
         expDroite = expDroite.multiply(this.getRndBias(-10,10,0,0.75));
         expDroite = expDroite.add(this.getRndBias(-10,10,0,0));
 
+    if(expDroite == expGauche) {
+      return this.createEquation();
+    }
+
     let eq = expGauche.toString() + " = " + expDroite.toString();
 
     try {
-      if (this.solveEquation(eq) > 0 && this.solveEquation(eq) < 8 && this.isInt(this.solveEquation(eq))) {
+      if (this.solveEquation(eq) >= -5 && this.solveEquation(eq) <= 5 && this.isInt(this.solveEquation(eq))) {
         return eq;
       } else {
         return this.createEquation();
@@ -152,10 +168,36 @@ class Question{
   }
 
 
+  createMediane() {
+    return new Array(this.getRndBias(0,20,0,0), this.getRndBias(0,20,0,0), this.getRndBias(0,20,0,0), this.getRndBias(0,20,0,0), this.getRndBias(0,20,0,0), this.getRndBias(0,20,0,0), this.getRndBias(0,20,0,0)).join("-");
+  }
+
+
   createBooleen() {
     let b = this.getRndBool() + this.getRndBoolOperator() + this.getRndBool() + this.getRndBoolOperator() + this.getRndBool() + this.getRndBoolOperator() + this.getRndBool();
     return b;
   }
+
+
+  createWhile() {
+    let x = getRndBias(10,100,0,0);
+    let y = getRndBias(1,100,0,0);
+    if(x/y > 8) {
+      createWhile();
+    } else {
+      return "i = 0. Tant que i <= " + x + ", i = i + " + y;
+    }
+  }
+
+  /*createIf() {
+    let x = getRndBias(10,100,0,0);
+    let y = getRndBias(1,100,0,0);
+    if(x/y > 8) {
+      createWhile();
+    } else {
+      return "i = 0. Tant que i <= " + x + ", i = i + " + y;
+    }
+  }*/
 
 
   solveEquation(e) {
@@ -188,8 +230,21 @@ class Question{
   }
 
 
+  solveMediane(i) {
+    let strMed = i.split("-");
+    strMed.sort((a, b) => {  return a - b;  });
+    return strMed[3];
+  }
+
+
   solveBooleen(b) {
     return eval(b);
+  }
+
+
+  solveWhile(w) {
+    let nbWhile = w.split(" <= ")[1].split(" + ");
+    return Math.floor(nbWhile[0] / nbWhile[2]) + 1;
   }
 
 

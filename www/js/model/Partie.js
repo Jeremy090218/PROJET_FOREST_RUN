@@ -1,18 +1,19 @@
 class Partie {
   constructor(ctrl, perso) {
+
     if (!Partie.virtualW || !Partie.virtualH) {
       Partie.virtualW = 360;
       Partie.virtualH = 640;
     }
 
     this.controleur = ctrl;
+
     this.personnage = perso;
     this.questions = new Array();
     this.elementsDecors = new Array();
     this.emetteurParticules = new Array();
 
     this.fileRendu = new Array();
-
     this.controleur.play();
   }
 

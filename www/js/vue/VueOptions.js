@@ -29,18 +29,18 @@ class VueOptions extends Vue {
         this.controleur.changerVue(new VueConfirmationReinit(this.controleur), this);
       }
 
-      const buttonCredit = this.create('button');
-      this.add(buttonCredit);
-      buttonCredit.innerHTML = "Crédits";
-      buttonCredit.onclick = () => {
-        this.controleur.changerVue(new VueCredits(this.controleur), this);
-      }
-
       const buttonStats = this.create('button');
       this.add(buttonStats);
       buttonStats.innerHTML = "Statistiques";
       buttonStats.onclick = () => {
         this.controleur.changerVue(new VueStats(this.controleur), this);
+      }
+
+      const buttonCredit = this.create('button');
+      this.add(buttonCredit);
+      buttonCredit.innerHTML = "Crédits";
+      buttonCredit.onclick = () => {
+      this.controleur.changerVue(new VueCredits(this.controleur), this);
       }
   }
 }

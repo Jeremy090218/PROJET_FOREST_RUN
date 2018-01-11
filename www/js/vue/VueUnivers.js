@@ -28,7 +28,7 @@ class VueUnivers extends Vue {
 
     const blabla3 = this.create('p');
     this.add(divU, blabla3);
-    blabla3.innerHTML = "Tu vas donc incarner un de ses animaux pour essayer de rétablir l'ordre dans l'univers de FOREST RUN !";
+    blabla3.innerHTML = "Tu vas donc incarner l'un de ses animaux pour essayer de rétablir l'ordre dans l'univers de FOREST RUN !";
 
   }
 }

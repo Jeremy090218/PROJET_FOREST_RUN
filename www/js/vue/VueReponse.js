@@ -8,7 +8,7 @@ class VueReponse extends Vue {
 
     const titre = this.create('h1');
     this.add(titre);
-    titre.innerHTML = "Reponse :";
+    titre.innerHTML = "Réponse :";
 
     const intitule = this.create('p');
     this.add(intitule);

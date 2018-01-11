@@ -19,7 +19,7 @@ class ElementReponseShooter extends Element {
     canvas.height = img.height;
 
     ctx.font = "30px FredokaOne-Regular";
-    ctx.fillStyle = "#a0a";
+    ctx.fillStyle = "#000";
     ctx.textAlign = "center";
 
     ctx.drawImage(img, 0, 0);

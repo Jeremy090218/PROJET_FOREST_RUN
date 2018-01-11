@@ -22,13 +22,17 @@ class VueReponse extends Vue {
 
     const reponse = this.create('p');
     this.add(reponse);
-    reponse.innerHTML = this.controleur.partieRunner.getNbReponse();
+    console.log(this.controleur.partieRunner.questionEquation.getReponse());
+    reponse.innerHTML = this.controleur.partieRunner.questionEquation.getReponse().reponse;
 
 
     const buttonReprendre = this.create('button');
     this.add(buttonReprendre);
     buttonReprendre.innerHTML = "Question suivante";
     buttonReprendre.onclick = () => {
+      this.controleur.partieRunner.setTemps(1200) ;
+      this.controleur.partieRunner.setQuestionEquation(new Question(this.controleur));
+      this.controleur.partieRunner.setNbReponse(0);
       this.controleur.changerVue(new VueQuestion(this.controleur, this.controleur.vueRendu), this);
     }
   }

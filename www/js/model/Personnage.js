@@ -59,7 +59,7 @@ class Personnage extends Element {
 ////////////////////////////////////////////////////////////////////////////////
 
   resetEffets(){
-    this.setEffetSaut(()=>{});
+    this.setEffetSaut(function(){this.controleur.partieRendu.addEmetteurParticules(3, 10, "caillou.png", this.getX(), this.getY(), 1);});
     this.setEffetDeplacement(()=>{});
   }
 
@@ -82,11 +82,11 @@ class Personnage extends Element {
         break;
         case "Saut +":
           this.setDeplacementY(1.8);
-          this.setEffetSaut(function(){this.controleur.partieRendu.addEmetteurParticules(3, 10, "caillou.png", this.getX(), this.getY(), 1);});
+          this.setEffetSaut(function(){this.controleur.partieRendu.addEmetteurParticules(3, 10, "Nuage_0_1.png", this.getX(), this.getY(), 1);});
         break;
         case "Saut ++":
           this.setDeplacementY(1.5);
-          this.setEffetSaut(function(){this.controleur.partieRendu.addEmetteurParticules(6, 10, "caillou.png", this.getX(), this.getY(), 1);});
+          this.setEffetSaut(function(){this.controleur.partieRendu.addEmetteurParticules(6, 10, "Nuage_0_1.png", this.getX(), this.getY(), 1);});
         break;
         case "Esquive +":
           this.setDeplacementX(5);

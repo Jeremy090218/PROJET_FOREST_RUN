@@ -1,12 +1,12 @@
-class Reponse /*extends ElementPartie*/{
+class Reponse {
   constructor(ctrl, typeQ, rep) {
     //super(ctrl);
-    this.reponse = null;
+    this.bonneRep = null;
     this.typeQ = null;
-    this.faussesRep = new Array();
-    this.setReponse(rep);
+    this.reponses = new Array();
+    this.setBonneRep(rep);
     this.setTypeQ(typeQ);
-    //this.setReponses(2);
+    this.setReponses();
   }
 
 
@@ -17,8 +17,8 @@ class Reponse /*extends ElementPartie*/{
   }
 
 
-  getReponse() {
-    return this.reponse;
+  getBonneRep() {
+    return this.bonneRep;
   }
 
 
@@ -27,13 +27,13 @@ class Reponse /*extends ElementPartie*/{
   }
 
 
-  getFaussesRep() {
-    return this.faussesrep;
+  getReponses() {
+    return this.reponses;
   }
 
 
-  setReponse(rep) {
-    this.reponse = rep;
+  setBonneRep(rep) {
+    this.bonneRep = rep;
   }
 
 
@@ -42,21 +42,25 @@ class Reponse /*extends ElementPartie*/{
   }
 
 
-  setFaussesRep(nb) {
-    if(this.typeQ == 0 || this.typeQ == 1 || this.typeQ == 2) {
+  setReponses() {
+    this.reponses.push(this.bonneRep);
 
-      for(let i = 0; i < nb; i ++) {
-        let fRep = this.getRndBias(1,parseInt(this.reponse)+10,parseInt(this.reponse)+3,0.3);
-        while(this.faussesRep.includes(fRep)) {
-          fRep = this.getRndBias(1,parseInt(this.reponse)+10,parseInt(this.reponse)+3,0.3);
+    if(this.typeQ == 0 || this.typeQ == 1 || this.typeQ == 2 || this.typeQ == 3) {
+      for(let i = 0; i < 5; i ++) {
+        let fRep = this.getRndBias(parseInt(this.bonneRep)-10,parseInt(this.bonneRep)+10,parseInt(this.bonneRep)+3,0.3);
+        while(this.reponses.includes(fRep) || fRep == this.reponse) {
+          fRep = this.getRndBias(parseInt(this.bonneRep)-10,parseInt(this.bonneRep)+10,parseInt(this.bonneRep)+3,0.3);
         }
-        this.faussesRep.push(fRep);
+        this.reponses.push(fRep);
       }
-      this.faussesRep.sort((a, b) => {  return a - b;  });
+      this.reponses.sort((a, b) => {  return a - b;  });
 
-    } else if(this.typeQ == 3 || this.typeQ == 4) {
-
-      this.faussesRep.push(!this.reponse);
+    } else if(this.typeQ == 4 || this.typeQ == 5) {
+      this.reponses.push(!this.bonneRep);
+      this.reponses.push("Vrai");
+      this.reponses.push("Faux");
+      this.reponses.push("Vrai");
+      this.reponses.push("Faux");
     }
   }
 }

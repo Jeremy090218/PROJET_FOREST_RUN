@@ -23,10 +23,12 @@ class VueMenuPrincipal extends Vue {
 
     //this.add(this.controleur.textures.getObjet("fondtest.png"));
 
-
+    const div1 = this.create('div');
+    this.add(div1);
+    div1.id = "div1";
     //button jouer
     const buttonJouer = this.create('button');
-    this.add(buttonJouer);
+    this.add(div1,buttonJouer);
     buttonJouer.innerHTML = "Jouer";
     buttonJouer.onclick = () => {
       this.controleur.switchMode("nouvellePartie");
@@ -35,7 +37,7 @@ class VueMenuPrincipal extends Vue {
 
     //button atelier
     const buttonAtl = this.create('button');
-    this.add(buttonAtl);
+    this.add(div1,buttonAtl);
     buttonAtl.innerHTML = "Atelier";
     buttonAtl.onclick = () => {
       this.controleur.changerVue(new VueAtelier(this.controleur), this);
@@ -66,16 +68,20 @@ class VueMenuPrincipal extends Vue {
     }
 
     //missions
+    const divMis = this.create('div');
+    this.add(divMis);
+    divMis.id = "divMis";
+
     const missionPieceIHM = this.create('p');
-    this.add(missionPieceIHM);
+    this.add(divMis,missionPieceIHM);
     missionPieceIHM.innerHTML = this.controleur.missionPiece.getMission();
 
     const missionScoreIHM = this.create('p');
-    this.add(missionScoreIHM);
+    this.add(divMis,missionScoreIHM);
     missionScoreIHM.innerHTML = this.controleur.missionScore.getMission();
 
     const missionQuestionIHM = this.create('p');
-    this.add(missionQuestionIHM);
+    this.add(divMis,missionQuestionIHM);
     missionQuestionIHM.innerHTML = this.controleur.missionQuestion.getMission();
   }
 }

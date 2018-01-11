@@ -49,7 +49,7 @@ class VueMenuPrincipal extends Vue {
     //button règle
     const buttonRegle = this.create('button');
     this.add(buttonRegle);
-    buttonRegle.innerHTML = "Règle";
+    buttonRegle.innerHTML = "Règles";
     buttonRegle.onclick = () => {
       this.controleur.changerVue(new VueRegle(this.controleur), this);
     }

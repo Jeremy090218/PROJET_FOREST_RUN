@@ -1,12 +1,10 @@
 class PartieShoot extends Partie {
   constructor(ctrl, personnage) {
     super(ctrl, personnage);
-
     this.personnage.stop();
     this.personnage.setX(50);
     this.personnage.setY(Partie.virtualH - 10);
     this.personnage.setZ(2);
-
     this.elementsReponse = new Array();
 
     this.setNewQuestion();
@@ -26,7 +24,7 @@ class PartieShoot extends Partie {
 
     if(!correct) reponse += Math.floor(Math.random()* 2 - 1);
 
-    const o = new ElementReponseShooter(ctrl, "Nuage_0_1.png", reponse);
+    const o = new ElementReponseShooter(ctrl, "cible.png", reponse);
     this.elementsReponse.push(o);
     this.fileRendu.push(o);
   }
@@ -37,5 +35,26 @@ class PartieShoot extends Partie {
 
   getElementsReponse(){
     return this.elementsReponse;
+  }
+
+  verifierQuestion(x,y){
+    let reussi = false;
+    let i = 0;
+    while(i<this.elementsReponse.length && !reussi){
+      if(this.elementsReponse[i].verifierCoord(x*this.controleur.vueRendu.ew,y*this.controleur.vueRendu.eh)){
+        let reponse = this.elementsReponse[i];
+        if(this.question.repondre(reponse.getValeur())){
+          reussi = true ;
+        }
+      }
+      i ++;
+    }
+    if(reussi){
+      this.controleur.partieRunner.getPersonnage().initialisation();
+      this.controleur.switchMode("runner");
+    }else{
+      this.controleur.pause();
+      this.controleur.changerVueUnique(new VuePerdu(this.controleur));
+    }
   }
 }

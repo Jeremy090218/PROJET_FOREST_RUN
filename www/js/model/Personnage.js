@@ -1,5 +1,5 @@
 class Personnage extends Element {
-  constructor(ctrl, texture = "null", item = null) {
+  constructor(ctrl, texture = "null", son = "null", item = null) {
     super(ctrl, texture, 180, 620, 2);
     this.setItems(item);
     this.setMouvementY(false);
@@ -11,6 +11,7 @@ class Personnage extends Element {
     this.setTeleportation(false);
     this.initialisation();
     this.run();
+    this.setSon(son);
   }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -28,7 +29,7 @@ class Personnage extends Element {
   getTeleportation(){return this.teleportation;}
   getDeplacementX(){return this.deplacementX;}
   getDeplacementY(){return this.deplacementY;}
-
+  getSon(){return this.son}
 
 ////////////////////////////////////////////////////////////////////////////////
 //////////////////////////// SETTERS////////////////////////////////////////////
@@ -49,6 +50,7 @@ class Personnage extends Element {
   setEffetSaut(e){this.effetSaut = e;}
   setEffetDeplacement(e){this.effetDeplacement = e;}
 
+  setSon(son){this.son = this.controleur.sons.getObjet(son);}
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 

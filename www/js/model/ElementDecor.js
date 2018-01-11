@@ -8,9 +8,9 @@ class ElementDecor extends ElementPartie {
       }
     }else if(monde == 1){
       if(xx > 180){
-        super(ctrl, "Bambou.png",[{x: xx, y: 300, z: 1}, {x: xx+500, y: 800, z: 8}], vitesse);
+        super(ctrl, "Bonsai_droit.png",[{x: xx, y: 300, z: 1}, {x: xx+500, y: 800, z: 8}], vitesse);
       }else{
-        super(ctrl, "Bambou.png",[{x: xx, y: 300, z: 1}, {x: xx-500, y: 800, z: 8}], vitesse);
+        super(ctrl, "Bonsai_gauche.png",[{x: xx, y: 300, z: 1}, {x: xx-500, y: 800, z: 8}], vitesse);
       }
     }else if(monde ==2){
       if(xx > 180){
@@ -36,6 +36,16 @@ class ElementCiel extends ElementPartie {
       super(ctrl, "Nuage_0_1.png",[{x: xx, y: 300, z: 1}, {x: xx-50, y: 0, z: 2}], vitesse);
     }
 
+  }
+
+  update(){
+    super.update();
+  }
+}
+
+class ElementRoute extends ElementPartie {
+  constructor(ctrl,vitesse, monde){
+      super(ctrl, "Ground_0_1_3D.png",[{x: 180, y: 300, z: 0.1}, {x: 180, y: 900, z: 10}], vitesse);
   }
 
   update(){

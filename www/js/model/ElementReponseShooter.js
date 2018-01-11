@@ -19,7 +19,7 @@ class ElementReponseShooter extends Element {
     canvas.height = img.height;
 
     ctx.font = "30px FredokaOne-Regular";
-    ctx.fillStyle = "#a0a";
+    ctx.fillStyle = "#000";
     ctx.textAlign = "center";
 
     ctx.drawImage(img, 0, 0);
@@ -54,6 +54,20 @@ class ElementReponseShooter extends Element {
     } else if(this.getY() >= Partie.virtualH - 100){
       this.setY(Partie.virtualH - 100);
       this.v.y *= -1;
+    }
+  }
+
+  verifierCoord(x,y){
+    let cx = this.controleur.vueRendu.ew;
+    let cy = this.controleur.vueRendu.eh;
+    if(this.getX()*cx-40*cx <= x && this.getX()*cx + 40*cx >= x){
+      if(this.getY()*cy >= y && this.getY()*cy -80*cy <= y){
+        return true;
+      }else{
+        return false;
+      }
+    }else{
+      return false;
     }
   }
 }

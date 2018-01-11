@@ -8,17 +8,17 @@ class VueJeu extends Vue{
     const w = window.innerWidth;
     const h = window.innerHeight;
 
-    const ew = w / Partie.virtualW;
-    const eh = h / Partie.virtualH;
+    this.ew = w / Partie.virtualW;
+    this.eh = h / Partie.virtualH;
 
-    console.log("Echelle:", ew, eh);
+    console.log("Echelle:", this.ew, this.eh);
 
     this.canvas.width = w;
     this.canvas.height = h;
 
     this.ctx.imageSmoothingEnabled = false;
 
-    this.ctx.scale(ew, eh);
+    this.ctx.scale(this.ew, this.eh);
 
     this.controleur.setVueRendu(this);
 

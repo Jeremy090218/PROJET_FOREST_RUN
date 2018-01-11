@@ -144,10 +144,15 @@ setOnChangeMonde(e){this.onChangeMonde = e;}
     }
 
     if(this.getTemps() == 0){
-      this.setTemps(1200) ;
-      this.setQuestionEquation(new Question(this.getControleur()));
-      this.setNbReponse(0);
-      this.getControleur().changerVue(new VueQuestion(this.getControleur(), this.controleur.vueRendu));
+      if (this.getQuestionEquation()!=0) {
+        this.getControleur().changerVue(new VueReponse(this.getControleur(), this.controleur.vueRendu));
+      } else {
+        this.setTemps(1200) ;
+        this.setQuestionEquation(new Question(this.getControleur()));
+        this.setNbReponse(0);
+        this.getControleur().changerVue(new VueQuestion(this.getControleur(), this.controleur.vueRendu));
+      }
+      
     }else if(this.getTemps() == 1){
       if(this.getQuestionEquation()){
         if(!this.testQuestion()){

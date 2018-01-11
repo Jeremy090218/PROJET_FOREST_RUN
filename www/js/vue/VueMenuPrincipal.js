@@ -65,5 +65,17 @@ class VueMenuPrincipal extends Vue {
       this.controleur.changerVue(new VueLecons(this.controleur), this);
     }
 
+    //missions
+    const missionPieceIHM = this.create('p');
+    this.add(missionPieceIHM);
+    missionPieceIHM.innerHTML = this.controleur.missionPiece.getMission();
+
+    const missionScoreIHM = this.create('p');
+    this.add(missionScoreIHM);
+    missionScoreIHM.innerHTML = this.controleur.missionScore.getMission();
+
+    const missionQuestionIHM = this.create('p');
+    this.add(missionQuestionIHM);
+    missionQuestionIHM.innerHTML = this.controleur.missionQuestion.getMission(); 
   }
 }

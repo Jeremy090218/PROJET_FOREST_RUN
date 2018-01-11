@@ -76,6 +76,6 @@ class VueMenuPrincipal extends Vue {
 
     const missionQuestionIHM = this.create('p');
     this.add(missionQuestionIHM);
-    missionQuestionIHM.innerHTML = this.controleur.missionQuestion.getMission(); 
+    missionQuestionIHM.innerHTML = this.controleur.missionQuestion.getMission();
   }
 }

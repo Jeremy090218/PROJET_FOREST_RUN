@@ -11,15 +11,16 @@ class PartieShoot extends Partie {
   }
 
   setNewQuestion(){
-    this.question = new Question(this.controleur);
+    this.question = new Question(this.controleur, "shooter");
     console.log(this.question.getIntitule());
     console.log(this.question.getQuestion());
-    for (let i = 0; i < 5; ++i) {
+    /*for (let i = 0; i < 5; ++i) {
       this.addElementReponse(i == 0);
-    }
+    }*/
+    this.addElementReponse();
   }
 
-  addElementReponse(correct = false){
+  /*addElementReponse(correct = false){
     let reponse = parseInt(this.question.getReponse().reponse);
 
     if(!correct) reponse += Math.floor(Math.random()* 2 - 1);
@@ -27,6 +28,16 @@ class PartieShoot extends Partie {
     const o = new ElementReponseShooter(ctrl, "cible.png", reponse);
     this.elementsReponse.push(o);
     this.fileRendu.push(o);
+  }*/
+
+  addElementReponse() {
+    let reponses = this.question.getReponse().getReponses();
+    console.log("yo : " + reponses);
+    for(let i = 0; i < 5; i++) {
+      const o = new ElementReponseShooter(ctrl, "cible.png", reponses[i]);
+      this.elementsReponse.push(o);
+      this.fileRendu.push(o);
+    }
   }
 
   update(){

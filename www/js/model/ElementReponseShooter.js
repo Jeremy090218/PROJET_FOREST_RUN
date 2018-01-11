@@ -2,6 +2,7 @@ class ElementReponseShooter extends Element {
   constructor(ctrl, texture, valeur, vitesse = 5) {
     super(ctrl, "null");
     this.valeur = valeur;
+    this.setZ(1.5);
     this.setX(Math.random() * Partie.virtualW);
     this.setY(Math.random() * Partie.virtualH);
     this.v = {x: (Math.random()-0.5)*vitesse, y: (Math.random()-0.5)*vitesse};

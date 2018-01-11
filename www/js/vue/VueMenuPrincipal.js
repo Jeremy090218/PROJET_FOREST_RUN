@@ -3,7 +3,7 @@ class VueMenuPrincipal extends Vue {
     super(ctrl, 'menuPrincipal');
 
     this.controleur.changerMusique("musique_menu.mp3");
-
+    console.log(this.controleur.utilisateur.getSkins());
     //Button option
     const buttonOption = this.create('button');
     buttonOption.id="btnHD";
@@ -53,7 +53,7 @@ class VueMenuPrincipal extends Vue {
     //button règle
     const buttonRegle = this.create('button');
     this.add(buttonRegle);
-    buttonRegle.innerHTML = "Règle";
+    buttonRegle.innerHTML = "Règles";
     buttonRegle.onclick = () => {
       this.controleur.changerVue(new VueRegle(this.controleur), this);
     }

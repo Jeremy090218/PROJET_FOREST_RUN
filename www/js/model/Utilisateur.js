@@ -20,12 +20,13 @@ class Utilisateur {
   getHighScore(){return this.highScore;}
 
   getPersonnageRunner(){
-    return new Personnage(this.controleur, this.getSkins().textureAnim, this.getItemEquipe());
+    return new Personnage(this.controleur, this.getSkins().textureAnim, this.getSkins().son, this.getItemEquipe());
   }
 
   getPersonnageShooter(){
     return new Personnage(this.controleur, this.getSkins().textureFixe, this.getItemEquipe());
   }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// SETTERS //////////////////////////////////////////////

@@ -8,9 +8,9 @@ class ElementDecor extends ElementPartie {
       }
     }else if(monde == 1){
       if(xx > 180){
-        super(ctrl, "Bambou.png",[{x: xx, y: 300, z: 1}, {x: xx+500, y: 800, z: 8}], vitesse);
+        super(ctrl, "Bonsai_droit.png",[{x: xx, y: 300, z: 1}, {x: xx+500, y: 800, z: 8}], vitesse);
       }else{
-        super(ctrl, "Bambou.png",[{x: xx, y: 300, z: 1}, {x: xx-500, y: 800, z: 8}], vitesse);
+        super(ctrl, "Bonsai_gauche.png",[{x: xx, y: 300, z: 1}, {x: xx-500, y: 800, z: 8}], vitesse);
       }
     }else if(monde ==2){
       if(xx > 180){

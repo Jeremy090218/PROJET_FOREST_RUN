@@ -73,7 +73,7 @@ class Controleur {
   }
 
   changerVue(vue, vueActuelle = null){
-    if(vueActuelle) vueActuelle.delete();
+    if(vueActuelle && vueActuelle.delete) vueActuelle.delete();
     this.rafraichirVues();
     this.vues.push(vue);
   }
@@ -84,7 +84,7 @@ class Controleur {
         if(!this.partieRunner) console.log("Erreur: aucune nouvelle partie initialisée");
         else {
           this.partieRendu = this.partieRunner;
-            this.changerVueUnique(new VueRunner(this));
+          this.changerVueUnique(new VueRunner(this));
         }
         break;
       case "shooter":

@@ -17,7 +17,7 @@ class MissionPiece{
   }
 
   getMission(){
-    return this.text + "<br>Restant : "+ this.nbPieceD;
+    return this.text + "<br>Restant : "+ this.nbPiece;
   }
 }
 

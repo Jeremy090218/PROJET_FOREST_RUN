@@ -25,6 +25,17 @@ class PartieRun extends Partie {
     this.setOnChangeMonde(()=>{});
 
     this.vitesse = 1;
+
+    this.couleurSol = [17, 170, 85];
+    this.goCouleurSol = [17, 170, 85];
+
+    this.setOnChangeMonde((m) => {
+      switch (m) {
+        case 0: this.goCouleurSol = [17, 170, 85]; break;
+        case 1: this.goCouleurSol = [17, 200, 40]; break;
+        case 2: this.goCouleurSol = [241, 196, 15]; break;
+      }
+    });
   }
 ////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// GETTERS //////////////////////////////////////////////
@@ -152,7 +163,7 @@ setOnChangeMonde(e){this.onChangeMonde = e;}
         this.setNbReponse(0);
         this.getControleur().changerVue(new VueQuestion(this.getControleur(), this.controleur.vueRendu));
       }
-      
+
     }else if(this.getTemps() == 1){
       if(this.getQuestionEquation()){
         if(!this.testQuestion()){
@@ -162,6 +173,9 @@ setOnChangeMonde(e){this.onChangeMonde = e;}
           this.vitesse += 0.2;
         }
       }
+    }
+    if(this.getTemps()<0){
+      this.setTemps(1200);
     }
     this.decrementerTemps();
 
@@ -292,7 +306,7 @@ setOnChangeMonde(e){this.onChangeMonde = e;}
                                             ////// Gestion des Obstacles
 
   addObstacle(){
-    const o = new Obstacle(this.controleur, this.getTrajectoire(), this.vitesse);
+    const o = new Obstacle(this.controleur, this.getTrajectoire(), this.vitesse,this.monde);
     this.getElementsPartie().unshift(o);
     this.getFileRendu().unshift(o);
   }
@@ -305,5 +319,14 @@ setOnChangeMonde(e){this.onChangeMonde = e;}
     //////// test la colision entre tout l'element choisi et le personnage
     /////// return vrai si l'element possede les meme x,y,z du personnage
     return this.getPersonnge().estEnColision(elem);
+  }
+
+  updateCouleur(){
+    if(this.goCouleurSol[0] < this.couleurSol[0]) --this.couleurSol[0];
+    if(this.goCouleurSol[0] > this.couleurSol[0]) ++this.couleurSol[0];
+    if(this.goCouleurSol[1] < this.couleurSol[1]) --this.couleurSol[1];
+    if(this.goCouleurSol[1] > this.couleurSol[1]) ++this.couleurSol[1];
+    if(this.goCouleurSol[2] < this.couleurSol[2]) --this.couleurSol[2];
+    if(this.goCouleurSol[2] > this.couleurSol[2]) ++this.couleurSol[2];
   }
 }

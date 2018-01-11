@@ -35,7 +35,7 @@ class Utilisateur {
   setBoutique(i){this.boutique = i;}
   setItems(i){this.items = i;}
   setItemEquipe(i){this.itemEquipe = i;}
-  setArgent(i){this.argent = i;}
+  setArgent(i){this.argent = i; console.log(this.argent);}
   setSkins(s){this.skins = s;}
   setHighScore(s){
     if(!this.highScore ||this.highScore < s) this.highScore = s;
@@ -46,7 +46,7 @@ class Utilisateur {
     this.setItemEquipe(data.equipe);
     this.setSkins(data.persoCourant);
     this.setHighScore(data.highScore);
-    this.setArgent(data.argent);
+    this.setArgent(parseInt(data.argent));
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -78,13 +78,13 @@ class Utilisateur {
 //////////// gestion Argent
 ////////////////////////////////////////////////////////////////////////////////
 
-  ajouterArgent(i){
+  /*ajouterArgent(i){
     this.setArgent(this.getArgent() + i);
   }
 
   enleverArgent(i){
     this.setArgent(this.getArgent() -i);
-  }
+  }*/
 
   ///////////////////////////////////////////////////////////////////////////////
   //////////achats

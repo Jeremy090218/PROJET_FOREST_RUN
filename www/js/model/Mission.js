@@ -1,11 +1,13 @@
 class MissionPiece{
-  constructor(nb) {
+  constructor(nb, nbCourant) {
     this.nbPieceD = nb;
-    this.nbPiece = nb;
+    this.nbPiece = nbCourant;
     this.text = "Récupérer " + nb + " pièces " ;
   }
   getNbPieceD(){return this.nbPieceD;}
+  getNbPiece(){return this.nbPiece;}
   enleverPiece(i){
+    console.log(this.nbPiece, i);
     this.nbPiece = this.nbPiece -i;
     if(this.nbPiece <0){
       this.nbPiece = 0 ;
@@ -36,12 +38,13 @@ class MissionScore {
 }
 
 class MissionQuestion{
-  constructor(nb){
+  constructor(nb, nbCourant){
     this.nbQ = nb;
-    this.nbQuestion = nb ;
+    this.nbQuestion = nbCourant;
     this.text = "Répondre à " + nb + " question " ;
   }
   getNbQ(){return this.nbQ;}
+  getNbQuestion(){return this.nbQuestion}
   enleverQuestion(i){
     this.nbQuestion = this.nbQuestion -i;
     if(this.nbQuestion <0){
@@ -54,6 +57,6 @@ class MissionQuestion{
   }
 
   getMission(){
-    return this.text + "<br>Restant : "+ this.nbQ;
+    return this.text + "<br>Restant : "+ this.nbQuestion;
   }
 }

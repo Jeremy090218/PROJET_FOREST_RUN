@@ -1,7 +1,7 @@
 class VueQuestion extends Vue {
   constructor(ctrl, vueRunner) {
     super(ctrl, 'question');
-
+    
     this.vueRunner = vueRunner;
 
     this.controleur.pause();

@@ -269,8 +269,9 @@ class Question{
 
 
   solveWhile(w) {
-    let nbWhile = w.split(" <= ")[1].split(" + ");
-    return Math.floor(nbWhile[0] / nbWhile[2]) + 1;
+    let nbWhile = w.split(" <= ")[1].split(", i = i + ");
+    console.log(nbWhile);
+    return Math.floor(nbWhile[0] / nbWhile[1]) + 1;
   }
 
 

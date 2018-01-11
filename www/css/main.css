@@ -86,6 +86,12 @@ button {
 
 }
 
+#afficheQuestionShooter{
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
 button:active {
   color : green;
     background: white;

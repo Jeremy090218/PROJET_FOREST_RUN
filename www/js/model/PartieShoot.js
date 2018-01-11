@@ -11,7 +11,7 @@ class PartieShoot extends Partie {
   }
 
   setNewQuestion(){
-    this.question = new Question(this.controleur, 0);
+    this.question = new Question(this.controleur);
     console.log(this.question.getIntitule());
     console.log(this.question.getQuestion());
     for (let i = 0; i < 5; ++i) {

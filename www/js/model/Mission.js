@@ -2,7 +2,7 @@ class MissionPiece{
   constructor(nb) {
     this.nbPieceD = nb;
     this.nbPiece = nb;
-    this.text = "Récuperer " + nb + " de pièces " ;
+    this.text = "Récupérer " + nb + " pièces " ;
   }
   getNbPieceD(){return this.nbPieceD;}
   enleverPiece(i){
@@ -17,7 +17,7 @@ class MissionPiece{
   }
 
   getMission(){
-    return this.text + " Restant : "+ this.text+ " pour récuperer des pièces." ;
+    return this.text + "<br>Restant : "+ this.nbPiece;
   }
 }
 
@@ -31,7 +31,7 @@ class MissionScore {
   }
 
   getMission(){
-    return "Atteigner "+ this.score + " pour récuperer des pièces." ;
+    return "Atteindre "+ this.score;
   }
 }
 
@@ -39,7 +39,7 @@ class MissionQuestion{
   constructor(nb){
     this.nbQ = nb;
     this.nbQuestion = nb ;
-    this.text = "Répondre à " + nb + " de question " ;
+    this.text = "Répondre à " + nb + " question " ;
   }
   getNbQ(){return this.nbQ;}
   enleverQuestion(i){
@@ -54,6 +54,6 @@ class MissionQuestion{
   }
 
   getMission(){
-    return this.text + " Restant : "+ this.text+ " pour récuperer des pièces." ;
+    return this.text + "<br>Restant : "+ this.nbQ;
   }
 }

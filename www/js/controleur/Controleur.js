@@ -154,156 +154,61 @@ class Controleur {
   }
 
   chargerDonneesSauvegarde(cb){
-    // TODO: utiliser plugin cordova pour faire un read ou utiliser un XMLHttpRequest
+    const dafaultData = `{
+      "persoCourant": {"nom": "Chat", "textureFixe": "Character_0_vue_0.png", "son":"Chat.mp3", "textureAnim": "Character_0_annimation.png"},
+      "achete": [],
+      "equipe": {"nom": "Rien", "achat": true, "equipe": true, "pric": 20},
+      "argent": 0,
+      "highScore": 0
+    }`;
 
-    const dafaultData = {
-      persoCourant: {nom: "Chat", textureFixe: "Character_0_vue_0.png", son:"Chat.mp3", textureAnim: "Character_0_annimation.png"},
-      achete: [],
-      equipe: {nom: "Rien", achat: true, equipe: true, pric: 20},
-      argent: 0,
-      highScore: 0
+    let data = localStorage.getItem('forestSave');
+
+    if(!data || data == "[object Object]") data = dafaultData;
+
+    data = JSON.parse(data);
+
+    for (let i = 0; i < data.achete.length; ++i) {
+      const o = data.achete[i];
+      data.achete[i] = new Item(o.nom, o.achete, o.equipe, o.prix);
     }
 
-    let ctrl = this;
+    const o = data.equipe;
+    data.equipe = new Item(o.nom, o.achete, o.equipe, o.prix);
 
-    function onDeviceReady() {
-      function readFromFile(fileName, cb) {
-          var pathToFile = cordova.file.dataDirectory + fileName;
-          window.resolveLocalFileSystemURL(pathToFile, function (fileEntry) {
-              fileEntry.file(function (file) {
-                  var reader = new FileReader();
+    ctrl.utilisateur.setFromSauvegarde(data);
 
-                  reader.onloadend = function (e) {
-                      cb(JSON.parse(this.result));
-                  };
-
-                  reader.readAsText(file);
-              }, cb(dafaultData));
-          }, cb(dafaultData));
-      }
-
-      var fileData;
-      readFromFile('forestRunSave.json', (data) => {
-          //fileData = data;
-
-          for (let i = 0; i < data.achete.length; ++i) {
-            const o = data.achete[i];
-            data.achete[i] = new Item(o.nom, o.achete, o.equipe, o.prix);
-          }
-
-          const o = data.equipe;
-          data.equipe = new Item(o.nom, o.achete, o.equipe, o.prix);
-
-          ctrl.utilisateur.setFromSauvegarde(data);
-
-          cb();
-      });
-    }
-
-    try {
-      onDeviceReady();
-    } catch (e) {
-      let data = dafaultData;
-
-      for (let i = 0; i < data.achete.length; ++i) {
-        const o = data.achete[i];
-        data.achete[i] = new Item(o.nom, o.achete, o.equipe, o.prix);
-      }
-
-      const o = data.equipe;
-      data.equipe = new Item(o.nom, o.achete, o.equipe, o.prix);
-
-      ctrl.utilisateur.setFromSauvegarde(data);
-
-      cb();
-
-
-
-
-
-
-      /*setTimeout(()=>{
-        const v = ctrl.vues[0];
-        const p = v.create('p');
-        v.add(p);
-        p.innerHTML = e;
-      }, 1000);*/
-    }
-
-    /*const dataUtilisateur = {
-      persoCourant: {nom: "Chat", textureFixe: "Character_0_vue_0.png", son:"Chat.mp3", textureAnim: "Character_0_annimation.png"},
-      achete: [new Item("Esquive +",true,true,20), new Item("Vie +",true,false,100)],
-      equipe: new Item("Rien",true,true,20),
-      argent: 1000,
-      highScore: 150
-      //boutique: [new Item("Saut +",true,false,50),new Item("Esquive ++",true,false,100)],
-      //argent: 100
-    }*/
-
-    /*this.utilisateur.setFromSauvegarde(dataUtilisateur);
-
-    cb();*/
+    cb();
   }
 
   sauvegarderDonnees(){
-    // TODO: utiliser plugin cordova pour faire un write
-    function onDeviceReady() {
-      function writeToFile(fileName, data) {
-          data = JSON.stringify(data, null, '\t');
-          window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (directoryEntry) {
-              directoryEntry.getFile(fileName, { create: true }, function (fileEntry) {
-                  fileEntry.createWriter(function (fileWriter) {
-                      fileWriter.onwriteend = function (e) {
-                          // for real-world usage, you might consider passing a success callback
-                          console.log('Write of file "' + fileName + '"" completed.');
-                      };
-
-                      fileWriter.onerror = function (e) {
-                          // you could hook this up with our global error handler, or pass in an error callback
-                          console.log('Write failed: ' + e.toString());
-                      };
-
-                      var blob = new Blob([data], { type: 'text/plain' });
-                      fileWriter.write(blob);
-                  }, () => {});
-              }, () => {});
-          }, () => {});
-      }
-
-
-
       /*const dataUtilisateur = {
-        persoCourant: {nom: "Chat", textureFixe: "Character_0_vue_0.png", textureAnim: "Character_0_annimation.png"},
-        achete: [new Item("Esquive +",true,true,20), new Item("Vie +",true,false,100)],
-        equipe: new Item("Rien",true,true,20),
-        argent: 1000,
-        highScore: 150
-      }*/
-
-      const dataUtilisateur = {
-        persoCourant: {nom: "Chat", textureFixe: "Character_0_vue_0.png", textureAnim: "Character_0_annimation.png"},
+        persoCourant: {nom: "Chat", textureFixe: "Character_0_vue_0.png", son:"Chat.mp3", textureAnim: "Character_0_annimation.png"},
         achete: [{nom: "Esquive +", achat: true, equipe: true, prix: 20}, {nom: "Vie +", achat: true, equipe: false, prix: 100}],
         equipe: {nom: "Rien", achat: true, equipe: true, pric: 20},
         argent: 1000,
         highScore: 150
+      }*/
+
+      const u = this.getUtilisateur();
+
+      let listAchete = new Array();
+
+      for (let i of u.getItems()) {
+        listAchete.push({nom: i.getNom(), achat: i.getAchat(), equipe: i.getEquiper(), prix: i.getPrix()});
       }
 
+      const i = u.getItemEquipe();
 
-
-      try {
-        writeToFile('forestRunSave.json', dataUtilisateur);
-      } catch (e) {
-        /*setTimeout(()=>{
-          const v = ctrl.vues[0];
-          const p = v.create('p');
-          v.add(p);
-          p.innerHTML = e;
-        }, 1000);*/
+      const dataUtilisateur = {
+        persoCourant: u.getSkins(),
+        achete: listAchete,
+        equipe: {nom: i.getNom(), achat: i.getAchat(), equipe: i.getEquiper(), prix: i.getPrix()},
+        argent: u.getArgent(),
+        highScore: u.getHighScore()
       }
 
-    }
-
-    onDeviceReady();
+      localStorage.setItem('forestSave', JSON.stringify(dataUtilisateur));
   }
 
   getUtilisateur(){

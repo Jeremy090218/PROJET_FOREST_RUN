@@ -5,12 +5,15 @@ class PartieShoot extends Partie {
     this.personnage.setX(50);
     this.personnage.setY(Partie.virtualH - 10);
     this.personnage.setZ(2);
-    this.elementsReponse = new Array();
+
+    this.nbQuestion = 3;
 
     this.setNewQuestion();
   }
 
   setNewQuestion(){
+    this.elementsReponse = new Array();
+
     this.question = new Question(this.controleur, "shooter");
     console.log(this.question.getIntitule());
     console.log(this.question.getQuestion());
@@ -62,7 +65,15 @@ class PartieShoot extends Partie {
     }
     if(reussi){
       this.controleur.partieRunner.getPersonnage().initialisation();
-      this.controleur.switchMode("runner");
+
+      if(this.nbQuestion-- == 0) {
+        this.controleur.switchMode("runner");
+      } else {
+        for (let i of this.getElementsReponse()) {
+          i.detruire();
+        }
+        this.setNewQuestion();
+      }
     }else{
       this.controleur.pause();
       this.controleur.getUtilisateur().setHighScore(this.controleur.partieRunner.getScore());

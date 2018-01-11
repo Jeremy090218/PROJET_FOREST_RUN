@@ -42,13 +42,13 @@ class Question{
           this.question = this.createEquation();
           this.setReponse(new Reponse(this.ctrl, typeQ, this.solveEquation(this.question)));
           break;
-        
+
         case 1 :
           this.setIntitule("Quel est le reste de la division ?");
           this.question = this.createDivisionE();
           this.setReponse(new Reponse(this.ctrl, typeQ, this.solveDivisionE(this.question)));
           break;
-        
+
         case 2 :
           this.setIntitule("Combien vaut la médiane ?");
           this.question = this.createMediane();
@@ -60,7 +60,7 @@ class Question{
           this.question = this.createWhile();
           this.setReponse(new Reponse(this.ctrl, typeQ, this.solveWhile(this.question)));
           break;
-          
+
         default : break;
       }
     } else {
@@ -71,38 +71,36 @@ class Question{
           this.question = this.createEquation();
           this.setReponse(new Reponse(this.ctrl, typeQ, this.solveEquation(this.question)));
           break;
-        
+
         case 1 :
           this.setIntitule("Quel est le reste de la division ?");
           this.question = this.createDivisionE();
           this.setReponse(new Reponse(this.ctrl, typeQ, this.solveDivisionE(this.question)));
           break;
-  
+
         case 2 :
           this.setIntitule("Combien de fois rentre-t-on dans la boucle ?");
           this.question = this.createWhile();
           this.setReponse(new Reponse(this.ctrl, typeQ, this.solveWhile(this.question)));
           break;
-        
+
         case 3 :
           this.setIntitule("Quel résultat obtient-on ?");
           this.question = this.createPuissance();
           this.setReponse(new Reponse(this.ctrl, typeQ, this.solvePuissance(this.question)));
           break;
-  
+
         case 4 :
           this.setIntitule("Ce nombre est-il premier ?");
           this.question = this.createNombrePremier();
           this.setReponse(new Reponse(this.ctrl, typeQ, this.solveNombrePremier(this.question)));
           break;
-        
-        case 5 :
+
+        default:
           this.setIntitule("Que retourne cette équation logique ?");
           this.question = this.createBooleen();
           this.setReponse(new Reponse(this.ctrl, typeQ, this.solveBooleen(this.question)));
           break;
-  
-        default : break;
       }
     }
   }

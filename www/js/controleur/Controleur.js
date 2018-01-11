@@ -18,29 +18,18 @@ class Controleur {
     this.vues = new Array();
     this.vueRendu = null;
 
-<<<<<<< HEAD
     this.textures = new Bank("img", "textures/", ["default.png", "fondtest.png", "Ground_0_1.png","caillou.png", "Bannier.png",
-                                                  "Obstacle_1.png",
-=======
-    this.textures = new Bank("img", "textures/", ["default.png", "fondtest.png", "Ground_0_1.png","caillou.png",
                                                   "Obstacle_1.png", "Bonsai_droit.png", "Bonsai_gauche.png",
->>>>>>> c7b70cf51594b1553d6e29917da6fd6a1f7d5ab7
                                                   "Tree_0_1.png","Bambou.png","Palmier_droit.png","Palmier_gauche.png",
                                                   "Nuage_0_1.png", "cible.png",
                                                   "Coin_1.png", "IconCoeur.png", "potionBleu.png","potionRouge.png", "Character_0_annimation.png",
                                                   "Character_0_vue_4.png","Character_0_vue_0.png", "Character_1_vue_0.png", "Character_2_vue_0.png","Ecran_accueil.png",
                                                   "Character_1_annimation.png",
-<<<<<<< HEAD
                                                   "Character_2_annimation.png",
                                                   "Ground_0_1_3D.png"]);
-    this.sons = new Bank("audio", "sons/", ["chat.mp3", "crash.mp3", "lapin.mp3", "mouton.mp3", "piece.mp3",
-=======
-                                                  "Character_2_annimation.png"]);
+
     this.sons = new Bank("audio", "sons/", ["Chat.mp3", "crash.mp3", "Lapin.mp3", "Chèvre.mp3", "piece.mp3",
->>>>>>> c7b70cf51594b1553d6e29917da6fd6a1f7d5ab7
                                             "musique_jeu01.mp3", "musique_jeu02.mp3", "musique_jeu03.mp3", "musique_menu.mp3"]);
-
-
 
     this.chargement();
   }

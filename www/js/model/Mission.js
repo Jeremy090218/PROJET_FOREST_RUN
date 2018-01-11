@@ -41,7 +41,7 @@ class MissionQuestion{
   constructor(nb, nbCourant){
     this.nbQ = nb;
     this.nbQuestion = nbCourant;
-    this.text = "Répondre à " + nb + " question " ;
+    this.text = "Répondre à " + nb + " question(s) " ;
   }
   getNbQ(){return this.nbQ;}
   getNbQuestion(){return this.nbQuestion}

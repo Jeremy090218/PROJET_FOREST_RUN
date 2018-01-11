@@ -26,7 +26,7 @@ class Controleur {
                                                   "Coin_1.png", "IconCoeur.png", "potionBleu.png","potionRouge.png", "Character_0_annimation.png",
                                                   "Character_0_vue_4.png","Character_0_vue_0.png", "Character_1_vue_0.png", "Character_2_vue_0.png","Ecran_accueil.png",
                                                   "Character_1_annimation.png",
-                                                  "Character_2_annimation.png",
+                                                  "Character_2_annimation.png", "Ecran_atelier.png",
                                                   "Ground_0_1_3D.png"]);
 
     this.sons = new Bank("audio", "sons/", ["Chat.mp3", "crash.mp3", "Lapin.mp3", "Chèvre.mp3", "piece.mp3",

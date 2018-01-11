@@ -20,15 +20,15 @@ class VueUnivers extends Vue {
 
     const blabla = this.create('p');
     this.add(divU, blabla);
-    blabla.innerHTML = "Bienvenu dans ForestRun, un monde où règne la paix depuis des millénaire. Un univers où cohabite différents animaux, prédateurs et proies vivent en parfaite harmonie.";
+    blabla.innerHTML = "Bienvenue dans FOREST RUN, un monde où une paix harmonieuse régnait depuis plusieurs Millénaires. Cet univers fait cohabiter différentes espèces d'animaux qui vivaient en parfaite symbiose.";
 
     const blabla2 = this.create('p');
     this.add(divU, blabla2);
-    blabla2.innerHTML = "Mais voilà que l'équilibre est menacée, les arbres Centenaires qui maintenaient cet équilibre ont été contaminés par une force obscurs et certains animaux ont commencé à s'en prendre aux autres.";
+    blabla2.innerHTML = "Mais l'équilibre de la Forêt est à présent menacé ! Les Arbres Centenaires, maîtres de la Forêt ont été contaminés par une Force Obscure et certains animaux ont commencé à s'attaquer à leurs congénères.";
 
     const blabla3 = this.create('p');
     this.add(divU, blabla3);
-    blabla3.innerHTML = "Incarne un de ses animaux et rétablis l'ordre !";
+    blabla3.innerHTML = "Tu vas donc incarner un de ses animaux pour essayer de rétablir l'ordre dans l'univers de FOREST RUN !";
 
   }
 }

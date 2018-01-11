@@ -11,7 +11,7 @@ class PartieShoot extends Partie {
   }
 
   setNewQuestion(){
-    this.question = new Question(this.controleur, 0);
+    this.question = new Question(this.controleur);
     console.log(this.question.getIntitule());
     console.log(this.question.getQuestion());
     for (let i = 0; i < 5; ++i) {
@@ -54,6 +54,11 @@ class PartieShoot extends Partie {
       this.controleur.switchMode("runner");
     }else{
       this.controleur.pause();
+      this.controleur.getUtilisateur().setHighScore(this.controleur.partieRunner.getScore());
+      this.controleur.getUtilisateur().setArgent(this.controleur.getUtilisateur().getArgent() + this.controleur.partieRunner.getPieceRecup());
+
+      console.log(this.controleur.getUtilisateur().getArgent());
+      this.controleur.sauvegarderDonnees();
       this.controleur.changerVueUnique(new VuePerdu(this.controleur));
     }
   }

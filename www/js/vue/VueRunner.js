@@ -1,9 +1,6 @@
 class VueRunner extends VueJeu {
   constructor(ctrl) {
     super(ctrl, 'runner');
-
-    this.controleur.sauvegarderDonnees();
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     this.controleur.changerMusique("musique_jeu03.mp3");

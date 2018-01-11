@@ -42,3 +42,13 @@ class ElementCiel extends ElementPartie {
     super.update();
   }
 }
+
+class ElementRoute extends ElementPartie {
+  constructor(ctrl,vitesse, monde){
+      super(ctrl, "Ground_0_1_3D.png",[{x: 180, y: 300, z: 0.1}, {x: 180, y: 900, z: 10}], vitesse);
+  }
+
+  update(){
+    super.update();
+  }
+}

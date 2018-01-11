@@ -26,7 +26,7 @@ class Trajectoire {
     this.cible.setX(((1 - this.t) * this.points[0].x) + (this.t * this.points[1].x));
     this.cible.setY(((1 - this.t) * this.points[0].y) + (this.t * this.points[1].y));
     this.cible.setZ(((1 - this.t) * this.points[0].z) + (this.t * this.points[1].z));
-    if(this.t < 1) this.t += this.vitesse + this.acc;
+    if(this.t < 1) this.t += this.vitesse /*+ this.acc*/;
     else if(this.cbDestruction) this.cbDestruction();
     this.vitesse += this.acc;
   }

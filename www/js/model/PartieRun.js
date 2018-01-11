@@ -131,6 +131,10 @@ setOnChangeMonde(e){this.onChangeMonde = e;}
       }
     }
 
+    /*if(this.getTemps()%40 == 0){
+      this.addRoute();
+    }*/
+
     //////////////////////// Gestion des elements Decors
     if(this.getTemps()%20 == 0){ // Tout les 10 Tics: ajouter un arbre et un nuage
       this.addArbres();
@@ -256,6 +260,12 @@ setOnChangeMonde(e){this.onChangeMonde = e;}
     this.getElementsDecors().unshift(o2);
     this.getFileRendu().unshift(o1);
     this.getFileRendu().unshift(o2);
+  }
+
+  addRoute(){
+    const o = new ElementRoute(this.controleur, this.vitesse,this.monde);
+    this.getElementsDecors().unshift(o);
+    this.getFileRendu().unshift(o);
   }
 
   addCiel(){

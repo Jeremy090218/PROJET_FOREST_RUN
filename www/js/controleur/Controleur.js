@@ -82,19 +82,18 @@ class Controleur {
       case "runner":
         if(!this.partieRunner) console.log("Erreur: aucune nouvelle partie initialisée");
         else {
-            this.partieRendu = this.partieRunner;
+          this.partieRendu = this.partieRunner;
             this.changerVueUnique(new VueRunner(this));
         }
         break;
       case "shooter":
-        if(!this.partieShooter){
-          this.partieShooter = new PartieShoot(this, this.utilisateur.getPersonnageShooter(),null);
-        }
+        this.partieShooter = new PartieShoot(this, this.utilisateur.getPersonnageShooter());
         this.partieRendu = this.partieShooter;
         this.changerVueUnique(new VueShooter(this));
         break;
       case "nouvellePartie":
-        this.partieRunner = new PartieRun(this, this.utilisateur.getPersonnageRunner(), null);
+        console.log("nouvellePartie");
+        this.partieRunner = new PartieRun(this, this.utilisateur.getPersonnageRunner());
         this.partieShooter = null;
         this.partieRendu = this.partieRunner;
         this.changerVueUnique(new VueRunner(this));
@@ -114,6 +113,7 @@ class Controleur {
       console.log("play");
       this.run = true;
       this.acumulateur = 1001;
+      this.temps = 0;
       this.boucleDeJeu(0);
     } else {
       console.log("Play impossible, aucune partie initialisée");

@@ -158,7 +158,7 @@ setOnChangeMonde(e){this.onChangeMonde = e;}
       this.controleur.pause();
       this.controleur.getUtilisateur().setHighScore(this.getScore());
       this.controleur.updateMission(this.getPieceRecup(),this.getScore(),this.nbQuestionReussi);
-      this.controleur.changerVueUnique(new VuePerdu(this.controleur));
+      this.controleur.switchMode("shooter");
     }
     if(this.getScore()>150 && this.monde == 0){
       this.monde = 1; this.onChangeMonde(this.monde);

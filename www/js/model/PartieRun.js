@@ -182,7 +182,6 @@ setOnChangeMonde(e){this.onChangeMonde = e;}
     if(this.getPersonnage().estMort()){
       this.controleur.vueRendu.sonPerso();
       this.controleur.pause();
-      this.controleur.getUtilisateur().setHighScore(this.getScore());
       this.controleur.updateMission(this.getPieceRecup(),this.getScore(),this.nbQuestionReussi);
       this.controleur.switchMode("shooter");
     }

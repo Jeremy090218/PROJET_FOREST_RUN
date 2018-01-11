@@ -11,9 +11,9 @@ class Controleur {
     this.partieShooter = null;
     this.partieRendu = null;
 
-    this.missionPiece = new MissionPiece(20);
+    /*this.missionPiece = new MissionPiece(20);
     this.missionScore = new MissionScore(1000);
-    this.missionQuestion =  new MissionQuestion(10);
+    this.missionQuestion =  new MissionQuestion(10);*/
 
     this.vues = new Array();
     this.vueRendu = null;
@@ -159,7 +159,11 @@ class Controleur {
       "achete": [],
       "equipe": {"nom": "Rien", "achat": true, "equipe": true, "pric": 20},
       "argent": 0,
-      "highScore": 0
+      "highScore": 0,
+
+      "missions": [{"eCourant": 20, "eDepart": 20},
+                   {"eCourant": 1000},
+                   {"eCourant": 10, "eDepart": 10}]
     }`;
 
     let data = localStorage.getItem('forestSave');
@@ -175,6 +179,10 @@ class Controleur {
 
     const o = data.equipe;
     data.equipe = new Item(o.nom, o.achete, o.equipe, o.prix);
+
+    this.missionPiece = new MissionPiece(data.missions[0].eDepart, data.missions[0].eCourant);
+    this.missionScore = new MissionScore(data.missions[1].eCourant);
+    this.missionQuestion =  new MissionQuestion(data.missions[2].eDepart, data.missions[2].eCourant);
 
     ctrl.utilisateur.setFromSauvegarde(data);
 
@@ -205,7 +213,11 @@ class Controleur {
         achete: listAchete,
         equipe: {nom: i.getNom(), achat: i.getAchat(), equipe: i.getEquiper(), prix: i.getPrix()},
         argent: u.getArgent(),
-        highScore: u.getHighScore()
+        highScore: u.getHighScore(),
+
+        missions: [{eCourant: this.missionPiece.getNbPiece(), eDepart: this.missionPiece.getNbPieceD()},
+                   {eCourant: this.missionScore.getScore()},
+                   {eCourant: this.missionQuestion.getNbQuestion(), eDepart: this.missionQuestion.getNbQ()}]
       }
 
       localStorage.setItem('forestSave', JSON.stringify(dataUtilisateur));
@@ -249,20 +261,22 @@ class Controleur {
   }
 
   updateMission(piece,score,nbQuestion){
+
+    console.log(piece,score,nbQuestion);
     this.missionPiece.enleverPiece(piece);
     this.missionQuestion.enleverQuestion(nbQuestion);
 
     if(this.missionScore.verifierMission(score)){
-      this.getUtilisateur().setArgent(this.getUtilisateur() + 100);
+      this.getUtilisateur().setArgent(this.getUtilisateur().getArgent() + 100);
       this.missionScore = new MissionScore(this.missionScore.getScore() + 500);
     }
     if(this.missionPiece.verifierMission()){
-      this.getUtilisateur().setArgent(this.getUtilisateur() + 100);
-      this.missionPiece = new MissionPiece(this.missionPiece.getNbPieceD() + 20);
+      this.getUtilisateur().setArgent(this.getUtilisateur().getArgent() + 100);
+      this.missionPiece = new MissionPiece(this.missionPiece.getNbPieceD() + 20,this.missionPiece.getNbPieceD() + 20);
     }
     if(this.missionQuestion.verifierMission()){
-      this.getUtilisateur().setArgent(this.getUtilisateur() + 100);
-      this.missionQuestion = new MissionQuestion(this.missionQuestion.getNbQ() + 5);
+      this.getUtilisateur().setArgent(this.getUtilisateur().getArgent() + 100);
+      this.missionQuestion = new MissionQuestion(this.missionQuestion.getNbQ() + 5,this.missionQuestion.getNbQ() + 5);
     }
 
 

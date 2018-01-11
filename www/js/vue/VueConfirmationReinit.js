@@ -2,6 +2,7 @@ class VueConfirmationReinit extends Vue {
   constructor(ctrl) {
     super(ctrl, 'VueConfirmationReinit');
 
+
     const confirmation = this.create('h5');
     this.add(confirmation);
     confirmation.innerHTML = "Veux-tu vraiment réinitialiser les données de l'application ? Toute progression sera perdue.";

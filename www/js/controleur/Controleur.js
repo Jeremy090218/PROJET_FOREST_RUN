@@ -18,18 +18,18 @@ class Controleur {
     this.vues = new Array();
     this.vueRendu = null;
 
-    this.textures = new Bank("img", "textures/", ["default.png", "fondtest.png", "Ground_0_1.png","caillou.png",
-                                                  "Obstacle_1.png",
+    this.textures = new Bank("img", "textures/", ["default.png", "fondtest.png", "Ground_0_1.png","caillou.png", "Bannier.png",
+                                                  "Obstacle_1.png", "Bonsai_droit.png", "Bonsai_gauche.png",
                                                   "Tree_0_1.png","Bambou.png","Palmier_droit.png","Palmier_gauche.png",
                                                   "Nuage_0_1.png", "cible.png",
                                                   "Coin_1.png", "IconCoeur.png", "potionBleu.png","potionRouge.png", "Character_0_annimation.png",
                                                   "Character_0_vue_4.png","Character_0_vue_0.png", "Character_1_vue_0.png", "Character_2_vue_0.png","Ecran_accueil.png",
                                                   "Character_1_annimation.png",
-                                                  "Character_2_annimation.png"]);
-    this.sons = new Bank("audio", "sons/", ["chat.mp3", "crash.mp3", "lapin.mp3", "mouton.mp3", "piece.mp3",
+                                                  "Character_2_annimation.png",
+                                                  "Ground_0_1_3D.png"]);
+
+    this.sons = new Bank("audio", "sons/", ["Chat.mp3", "crash.mp3", "Lapin.mp3", "Chèvre.mp3", "piece.mp3",
                                             "musique_jeu01.mp3", "musique_jeu02.mp3", "musique_jeu03.mp3", "musique_menu.mp3"]);
-
-
 
     this.chargement();
   }
@@ -154,23 +154,155 @@ class Controleur {
 
   chargerDonneesSauvegarde(cb){
     // TODO: utiliser plugin cordova pour faire un read ou utiliser un XMLHttpRequest
-    const dataUtilisateur = {
-      persoCourant: {nom: "Chat", textureFixe: "Character_0_vue_0.png", textureAnim: "Character_0_annimation.png"},
+
+    const dafaultData = {
+      persoCourant: {nom: "Chat", textureFixe: "Character_0_vue_0.png", son:"Chat.mp3", textureAnim: "Character_0_annimation.png"},
+      achete: [],
+      equipe: {nom: "Rien", achat: true, equipe: true, pric: 20},
+      argent: 0,
+      highScore: 0
+    }
+
+    let ctrl = this;
+
+    function onDeviceReady() {
+      function readFromFile(fileName, cb) {
+          var pathToFile = cordova.file.dataDirectory + fileName;
+          window.resolveLocalFileSystemURL(pathToFile, function (fileEntry) {
+              fileEntry.file(function (file) {
+                  var reader = new FileReader();
+
+                  reader.onloadend = function (e) {
+                      cb(JSON.parse(this.result));
+                  };
+
+                  reader.readAsText(file);
+              }, cb(dafaultData));
+          }, cb(dafaultData));
+      }
+
+      var fileData;
+      readFromFile('forestRunSave.json', (data) => {
+          //fileData = data;
+
+          for (let i = 0; i < data.achete.length; ++i) {
+            const o = data.achete[i];
+            data.achete[i] = new Item(o.nom, o.achete, o.equipe, o.prix);
+          }
+
+          const o = data.equipe;
+          data.equipe = new Item(o.nom, o.achete, o.equipe, o.prix);
+
+          ctrl.utilisateur.setFromSauvegarde(data);
+
+          cb();
+      });
+    }
+
+    try {
+      onDeviceReady();
+    } catch (e) {
+      let data = dafaultData;
+
+      for (let i = 0; i < data.achete.length; ++i) {
+        const o = data.achete[i];
+        data.achete[i] = new Item(o.nom, o.achete, o.equipe, o.prix);
+      }
+
+      const o = data.equipe;
+      data.equipe = new Item(o.nom, o.achete, o.equipe, o.prix);
+
+      ctrl.utilisateur.setFromSauvegarde(data);
+
+      cb();
+
+
+
+
+
+
+      /*setTimeout(()=>{
+        const v = ctrl.vues[0];
+        const p = v.create('p');
+        v.add(p);
+        p.innerHTML = e;
+      }, 1000);*/
+    }
+
+    /*const dataUtilisateur = {
+      persoCourant: {nom: "Chat", textureFixe: "Character_0_vue_0.png", son:"Chat.mp3", textureAnim: "Character_0_annimation.png"},
       achete: [new Item("Esquive +",true,true,20), new Item("Vie +",true,false,100)],
       equipe: new Item("Rien",true,true,20),
       argent: 1000,
       highScore: 150
       //boutique: [new Item("Saut +",true,false,50),new Item("Esquive ++",true,false,100)],
       //argent: 100
-    }
+    }*/
 
-    this.utilisateur.setFromSauvegarde(dataUtilisateur);
+    /*this.utilisateur.setFromSauvegarde(dataUtilisateur);
 
-    cb();
+    cb();*/
   }
 
   sauvegarderDonnees(){
     // TODO: utiliser plugin cordova pour faire un write
+    function onDeviceReady() {
+      function writeToFile(fileName, data) {
+          data = JSON.stringify(data, null, '\t');
+          window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (directoryEntry) {
+              directoryEntry.getFile(fileName, { create: true }, function (fileEntry) {
+                  fileEntry.createWriter(function (fileWriter) {
+                      fileWriter.onwriteend = function (e) {
+                          // for real-world usage, you might consider passing a success callback
+                          console.log('Write of file "' + fileName + '"" completed.');
+                      };
+
+                      fileWriter.onerror = function (e) {
+                          // you could hook this up with our global error handler, or pass in an error callback
+                          console.log('Write failed: ' + e.toString());
+                      };
+
+                      var blob = new Blob([data], { type: 'text/plain' });
+                      fileWriter.write(blob);
+                  }, () => {});
+              }, () => {});
+          }, () => {});
+      }
+
+
+
+      /*const dataUtilisateur = {
+        persoCourant: {nom: "Chat", textureFixe: "Character_0_vue_0.png", textureAnim: "Character_0_annimation.png"},
+        achete: [new Item("Esquive +",true,true,20), new Item("Vie +",true,false,100)],
+        equipe: new Item("Rien",true,true,20),
+        argent: 1000,
+        highScore: 150
+      }*/
+
+      const dataUtilisateur = {
+        persoCourant: {nom: "Chat", textureFixe: "Character_0_vue_0.png", textureAnim: "Character_0_annimation.png"},
+        achete: [{nom: "Esquive +", achat: true, equipe: true, prix: 20}, {nom: "Vie +", achat: true, equipe: false, prix: 100}],
+        equipe: {nom: "Rien", achat: true, equipe: true, pric: 20},
+        argent: 1000,
+        highScore: 150
+      }
+
+
+
+      try {
+        writeToFile('forestRunSave.json', dataUtilisateur);
+      } catch (e) {
+        /*setTimeout(()=>{
+          const v = ctrl.vues[0];
+          const p = v.create('p');
+          v.add(p);
+          p.innerHTML = e;
+        }, 1000);*/
+      }
+
+    }
+
+    onDeviceReady();
   }
 
   getUtilisateur(){

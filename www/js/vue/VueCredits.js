@@ -12,7 +12,7 @@ class VueCredits extends Vue {
 
     const credits = this.create('p');
     this.add(credits);
-    credits.innerHTML = "Jérémy ANDRE \n Mathilde BENETTI \n Romain GRUSON \n Romain LASCAUX \n Thomas LAURENT \n Clément MARTIN \n Jérémy MARTIN";
+    credits.innerHTML = "Jérémy ANDRE </br> Mathilde BENETTI </br> Romain GRUSON </br> Romain LASCAUX </br> Thomas LAURENT </br> Clément MARTIN </br> Jérémy MARTIN";
 
 }
 }

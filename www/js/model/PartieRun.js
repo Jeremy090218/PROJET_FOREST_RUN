@@ -104,9 +104,11 @@ setOnChangeMonde(e){this.onChangeMonde = e;}
                                                                                 // alors augmenter le score et ajouter un Piece
           this.setScore(this.getScore() + 20);
           this.incrementerPieceRecup();
+          this.controleur.vueRendu.sonPiece();                               
 
         }else{                                                                  // Test du type :  Sinon Obstacle
-          this.getPersonnage().decrementerVie();                                // alors  decrementer Vie
+          this.getPersonnage().decrementerVie();                       // alors  decrementer Vie
+          this.controleur.vueRendu.sonChoc();
         }
         this.getElementsPartie()[i].detruire();   // qu'importe le type la colision a eu lieu l'element doit etre detruie
       }

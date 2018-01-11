@@ -127,7 +127,13 @@ class VueRunner extends VueJeu {
   }
 
   sonChoc(){
-    son_jeu = this.controleur.sons.getObjet("crash.mp3");
+    const son_jeu = this.controleur.sons.getObjet("crash.mp3");
+    son_jeu.loop = false;
+    son_jeu.play();
+  }
+
+  sonPiece(){
+    const son_jeu = this.controleur.sons.getObjet("piece.mp3");
     son_jeu.loop = false;
     son_jeu.play();
   }

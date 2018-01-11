@@ -30,7 +30,6 @@ body{
   height: 100%;
 }
 
-/*TEST EFFET RIPPLE PAUSE IHM*/
 #pause {
   /*background-color: black;*/
   width: 100%;
@@ -153,7 +152,10 @@ button:active {
 /* ************** Atelier **************/
 
 #atelier {
-  background-color: #A13232;
+  background-image: url("../textures/Ecran_atelier.png");
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   width: 100%;
   height: 100%;
 }
@@ -184,7 +186,10 @@ button:active {
 
 /* ************** lecons **************/
 #VueLecons  {
-  background-color: #B0E0E6;
+  background-image: url("../textures/Ecran_accueil.png");
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   width: 100%;
   height: 100%;
 }
@@ -219,9 +224,13 @@ button:active {
 
 /************ Univers *************/
 #VueUnivers {
-  background-color: #A7E688;
+  background-image: url("../textures/Ecran_accueil.png");
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   width: 100%;
   height: 100%;
+  color: white;
 }
 #VueUnivers p {
   font-size: 15px;
@@ -234,9 +243,13 @@ button:active {
 
 /********* Regle *******/
 #VueRegle {
-  background-color: #A7E688;
+  background-image: url("../textures/Ecran_accueil.png");
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   width: 100%;
   height: 100%;
+  color: white;
 }
 
 #VueRegle p {

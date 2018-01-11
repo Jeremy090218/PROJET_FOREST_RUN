@@ -154,9 +154,31 @@ setOnChangeMonde(e){this.onChangeMonde = e;}
       this.addCiel();
     }
 
+    let faireTest = true;
+
     if(this.getTemps() == 0){
+      faireTest = false;
       if (this.getQuestionEquation()!=0) {
-        this.getControleur().changerVue(new VueReponse(this.getControleur(), this.controleur.vueRendu));
+
+        this.getControleur().changerVue(new VueReponse(this.getControleur(), this.controleur.vueRendu, () => {
+
+          if(this.getPersonnage().estMort()){
+            this.controleur.vueRendu.sonPerso();
+            this.controleur.pause();
+            this.controleur.updateMission(this.getPieceRecup(),this.getScore(),this.nbQuestionReussi);
+            this.controleur.switchMode("shooter");
+          }
+          if(this.getScore()>150 && this.monde == 0){
+            this.monde = 1; this.onChangeMonde(this.monde);
+          }
+          if(this.getScore()> 300 && this.monde == 1){
+            this.monde = 2; this.onChangeMonde(this.monde);
+          }
+
+
+
+
+        }, !this.getPersonnage().estMort()), false);
       } else {
         this.setTemps(1200) ;
         this.setQuestionEquation(new Question(this.getControleur()));
@@ -165,6 +187,7 @@ setOnChangeMonde(e){this.onChangeMonde = e;}
       }
 
     }else if(this.getTemps() == 1){
+      faireTest = false;
       if(this.getQuestionEquation()){
         if(!this.testQuestion()){
           this.getPersonnage().decrementerVie();
@@ -173,24 +196,30 @@ setOnChangeMonde(e){this.onChangeMonde = e;}
           this.vitesse += 0.2;
         }
       }
+
+
     }
     if(this.getTemps()<0){
       this.setTemps(1200);
     }
     this.decrementerTemps();
 
-    if(this.getPersonnage().estMort()){
-      this.controleur.vueRendu.sonPerso();
-      this.controleur.pause();
-      this.controleur.updateMission(this.getPieceRecup(),this.getScore(),this.nbQuestionReussi);
-      this.controleur.switchMode("shooter");
+
+    if (/*!this.getQuestionEquation()*/faireTest) {
+      if(this.getPersonnage().estMort()){
+        this.controleur.vueRendu.sonPerso();
+        this.controleur.pause();
+        this.controleur.updateMission(this.getPieceRecup(),this.getScore(),this.nbQuestionReussi);
+        this.controleur.switchMode("shooter");
+      }
+      if(this.getScore()>150 && this.monde == 0){
+        this.monde = 1; this.onChangeMonde(this.monde);
+      }
+      if(this.getScore()> 300 && this.monde == 1){
+        this.monde = 2; this.onChangeMonde(this.monde);
+      }
     }
-    if(this.getScore()>150 && this.monde == 0){
-      this.monde = 1; this.onChangeMonde(this.monde);
-    }
-    if(this.getScore()> 300 && this.monde == 1){
-      this.monde = 2; this.onChangeMonde(this.monde);
-    }
+
   }
 
   testQuestion(){

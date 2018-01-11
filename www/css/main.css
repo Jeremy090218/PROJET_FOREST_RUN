@@ -186,7 +186,7 @@ button:active {
   height: 100%;
 }
 #VueUnivers p {
-  font-size: 20px;
+  font-size: 15px;
 }
 #VueUnivers #divU {
   height: 90%;
@@ -201,6 +201,15 @@ button:active {
   height: 100%;
 }
 
+#VueRegle p {
+  font-size: 15px;
+}
+
+#VueRegle #divR {
+  height: 90%;
+  overflow: scroll;
+  overflow-y: auto;
+}
 
 /**** Perdu ***/
 #perdu {

@@ -21,15 +21,15 @@ class VueRegle extends Vue {
 
     const rRunner = this.create('p');
     this.add(divR,rRunner);
-    rRunner.innerHTML = "<strong>Runner</strong> </br> Tu incarnes un personnage que tu peux déplacer de gauche à droite et faire sauter grâce à ton doigt. </br> Ton objectif sera d'éviter les obstacles qui se présenteront sur ton chemin et de répondre aux diverses questions que l'on te pose en récupérant des fioles. Les fioles bleues augmentent ton nombres de fioles ramassées tandis que les fioles rouges le diminue. <br> Tu pourra également ramasser des pièces qui te permettront d'augmenter ton score et d'acheter des objets dans la Boutique.";
+    rRunner.innerHTML = "<strong>Runner</strong> </br> Tu incarnes un personnage que tu peux déplacer de gauche à droite et faire sauter grâce à ton doigt. </br> Ton objectif sera d'éviter les obstacles qui se présenteront sur ton chemin et de répondre aux diverses questions que l'on te pose en récupérant des fioles. Les fioles bleues augmentent ton nombre de fioles ramassées tandis que les fioles rouges le diminuent. <br> Tu pourras également ramasser des pièces qui te permettront d'augmenter ton score et d'acheter des objets dans la Boutique. Si tu perds toutes tes vies, tu es attrapé par les ennemis et tu passes dans le mode Shooter !";
 
     const rShooter = this.create('p');
     this.add(divR,rShooter);
-    rShooter.innerHTML = "<strong>Shooter</strong> </br> Tu dois répondre à la question posé en sélectionnant la bonne cible avec ton doigt. </br> Si tu échoues, la partie se termine. </br> Si tu réussi, tu reviens dans le Runner pour continuer ta progression dans le partie.";
+    rShooter.innerHTML = "<strong>Shooter</strong> </br> Tu dois répondre à la question posé en sélectionnant la bonne cible avec ton doigt. </br> Si tu échoues, la partie se termine. </br> Si tu réussies, tu reviens dans le Runner pour continuer ta progression dans le partie.";
 
     const rAtelier = this.create('p');
     this.add(divR,rAtelier);
-    rAtelier.innerHTML = "<strong>Atelier</strong> </br> Depuis le Menu Principal, tu peux accéder à l'Atelier. </br>Ainsi, tu pourras choisir l'Animal que tu souhaite incarner et lui appliquer le bonus que tu souhaites.";
+    rAtelier.innerHTML = "<strong>Atelier</strong> </br> Depuis le Menu Principal, tu peux accéder à l'Atelier. </br>Ainsi, tu pourras choisir l'Animal que tu souhaites incarner et lui appliquer le bonus que tu souhaites.";
 
     const rBoutique = this.create('p');
     this.add(divR,rBoutique);

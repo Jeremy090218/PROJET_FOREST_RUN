@@ -1,5 +1,7 @@
 class Question{
-  constructor(ctrl) {
+  constructor(ctrl, type = "runner") {
+    this.ctrl = ctrl;
+    this.typeP = type;
     if(!this.nbType) this.nbType = 4;
     this.intitule = null;
     this.question = null;
@@ -31,82 +33,74 @@ class Question{
 
 
   setQuestion() {
-    if(ctrl.partieRendu == ctrl.partieRunner) {
+    if(this.typeP == "runner") {
       let typeQ = this.getRndBias(0,3,0,0);
       console.log(typeQ);
       switch (typeQ) {
         case 0 :
           this.setIntitule("Combien vaut x ?");
           this.question = this.createEquation();
-          this.setReponse(new Reponse(ctrl, typeQ, this.solveEquation(this.question)));
+          this.setReponse(new Reponse(this.ctrl, typeQ, this.solveEquation(this.question)));
           break;
-        
+
         case 1 :
           this.setIntitule("Quel est le reste de la division ?");
           this.question = this.createDivisionE();
-          this.setReponse(new Reponse(ctrl, typeQ, this.solveDivisionE(this.question)));
+          this.setReponse(new Reponse(this.ctrl, typeQ, this.solveDivisionE(this.question)));
           break;
-        
+
         case 2 :
           this.setIntitule("Combien vaut la médiane ?");
           this.question = this.createMediane();
-          this.setReponse(new Reponse(ctrl, typeQ, this.solveMediane(this.question)));
+          this.setReponse(new Reponse(this.ctrl, typeQ, this.solveMediane(this.question)));
           break;
 
         case 3 :
           this.setIntitule("Combien de fois rentre-t-on dans la boucle ?");
           this.question = this.createWhile();
-          this.setReponse(new Reponse(ctrl, typeQ, this.solveWhile(this.question)));
+          this.setReponse(new Reponse(this.ctrl, typeQ, this.solveWhile(this.question)));
           break;
-          
+
         default : break;
       }
     } else {
-      let typeQ = this.getRndBias(0,6,0,0);
+      let typeQ = this.getRndBias(0,5,0,0);
       switch (typeQ) {
         case 0 :
           this.setIntitule("Combien vaut x ?");
           this.question = this.createEquation();
-          this.setReponse(new Reponse(ctrl, typeQ, this.solveEquation(this.question)));
+          this.setReponse(new Reponse(this.ctrl, typeQ, this.solveEquation(this.question)));
           break;
-        
+
         case 1 :
           this.setIntitule("Quel est le reste de la division ?");
           this.question = this.createDivisionE();
-          this.setReponse(new Reponse(ctrl, typeQ, this.solveDivisionE(this.question)));
+          this.setReponse(new Reponse(this.ctrl, typeQ, this.solveDivisionE(this.question)));
           break;
-        
+
         case 2 :
-          this.setIntitule("Combien vaut la médiane ?");
-          this.question = this.createMediane();
-          this.setReponse(new Reponse(ctrl, typeQ, this.solveMediane(this.question)));
-          break;
-  
-        case 3 :
           this.setIntitule("Combien de fois rentre-t-on dans la boucle ?");
           this.question = this.createWhile();
-          this.setReponse(new Reponse(ctrl, typeQ, this.solveWhile(this.question)));
+          this.setReponse(new Reponse(this.ctrl, typeQ, this.solveWhile(this.question)));
           break;
-        
-        case 4 :
+
+        case 3 :
           this.setIntitule("Quel résultat obtient-on ?");
           this.question = this.createPuissance();
-          this.setReponse(new Reponse(ctrl, typeQ, this.solvePuissance(this.question)));
+          this.setReponse(new Reponse(this.ctrl, typeQ, this.solvePuissance(this.question)));
           break;
-  
-        case 5 :
+
+        case 4 :
           this.setIntitule("Ce nombre est-il premier ?");
           this.question = this.createNombrePremier();
-          this.setReponse(new Reponse(ctrl, typeQ, this.solveNombrePremier(this.question)));
+          this.setReponse(new Reponse(this.ctrl, typeQ, this.solveNombrePremier(this.question)));
           break;
-        
-        case 6 :
+
+        default:
           this.setIntitule("Que retourne cette équation logique ?");
           this.question = this.createBooleen();
-          this.setReponse(new Reponse(ctrl, typeQ, this.solveBooleen(this.question)));
+          this.setReponse(new Reponse(this.ctrl, typeQ, this.solveBooleen(this.question)));
           break;
-  
-        default : break;
       }
     }
   }
@@ -187,7 +181,7 @@ class Question{
   createPuissance() {
     let n = this.getRndBias(1,10,0,0);
     let puissance;
-    if(n == 10 || n == 2) {
+    if(n == 2) {
       puissance = this.getRndBias(1,5,0,0);
     } else {
       puissance = 2;
@@ -215,11 +209,12 @@ class Question{
   createWhile() {
     let x = this.getRndBias(10,100,0,0);
     let y = this.getRndBias(1,100,0,0);
-    if(x/y > 8) {
-      this.createWhile();
-    } else {
-      return "i = 0 - Tant que i <= " + x + ", i = i + " + y;
+    while(x/y > 8) {
+      x = this.getRndBias(10,100,0,0);
+      y = this.getRndBias(1,100,0,0);
     }
+
+    return "i = 0 - Tant que i <= " + x + ", i = i + " + y;
   }
 
 
@@ -236,9 +231,13 @@ class Question{
 
   solveNombrePremier(n) {
     for(var i = 2; i <= Math.sqrt(n); i++) {
-        if(n % i === 0) return false;
+        if(n % i === 0) return "Faux";
     }
-      return n !== 1;
+      if(n !== 1) {
+        return "Vrai";
+      } else {
+        return "Faux"
+      }
   }
 
 
@@ -261,7 +260,11 @@ class Question{
 
 
   solveBooleen(b) {
-    return eval(b);
+    if(eval(b)) {
+      return "Vrai";
+    } else {
+      return "Faux";
+    }
   }
 
 
@@ -272,6 +275,6 @@ class Question{
 
 
   repondre(rep) {
-    return rep == this.reponse.getReponse();
+    return rep == this.reponse.getBonneRep();
   }
 }

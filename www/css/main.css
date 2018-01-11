@@ -80,7 +80,7 @@ button {
 	text-shadow:
 		0px -1px 0px rgba(17,31,24,0),
 		0px 0px 0px rgba(255,255,255,0.2);
-    display: block;
+    display: inline-block;
     margin:auto;
     margin-bottom:  2%;
 
@@ -106,6 +106,12 @@ button:active {
   width: 100%;
   height: 100%;
 }
+
+/* #div1 {
+
+  width:  100%;
+  display: inline-block;
+} */
 
 #btnHD {
   margin-right: 10px;

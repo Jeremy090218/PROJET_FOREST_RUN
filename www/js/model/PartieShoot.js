@@ -5,21 +5,25 @@ class PartieShoot extends Partie {
     this.personnage.setX(50);
     this.personnage.setY(Partie.virtualH - 10);
     this.personnage.setZ(2);
-    this.elementsReponse = new Array();
+
+    this.nbQuestion = 3;
 
     this.setNewQuestion();
   }
 
   setNewQuestion(){
-    this.question = new Question(this.controleur);
+    this.elementsReponse = new Array();
+
+    this.question = new Question(this.controleur, "shooter");
     console.log(this.question.getIntitule());
     console.log(this.question.getQuestion());
-    for (let i = 0; i < 5; ++i) {
+    /*for (let i = 0; i < 5; ++i) {
       this.addElementReponse(i == 0);
-    }
+    }*/
+    this.addElementReponse();
   }
 
-  addElementReponse(correct = false){
+  /*addElementReponse(correct = false){
     let reponse = parseInt(this.question.getReponse().reponse);
 
     if(!correct) reponse += Math.floor(Math.random()* 2 - 1);
@@ -27,6 +31,16 @@ class PartieShoot extends Partie {
     const o = new ElementReponseShooter(ctrl, "cible.png", reponse);
     this.elementsReponse.push(o);
     this.fileRendu.push(o);
+  }*/
+
+  addElementReponse() {
+    let reponses = this.question.getReponse().getReponses();
+    console.log("yo : " + reponses);
+    for(let i = 0; i < 6; i++) {
+      const o = new ElementReponseShooter(ctrl, "cible.png", reponses[i]);
+      this.elementsReponse.push(o);
+      this.fileRendu.push(o);
+    }
   }
 
   update(){
@@ -51,7 +65,15 @@ class PartieShoot extends Partie {
     }
     if(reussi){
       this.controleur.partieRunner.getPersonnage().initialisation();
-      this.controleur.switchMode("runner");
+
+      if(this.nbQuestion-- == 0) {
+        this.controleur.switchMode("runner");
+      } else {
+        for (let i of this.getElementsReponse()) {
+          i.detruire();
+        }
+        this.setNewQuestion();
+      }
     }else{
       this.controleur.pause();
       this.controleur.getUtilisateur().setHighScore(this.controleur.partieRunner.getScore());

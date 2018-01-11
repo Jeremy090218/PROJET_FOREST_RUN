@@ -4,7 +4,11 @@ class VueRunner extends VueJeu {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    this.controleur.changerMusique("musique_jeu01.mp3");
+    this.controleur.changerMusique("musique_jeu03.mp3");
+
+    const son_jeu = this.controleur.getUtilisateur().getPersonnageRunner().getSon();
+    son_jeu.loop = false;
+    son_jeu.play();
 
     this.ctx.font = "40px FredokaOne-Regular";
 
@@ -121,4 +125,11 @@ class VueRunner extends VueJeu {
     document.removeEventListener('touchend', this.touchend);
     super.delete();
   }
+
+  sonChoc(){
+    son_jeu = this.controleur.sons.getObjet("crash.mp3");
+    son_jeu.loop = false;
+    son_jeu.play();
+  }
+
 }

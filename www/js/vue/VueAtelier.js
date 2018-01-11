@@ -64,6 +64,7 @@ class VueAtelier extends Vue {
           vueAtelier.controleur.getUtilisateur().setSkins({
             nom: choix.innerHTML,
             textureFixe: texturePerso,
+            son: choix.innerHTML + ".mp3",
             textureAnim: "Character_"+ choix.value +"_annimation.png"
           });
         }

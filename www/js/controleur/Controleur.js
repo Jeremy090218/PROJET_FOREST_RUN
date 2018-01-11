@@ -19,14 +19,14 @@ class Controleur {
     this.vueRendu = null;
 
     this.textures = new Bank("img", "textures/", ["default.png", "fondtest.png", "Ground_0_1.png","caillou.png",
-                                                  "Obstacle_1.png", "Bonsai_droit.png", "Bonsai_gauche.png", 
+                                                  "Obstacle_1.png", "Bonsai_droit.png", "Bonsai_gauche.png",
                                                   "Tree_0_1.png","Bambou.png","Palmier_droit.png","Palmier_gauche.png",
                                                   "Nuage_0_1.png", "cible.png",
                                                   "Coin_1.png", "IconCoeur.png", "potionBleu.png","potionRouge.png", "Character_0_annimation.png",
                                                   "Character_0_vue_4.png","Character_0_vue_0.png", "Character_1_vue_0.png", "Character_2_vue_0.png","Ecran_accueil.png",
                                                   "Character_1_annimation.png",
                                                   "Character_2_annimation.png"]);
-    this.sons = new Bank("audio", "sons/", ["chat.mp3", "crash.mp3", "lapin.mp3", "mouton.mp3", "piece.mp3",
+    this.sons = new Bank("audio", "sons/", ["Chat.mp3", "crash.mp3", "Lapin.mp3", "Chèvre.mp3", "piece.mp3",
                                             "musique_jeu01.mp3", "musique_jeu02.mp3", "musique_jeu03.mp3", "musique_menu.mp3"]);
 
 
@@ -155,7 +155,7 @@ class Controleur {
   chargerDonneesSauvegarde(cb){
     // TODO: utiliser plugin cordova pour faire un read ou utiliser un XMLHttpRequest
     const dataUtilisateur = {
-      persoCourant: {nom: "Chat", textureFixe: "Character_0_vue_0.png", textureAnim: "Character_0_annimation.png"},
+      persoCourant: {nom: "Chat", textureFixe: "Character_0_vue_0.png", son:"Chat.mp3", textureAnim: "Character_0_annimation.png"},
       achete: [new Item("Esquive +",true,true,20), new Item("Vie +",true,false,100)],
       equipe: new Item("Rien",true,true,20),
       argent: 1000,

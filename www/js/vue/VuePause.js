@@ -26,22 +26,19 @@ class VuePause extends Vue {
       this.controleur.changerVueUnique(new VueMenuPrincipal(this.controleur));
     }
 
-    ////////////////////
-    const testS = this.create('button');
-    this.add(testS);
-    testS.innerHTML = "Shooter";
-    testS.onclick = () => {
-      this.controleur.switchMode('shooter');
-      this.controleur.play();
-    }
 
-    const testR = this.create('button');
-    this.add(testR);
-    testR.innerHTML = "Runner";
-    testR.onclick = () => {
-      this.controleur.switchMode('runner');
-      this.controleur.play();
-    }
+    //missions
+    const missionPieceIHM = this.create('p');
+    this.add(missionPieceIHM);
+    missionPieceIHM.innerHTML = this.controleur.missionPiece.getMission();
+
+    const missionScoreIHM = this.create('p');
+    this.add(missionScoreIHM);
+    missionScoreIHM.innerHTML = this.controleur.missionScore.getMission();
+
+    const missionQuestionIHM = this.create('p');
+    this.add(missionQuestionIHM);
+    missionQuestionIHM.innerHTML = this.controleur.missionQuestion.getMission();
   }
 
 

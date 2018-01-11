@@ -1,10 +1,10 @@
 class Question{
-  constructor(ctrl, typeQ) {
+  constructor(ctrl) {
     if(!this.nbType) this.nbType = 4;
     this.intitule = null;
     this.question = null;
     this.reponse = null;
-    this.setQuestion(this.getRndBias(0,1,0,0));
+    this.setQuestion();
     //this.setQuestion(i == -1 ? Math.floor(Math.random()*(Question.nbType + 0.99)) : i);
 
   }
@@ -30,51 +30,84 @@ class Question{
   }
 
 
-  setQuestion(typeQ) {
-    switch (typeQ) {
-      case 0 :
-        this.setIntitule("Combien vaut x ?");
-        this.question = this.createEquation();
-        this.setReponse(new Reponse(ctrl, typeQ, this.solveEquation(this.question)));
-        break;
-      
-      case 1 :
-        this.setIntitule("Quel est le reste de la division ?");
-        this.question = this.createDivisionE();
-        this.setReponse(new Reponse(ctrl, typeQ, this.solveDivisionE(this.question)));
-        break;
+  setQuestion() {
+    if(ctrl.partieRendu == ctrl.partieRunner) {
+      let typeQ = this.getRndBias(0,3,0,0);
+      console.log(typeQ);
+      switch (typeQ) {
+        case 0 :
+          this.setIntitule("Combien vaut x ?");
+          this.question = this.createEquation();
+          this.setReponse(new Reponse(ctrl, typeQ, this.solveEquation(this.question)));
+          break;
+        
+        case 1 :
+          this.setIntitule("Quel est le reste de la division ?");
+          this.question = this.createDivisionE();
+          this.setReponse(new Reponse(ctrl, typeQ, this.solveDivisionE(this.question)));
+          break;
+        
+        case 2 :
+          this.setIntitule("Combien vaut la médiane ?");
+          this.question = this.createMediane();
+          this.setReponse(new Reponse(ctrl, typeQ, this.solveMediane(this.question)));
+          break;
 
-      case 2 :
-        this.setIntitule("Quel résultat obtient-on ?");
-        this.question = this.createPuissance();
-        this.setReponse(new Reponse(ctrl, typeQ, this.solvePuissance(this.question)));
-        break;
-      
-      case 3 :
-        this.setIntitule("Combien de fois rentre-t-on dans la boucle ?");
-        this.question = this.createWhile();
-        this.setReponse(new Reponse(ctrl, typeQ, this.solveWhile(this.question)));
-        break;
-
-      case 4 :
-        this.setIntitule("Ce nombre est-il premier ?");
-        this.question = this.createNombrePremier();
-        this.setReponse(new Reponse(ctrl, typeQ, this.solveNombrePremier(this.question)));
-        break;
-      
-      case 5 :
-        this.setIntitule("Que retourne cette équation logique ?");
-        this.question = this.createBooleen();
-        this.setReponse(new Reponse(ctrl, typeQ, this.solveBooleen(this.question)));
-        break;
-
-      case 6 :
-        this.setIntitule("Combien vaut la médiane ?");
-        this.question = this.createMediane();
-        this.setReponse(new Reponse(ctrl, typeQ, this.solveMediane(this.question)));
-        break;
-
-      default : break;
+        case 3 :
+          this.setIntitule("Combien de fois rentre-t-on dans la boucle ?");
+          this.question = this.createWhile();
+          this.setReponse(new Reponse(ctrl, typeQ, this.solveWhile(this.question)));
+          break;
+          
+        default : break;
+      }
+    } else {
+      let typeQ = this.getRndBias(0,6,0,0);
+      switch (typeQ) {
+        case 0 :
+          this.setIntitule("Combien vaut x ?");
+          this.question = this.createEquation();
+          this.setReponse(new Reponse(ctrl, typeQ, this.solveEquation(this.question)));
+          break;
+        
+        case 1 :
+          this.setIntitule("Quel est le reste de la division ?");
+          this.question = this.createDivisionE();
+          this.setReponse(new Reponse(ctrl, typeQ, this.solveDivisionE(this.question)));
+          break;
+        
+        case 2 :
+          this.setIntitule("Combien vaut la médiane ?");
+          this.question = this.createMediane();
+          this.setReponse(new Reponse(ctrl, typeQ, this.solveMediane(this.question)));
+          break;
+  
+        case 3 :
+          this.setIntitule("Combien de fois rentre-t-on dans la boucle ?");
+          this.question = this.createWhile();
+          this.setReponse(new Reponse(ctrl, typeQ, this.solveWhile(this.question)));
+          break;
+        
+        case 4 :
+          this.setIntitule("Quel résultat obtient-on ?");
+          this.question = this.createPuissance();
+          this.setReponse(new Reponse(ctrl, typeQ, this.solvePuissance(this.question)));
+          break;
+  
+        case 5 :
+          this.setIntitule("Ce nombre est-il premier ?");
+          this.question = this.createNombrePremier();
+          this.setReponse(new Reponse(ctrl, typeQ, this.solveNombrePremier(this.question)));
+          break;
+        
+        case 6 :
+          this.setIntitule("Que retourne cette équation logique ?");
+          this.question = this.createBooleen();
+          this.setReponse(new Reponse(ctrl, typeQ, this.solveBooleen(this.question)));
+          break;
+  
+        default : break;
+      }
     }
   }
 
@@ -169,7 +202,7 @@ class Question{
 
 
   createMediane() {
-    return new Array(this.getRndBias(0,20,0,0), this.getRndBias(0,20,0,0), this.getRndBias(0,20,0,0), this.getRndBias(0,20,0,0), this.getRndBias(0,20,0,0), this.getRndBias(0,20,0,0), this.getRndBias(0,20,0,0)).join("-");
+    return new Array(this.getRndBias(0,20,0,0), this.getRndBias(0,20,0,0), this.getRndBias(0,20,0,0), this.getRndBias(0,20,0,0), this.getRndBias(0,20,0,0), this.getRndBias(0,20,0,0), this.getRndBias(0,20,0,0)).join(" - ");
   }
 
 
@@ -180,24 +213,14 @@ class Question{
 
 
   createWhile() {
-    let x = getRndBias(10,100,0,0);
-    let y = getRndBias(1,100,0,0);
+    let x = this.getRndBias(10,100,0,0);
+    let y = this.getRndBias(1,100,0,0);
     if(x/y > 8) {
-      createWhile();
+      this.createWhile();
     } else {
-      return "i = 0. Tant que i <= " + x + ", i = i + " + y;
+      return "i = 0 - Tant que i <= " + x + ", i = i + " + y;
     }
   }
-
-  /*createIf() {
-    let x = getRndBias(10,100,0,0);
-    let y = getRndBias(1,100,0,0);
-    if(x/y > 8) {
-      createWhile();
-    } else {
-      return "i = 0. Tant que i <= " + x + ", i = i + " + y;
-    }
-  }*/
 
 
   solveEquation(e) {

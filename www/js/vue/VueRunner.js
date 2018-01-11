@@ -52,11 +52,29 @@ class VueRunner extends VueJeu {
     this.textureVie = this.controleur.textures.getObjet("IconCoeur.png");
     this.texturePiece = this.controleur.textures.getObjet("Coin_1.png");
     this.texturePotion = this.controleur.textures.getObjet("potionBleu.png");
+
+    this.couleurSol = [17, 170, 85];
+    this.goCouleurSol = [17, 170, 85];
+
+    this.controleur.partieRunner.setOnChangeMonde((m) => {
+      switch (m) {
+        case 0: this.goCouleurSol = [17, 170, 85]; break;
+        case 1: this.goCouleurSol = [17, 200, 40]; break;
+        case 2: this.goCouleurSol = [241, 196, 15]; break;
+      }
+    });
   }
 
   draw(){
     //super.draw();
-    this.ctx.fillStyle = "#1a5";
+    if(this.goCouleurSol[0] < this.couleurSol[0]) --this.couleurSol[0];
+    if(this.goCouleurSol[0] > this.couleurSol[0]) ++this.couleurSol[0];
+    if(this.goCouleurSol[1] < this.couleurSol[1]) --this.couleurSol[1];
+    if(this.goCouleurSol[1] > this.couleurSol[1]) ++this.couleurSol[1];
+    if(this.goCouleurSol[2] < this.couleurSol[2]) --this.couleurSol[2];
+    if(this.goCouleurSol[2] > this.couleurSol[2]) ++this.couleurSol[2];
+
+    this.ctx.fillStyle = "rgb("+ this.couleurSol[0] +", "+ this.couleurSol[1] +", "+ this.couleurSol[2] +")";
     this.ctx.fillRect(0, 300, 360, 340);
 
     this.ctx.fillStyle = "#15a";

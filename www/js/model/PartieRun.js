@@ -22,6 +22,8 @@ class PartieRun extends Partie {
 
     this.monde = 0;
 
+    this.setOnChangeMonde(()=>{});
+
     this.vitesse = 1;
   }
 ////////////////////////////////////////////////////////////////////////////////
@@ -61,6 +63,7 @@ setLastTraj(i){this.lastTraj=i;}
 setTemps(i){this.temps=i;}
 setElementsDecors(i){this.elementsDecors=i;}
 setElementsPartie(i){this.elementsPartie=i;}
+setOnChangeMonde(e){this.onChangeMonde = e;}
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -158,13 +161,12 @@ setElementsPartie(i){this.elementsPartie=i;}
       this.controleur.changerVueUnique(new VuePerdu(this.controleur));
     }
     if(this.getScore()>150 && this.monde == 0){
-      this.monde = 1;
+      this.monde = 1; this.onChangeMonde(this.monde);
     }
     if(this.getScore()> 300 && this.monde == 1){
-      this.monde = 2;
+      this.monde = 2; this.onChangeMonde(this.monde);
     }
   }
-
 
   testQuestion(){
     return this.questionEquation.repondre(this.nbReponse);

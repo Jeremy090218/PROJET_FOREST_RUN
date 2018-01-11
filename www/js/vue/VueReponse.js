@@ -22,6 +22,7 @@ class VueReponse extends Vue {
 
     const reponse = this.create('p');
     this.add(reponse);
+      reponse.id = "rep";
     reponse.innerHTML = this.controleur.partieRunner.getNbReponse();
 
 

@@ -14,9 +14,18 @@ class ElementDecor extends ElementPartie {
       }
     }else if(monde ==2){
       if(xx > 180){
-        super(ctrl, "Palmier_gauche.png",[{x: xx, y: 300, z: 1}, {x: xx+400, y: 800, z: 10}], vitesse);
+        if(Math.random()>0.5){
+          super(ctrl, "Palmier_gauche.png",[{x: xx, y: 300, z: 1}, {x: xx+400, y: 800, z: 10}], vitesse);
+        }else{
+          super(ctrl, "Tree_1_2.png",[{x: xx, y: 300, z: 1}, {x: xx+400, y: 800, z: 10}], vitesse);
+        }
+
       }else{
-        super(ctrl, "Palmier_droit.png",[{x: xx, y: 300, z: 1}, {x: xx-400, y: 800, z: 10}], vitesse);
+        if(Math.random()>0.5){
+          super(ctrl, "Palmier_droit.png",[{x: xx, y: 300, z: 1}, {x: xx-400, y: 800, z: 10}], vitesse);
+        }else{
+          super(ctrl, "Tree_1_2.png",[{x: xx, y: 300, z: 1}, {x: xx-400, y: 800, z: 10}], vitesse);
+        }
       }
     }
 

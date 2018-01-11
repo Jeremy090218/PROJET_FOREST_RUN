@@ -287,7 +287,7 @@ setOnChangeMonde(e){this.onChangeMonde = e;}
                                             ////// Gestion des Obstacles
 
   addObstacle(){
-    const o = new Obstacle(this.controleur, this.getTrajectoire(), this.vitesse);
+    const o = new Obstacle(this.controleur, this.getTrajectoire(), this.vitesse,this.monde);
     this.getElementsPartie().unshift(o);
     this.getFileRendu().unshift(o);
   }

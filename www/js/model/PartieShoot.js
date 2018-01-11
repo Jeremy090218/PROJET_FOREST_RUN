@@ -17,6 +17,7 @@ class PartieShoot extends Partie {
     this.question = new Question(this.controleur, "shooter");
     console.log(this.question.getIntitule());
     console.log(this.question.getQuestion());
+
     /*for (let i = 0; i < 5; ++i) {
       this.addElementReponse(i == 0);
     }*/
@@ -73,6 +74,7 @@ class PartieShoot extends Partie {
           i.detruire();
         }
         this.setNewQuestion();
+        this.controleur.vueRendu.refreshQuestion();
       }
     }else{
       this.controleur.pause();

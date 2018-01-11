@@ -1,10 +1,24 @@
 class VueShooter extends VueJeu {
   constructor(ctrl) {
     super(ctrl, 'shooter');
-    document.addEventListener('touchstart', this.touchstart = (e) => {
-      const pt = e.touches[0];
-      this.controleur.partieShooter.verifierQuestion(pt.clientX,pt.clientY);
-    }, false);
+
+    setTimeout(() => {
+      document.addEventListener('touchstart', this.touchstart = (e) => {
+        const pt = e.touches[0];
+        if (pt.clientX*this.ew > 290 && pt.clientY*this.eh < 50) {
+
+        } else if (this.controleur.isRunning()) {
+          this.controleur.partieShooter.verifierQuestion(pt.clientX,pt.clientY);
+        }
+
+      }, false);
+    }, 800);
+
+    this.question = this.create('p');
+    this.add(this.question);
+    this.question.id = "afficheQuestionShooter";
+
+    this.refreshQuestion()
   }
 
 
@@ -18,5 +32,9 @@ class VueShooter extends VueJeu {
   delete(){
     document.removeEventListener('touchstart', this.touchstart);
     super.delete();
+  }
+
+  refreshQuestion(){
+    this.question.innerHTML = this.controleur.partieShooter.question.getIntitule() + "</br>" + this.controleur.partieShooter.question.getQuestion();
   }
 }

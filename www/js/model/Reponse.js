@@ -45,7 +45,7 @@ class Reponse {
   setReponses() {
     this.reponses.push(this.bonneRep);
 
-    if(this.typeQ == 0 || this.typeQ == 1 || this.typeQ == 2 || this.typeQ == 3) {
+    if(this.typeQ == 0 || this.typeQ == 1 || this.typeQ == 2|| this.typeQ == 3) {
       for(let i = 0; i < 5; i ++) {
         let fRep = this.getRndBias(parseInt(this.bonneRep)-10,parseInt(this.bonneRep)+10,parseInt(this.bonneRep)+3,0.3);
         while(this.reponses.includes(fRep) || fRep == this.reponse) {

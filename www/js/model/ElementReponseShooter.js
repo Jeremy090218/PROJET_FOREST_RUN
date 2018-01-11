@@ -16,15 +16,16 @@ class ElementReponseShooter extends Element {
 
     const img = this.controleur.textures.getObjet(t);
 
-    canvas.width = img.width;
+    canvas.width = img.width*1.5;
     canvas.height = img.height;
 
     ctx.font = "30px FredokaOne-Regular";
     ctx.fillStyle = "#000";
+    ctx.textBaseline="middle";
     ctx.textAlign = "center";
 
-    ctx.drawImage(img, 0, 0);
-    ctx.fillText(this.getValeur(), canvas.width/2, canvas.height/2 +10);
+    ctx.drawImage(img, (canvas.width/2)-(img.width/2), 0);
+    ctx.fillText(this.getValeur(), canvas.width/2, canvas.height/2);
 
     const image = new Image();
     image.src = canvas.toDataURL();

@@ -6,9 +6,7 @@ class VueRunner extends VueJeu {
 
     this.controleur.changerMusique("musique_jeu03.mp3");
 
-    const son_jeu = this.controleur.getUtilisateur().getPersonnageRunner().getSon();
-    son_jeu.loop = false;
-    son_jeu.play();
+    this.sonPerso();
 
     this.ctx.font = "40px FredokaOne-Regular";
 
@@ -124,6 +122,12 @@ class VueRunner extends VueJeu {
     document.removeEventListener('touchcancel', this.touchcancel);
     document.removeEventListener('touchend', this.touchend);
     super.delete();
+  }
+
+  sonPerso(){
+    const son_jeu = this.controleur.getUtilisateur().getPersonnageRunner().getSon();
+    son_jeu.loop = false;
+    son_jeu.play();
   }
 
   sonChoc(){

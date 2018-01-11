@@ -23,7 +23,7 @@ class VueReponse extends Vue {
     const reponse = this.create('p');
     this.add(reponse);
     console.log(this.controleur.partieRunner.questionEquation.getReponse());
-    reponse.innerHTML = this.controleur.partieRunner.questionEquation.getReponse().reponse;
+    reponse.innerHTML = this.controleur.partieRunner.questionEquation.getReponse().bonneRep;
 
 
     const buttonReprendre = this.create('button');

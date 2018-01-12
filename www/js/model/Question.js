@@ -205,7 +205,7 @@ class Question{
     } else {
       puissance = 2;
     }
-    return n + "^" + puissance;
+    return n + " ** " + puissance;
   }
 
 
@@ -216,7 +216,7 @@ class Question{
 
   createBooleen() {   // Crée les questions portant sur les équations logiques
     let b = this.getRndBool() + this.getRndBoolOperator() + this.getRndBool() + this.getRndBoolOperator() + this.getRndBool() + this.getRndBoolOperator() + this.getRndBool();    // Ex : 1 && 0 || 0 && !1
-    
+
     //// PARSER ////
     b = b.replace(/[1]/g,"Vrai");
     b = b.replace(/[0]/g,"Faux");

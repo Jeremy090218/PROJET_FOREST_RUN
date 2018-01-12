@@ -25,7 +25,7 @@ class VueRegle extends Vue {
 
     const rShooter = this.create('p');
     this.add(divR,rShooter);
-    rShooter.innerHTML = "<strong>Shooter</strong> </br> Tu dois répondre à la question posé en sélectionnant la bonne cible avec ton doigt. </br> Si tu échoues, la partie se termine. </br> Si tu réussies, tu reviens dans le Runner pour continuer ta progression dans le partie.";
+    rShooter.innerHTML = "<strong>Shooter</strong> </br> Tu dois répondre à la question posée en sélectionnant la bonne cible avec ton doigt. </br> Si tu échoues, la partie se termine. </br> Si tu réussies, tu reviens dans le Runner pour continuer ta progression dans la partie.";
 
     const rAtelier = this.create('p');
     this.add(divR,rAtelier);
@@ -37,8 +37,14 @@ class VueRegle extends Vue {
 
     const rLecons = this.create('p');
     this.add(divR,rLecons);
-    rLecons.innerHTML = "<strong>Leçons</strong></br> Tu pourras accéder à différentes leçons à partir du menu principal. N'hésite pas si tu as des doutes à aller lire ces leçons qui seront t'aider.";
+    rLecons.innerHTML = "<strong>Leçons</strong></br> Tu pourras accéder à différentes leçons à partir du Menu Principal. N'hésite pas si tu as des doutes à aller lire ces leçons qui seront là pour t'aider.";
 
+    const rStatistiques = this.create('p');
+    this.add(divR,rStatistiques);
+    rStatistiques.innerHTML = "<strong>Statistiques</strong></br> Tu retrouveras tes records et des informations sur tes résultats depuis les Options, dans Statistiques.";
 
+    const rMissions = this.create('p');
+    this.add(divR,rMissions);
+    rMissions.innerHTML = "<strong>Missions</strong></br> En quête de challenge ? Tente de réussir les missions, visibles dans le Menu Principal !";
   }
 }

@@ -1,33 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8' ?>
 <!--<widget id="io.cocoon.template.ads" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:cocoon="http://cocoon.io/ns/1.0">-->
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:cocoon="http://cocoon.io/ns/1.0" id="io.projet.iut2" version="1.0.0">
+<widget id="io.projet.iut2" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:cocoon="http://cocoon.io/ns/1.0">
   <name>Forest Run</name>
-  <description>
-  Projet S3 IUT2
-  </description>
-  <author>
-    Mathilde BENETTI
-    Clément MARTIN
-    Romain LASCAUX
-    Jérémy ANDRE
-    Thomas LAURENT
-    Romain GRUSON
-    Jérémy MARTIN
-  </author>
-  <content src="index.html"/>
-  <access origin="*"/>
-  <preference name="Orientation" value="portrait"/>
-  <preference name="Fullscreen" value="true"/>
-  <!-- ANDROID -->
-  <platform name="android">
-    <icon src="res/logo.png">
-    <preference name="enabled" value="true"/>
-  </platform>
-  <!-- IOS -->
-  <platform name="ios">
-    <icon src="res/logo.png" width="50" height="50"/>
-  </platform>
-  <plugin name="com.ludei.webviewplus.ios" spec="*"/>
-  <plugin name="com.ludei.webviewplus.android" spec="*"/>
-  <plugin name="cordova-plugin-file" spec="*"></plugin>
+    <description>
+    Projet S3 IUT2
+    </description>
+    <author>
+      Mathilde BENETTI
+      Clément MARTIN
+      Romain LASCAUX
+      Jérémy ANDRE
+      Thomas LAURENT
+      Romain GRUSON
+      Jérémy MARTIN
+    </author>
+
+    <content src="index.html" />
+    <access origin="*"/>
+
+    <preference name="Orientation" value="portrait"/>
+    <preference name="Fullscreen" value="true" />
+    <platform name="android">
+        <icon src="res/logo.png"/>
+        <preference name="enabled" value="true"/>
+    </platform>
+    <platform name="ios">
+        <icon src="res/logo.png" />
+    </platform>
+
+    <plugin name="com.ludei.webviewplus.ios" spec="*"/>
+    <plugin name="com.ludei.webviewplus.android" spec="*"/>
+    <plugin name="cordova-plugin-file" spec="*"></plugin>
+
 </widget>

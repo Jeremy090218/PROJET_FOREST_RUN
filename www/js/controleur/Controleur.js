@@ -282,7 +282,4 @@ class Controleur {
 
   }
 
-  couperSon(){
-    this.musiqueCourante.volume = 0;
-  }
 }

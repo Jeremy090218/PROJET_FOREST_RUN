@@ -43,6 +43,8 @@ class VueReponse extends Vue {
         this.controleur.play();
         this.delete();
 
+        this.vueRunner.buttonPause.className= "";
+
       }
 
 

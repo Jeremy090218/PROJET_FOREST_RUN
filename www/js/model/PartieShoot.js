@@ -42,7 +42,7 @@ class PartieShoot extends Partie {
     let reussi = false;
     let i = 0;
     while(i<this.elementsReponse.length && !reussi){
-      if(this.elementsReponse[i].verifierCoord(x*this.controleur.vueRendu.ew,y*this.controleur.vueRendu.eh)){
+      if(this.elementsReponse[i].verifierCoord(x,y)){
         let reponse = this.elementsReponse[i];
         if(this.question.repondre(reponse.getValeur())){
           reussi = true ;
@@ -57,7 +57,7 @@ class PartieShoot extends Partie {
       if(reussi){
         this.controleur.partieRunner.getPersonnage().initialisation();
 
-        if(this.nbQuestion-- == 0) {
+        if(--this.nbQuestion == 0) {
           this.controleur.switchMode("runner");
         } else {
           for (let i of this.getElementsReponse()) {

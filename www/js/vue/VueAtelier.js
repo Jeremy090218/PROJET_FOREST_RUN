@@ -30,7 +30,7 @@ class VueAtelier extends Vue {
     // (par défaut le chat est sélectionné)
     const choix_perso = this.create('select');
     choix_perso.options[0] = new Option("Chat", 0, false, this.controleur.getUtilisateur().getSkins().nom == "Chat");
-    choix_perso.options[1] = new Option("Chèvre", 1, false, this.controleur.getUtilisateur().getSkins().nom == "Chèvre");
+    choix_perso.options[1] = new Option("Chevre", 1, false, this.controleur.getUtilisateur().getSkins().nom == "Chevre");
     choix_perso.options[2] = new Option("Lapin", 2, false, this.controleur.getUtilisateur().getSkins().nom == "Lapin");
     //choix_perso.options[0].selected = true;
     this.add(choix_perso);

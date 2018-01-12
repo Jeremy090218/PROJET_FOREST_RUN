@@ -12,6 +12,7 @@ class VueConfirmationReinit extends Vue {
     buttonAccepter.innerHTML = "Oui";
     buttonAccepter.onclick = () => {
       this.controleur.changerVue(new VueOptions(this.controleur), this);
+      this.controleur.resetDataUtilisateur();
     }
 
     const buttonRetour = this.create('button');

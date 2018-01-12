@@ -228,13 +228,21 @@ class Controleur {
   }
 
   resetDataUtilisateur(){
-    if (confirm("Effacer toutes vos données ? Cette action est irreversible !!!")) {
-      for (let atr in this.dataUtilisateur) {
-        console.log("Remise à zero de: "+atr);
-        this.dataUtilisateur[atr] = null;
-      }
-      this.sauvegarderDonnees();
-    }
+    const dafaultData = `{
+      "persoCourant": {"nom": "Chat", "textureFixe": "Character_0_vue_0.png", "son":"Chat.mp3", "textureAnim": "Character_0_annimation.png"},
+      "achete": [{"nom": "Rien", "achat": true, "equipe": true, "prix": 0}],
+      "equipe": {"nom": "Rien", "achat": true, "equipe": true, "prix": 0},
+      "argent": 0,
+      "highScore": 0,
+
+      "missions": [{"eCourant": 20, "eDepart": 20},
+                   {"eCourant": 1000},
+                   {"eCourant": 10, "eDepart": 10}]
+    }`;
+
+    localStorage.setItem('forestSave', dafaultData);
+
+    location.reload();
   }
 
   debbug(){

@@ -99,6 +99,7 @@ button:active {
 } */
 
 #btnHD {
+ display : block;
   margin-right: 10px;
 }
 

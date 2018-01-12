@@ -26,10 +26,10 @@ class Controleur {
                                                   "Coin_1.png", "IconCoeur.png", "potionBleu.png","potionRouge.png", "Character_0_annimation.png",
                                                   "Character_0_vue_4.png","Character_0_vue_0.png", "Character_1_vue_0.png", "Character_2_vue_0.png","Ecran_accueil.png",
                                                   "Character_1_annimation.png",
-                                                  "Character_2_annimation.png",
+                                                  "Character_2_annimation.png", "Ecran_atelier.png",
                                                   "Ground_0_1_3D.png"]);
 
-    this.sons = new Bank("audio", "sons/", ["Chat.mp3", "crash.mp3", "Lapin.mp3", "Chèvre.mp3", "piece.mp3",
+    this.sons = new Bank("audio", "sons/", ["Chat.mp3", "crash.mp3", "Lapin.mp3", "Chevre.mp3", "piece.mp3",
                                             "musique_jeu01.mp3", "musique_jeu02.mp3", "musique_jeu03.mp3", "musique_menu.mp3"]);
 
     this.chargement();
@@ -73,7 +73,7 @@ class Controleur {
   }
 
   changerVue(vue, vueActuelle = null){
-    if(vueActuelle) vueActuelle.delete();
+    if(vueActuelle && vueActuelle.delete) vueActuelle.delete();
     this.rafraichirVues();
     this.vues.push(vue);
   }
@@ -84,7 +84,7 @@ class Controleur {
         if(!this.partieRunner) console.log("Erreur: aucune nouvelle partie initialisée");
         else {
           this.partieRendu = this.partieRunner;
-            this.changerVueUnique(new VueRunner(this));
+          this.changerVueUnique(new VueRunner(this));
         }
         break;
       case "shooter":

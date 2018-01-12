@@ -9,6 +9,7 @@ class VueAtelier extends Vue {
     buttonMenuPrincip.innerHTML = "Menu principal";
     buttonMenuPrincip.onclick = () => {
       console.log("Item choisi : " + this.controleur.getUtilisateur().getItemEquipe().getNom());
+      this.controleur.sauvegarderDonnees();
       this.controleur.changerVue(new VueMenuPrincipal(this.controleur),this);
     }
 

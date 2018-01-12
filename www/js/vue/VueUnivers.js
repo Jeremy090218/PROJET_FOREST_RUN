@@ -18,17 +18,17 @@ class VueUnivers extends Vue {
     this.add(divU);
     divU.id = "divU";
 
-    const blabla = this.create('p');
-    this.add(divU, blabla);
-    blabla.innerHTML = "Bienvenue dans FOREST RUN, un monde où une paix harmonieuse régnait depuis plusieurs Millénaires. Cet univers fait cohabiter différentes espèces d'animaux qui vivaient en parfaite symbiose.";
+    const univ1 = this.create('p');
+    this.add(divU, univ1);
+    univ1.innerHTML = "Bienvenue dans FOREST RUN, un monde où une paix harmonieuse régnait depuis plusieurs millénaires. Cet univers fait cohabiter différentes espèces d'animaux qui vivaient en parfaite symbiose.";
 
-    const blabla2 = this.create('p');
-    this.add(divU, blabla2);
-    blabla2.innerHTML = "Mais l'équilibre de la Forêt est à présent menacé ! Les Arbres Centenaires, maîtres de la Forêt ont été contaminés par une Force Obscure et certains animaux ont commencé à s'attaquer à leurs congénères.";
+    const univ2 = this.create('p');
+    this.add(divU, univ2);
+    univ2.innerHTML = "Mais l'équilibre de la Forêt est à présent menacé ! Les Arbres Centenaires, maîtres de la Forêt ont été contaminés par une Force Obscure et certains animaux ont commencé à s'attaquer à leurs congénères.";
 
-    const blabla3 = this.create('p');
-    this.add(divU, blabla3);
-    blabla3.innerHTML = "Tu vas donc incarner l'un de ses animaux pour essayer de rétablir l'ordre dans l'univers de FOREST RUN !";
+    const univ3 = this.create('p');
+    this.add(divU, univ3);
+    univ3.innerHTML = "Tu vas donc incarner l'un de ses animaux pour essayer de rétablir l'ordre dans l'univers de FOREST RUN !";
 
   }
 }

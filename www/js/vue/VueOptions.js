@@ -15,12 +15,15 @@ class VueOptions extends Vue {
       titre.innerHTML = "Options";
 
       const caseMuteText = this.create('label');
-      caseMuteText.innerHTML = "Son";
+      caseMuteText.innerHTML = "Couper le son";
       this.add(caseMuteText);
 
       const caseMute = this.create('input');
       caseMute.type = 'checkbox';
       this.add(caseMute);
+      caseMute.onclick = () => {
+        this.controleur.couperSon();
+      }
 
       const buttonReinit = this.create('button');
       this.add(buttonReinit);

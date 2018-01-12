@@ -205,7 +205,7 @@ class Question{
     } else {
       puissance = 2;
     }
-    return n + " ** " + puissance;
+    return n + "^" + puissance;
   }
 
 

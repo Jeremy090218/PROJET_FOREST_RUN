@@ -5,10 +5,11 @@ class VueShooter extends VueJeu {
     setTimeout(() => {
       document.addEventListener('touchstart', this.touchstart = (e) => {
         const pt = e.touches[0];
-        if (pt.clientX*this.ew > 290 && pt.clientY*this.eh < 50) {
+        if (pt.clientX/this.ew > 290 && pt.clientY/this.eh < 50) {
 
         } else if (this.controleur.isRunning()) {
-          this.controleur.partieShooter.verifierQuestion(pt.clientX,pt.clientY);
+          //console.log("click: ", pt.clientX/this.ew, pt.clientY/this.eh);
+          this.controleur.partieShooter.verifierQuestion(pt.clientX/this.ew,pt.clientY/this.eh);
         }
 
       }, false);

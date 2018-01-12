@@ -32,21 +32,23 @@ class VueReponse extends Vue {
     buttonReprendre.onclick = () => {
       //cbSuite();
 
+
       if (affQuestionSuivante) {
         this.controleur.partieRunner.setTemps(1200) ;
         this.controleur.partieRunner.setQuestionEquation(new Question(this.controleur));
         this.controleur.partieRunner.setNbReponse(0);
         this.controleur.changerVue(new VueQuestion(this.controleur, this.controleur.vueRendu), this);
       } else {
-        this.controleur.play();
-        /*if(reussi) {
-          this.delete();
-        }*/
 
+        this.controleur.play();
         this.delete();
+
       }
 
-      cbSuite();
+
+        cbSuite();
+
+
     }
   }
 

@@ -18,14 +18,50 @@ class VueShooter extends VueJeu {
     this.add(this.question);
     this.question.id = "afficheQuestionShooter";
 
-    this.refreshQuestion()
+    const num = Math.floor(Math.random()*1.99);
+
+    this.boss = this.controleur.textures.getObjet("Boss_"+num+".png");
+    this.bambou = this.controleur.textures.getObjet("Bambou.png");
+
+    this.refreshQuestion();
   }
 
 
 
   draw(){
-    this.ctx.fillStyle = "#152";
+    //this.ctx.fillStyle = "#152";
+    this.ctx.fillStyle = "#132";
     this.ctx.fillRect(0, 0, Partie.virtualW, Partie.virtualH);
+
+    this.ctx.fillStyle = "#004D40";
+    this.ctx.fillRect(0, 390, 360, 250);
+
+    for (let i = 0; i < 5; ++i) {
+      this.ctx.save();
+      this.ctx.translate((Partie.virtualW/5)*i, Partie.virtualH/2 - 100);
+      this.ctx.scale(3, 3);
+      this.ctx.translate(-this.bambou.width/2, -this.bambou.height/2);
+      this.ctx.drawImage(this.bambou, 0, 0);
+      this.ctx.restore();
+    }
+
+    for (let i = 0; i < 5; ++i) {
+      this.ctx.save();
+      this.ctx.translate((Partie.virtualW/5)*i, Partie.virtualH/2);
+      this.ctx.scale(3, 3);
+      this.ctx.translate(-this.bambou.width/2, -this.bambou.height/2);
+      this.ctx.drawImage(this.bambou, 0, 0);
+      this.ctx.restore();
+    }
+
+    this.ctx.save();
+    this.ctx.translate(Partie.virtualW/2, Partie.virtualH/2);
+    this.ctx.scale(4, 4);
+    this.ctx.translate(-this.boss.width/2, -this.boss.height/2);
+    this.ctx.drawImage(this.boss, 0, 0);
+    this.ctx.restore();
+
+
 
     this.iterDrawPercpec(this.controleur.partieShooter.getFileRendu());
   }

@@ -33,7 +33,7 @@ class MissionScore {
   }
 
   getMission(){
-    return "Atteindre "+ this.score;
+    return "Atteindre "+ this.score +" points";
   }
 }
 

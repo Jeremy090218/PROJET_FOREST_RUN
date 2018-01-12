@@ -10,6 +10,8 @@ class Obstacle extends ElementPartie {
       }
     }else if(monde == 2) {
       super(ctrl, "Coco_0.png", points, vitesse);
+    } else if (monde == 3) {
+      super(ctrl, "Snowman_0.png", points, vitesse);
     }
 
   }

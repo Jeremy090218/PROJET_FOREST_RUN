@@ -21,9 +21,9 @@ class Controleur {
     this.textures = new Bank("img", "textures/", ["default.png", "fondtest.png", "Ground_0_1.png","caillou.png", "Bannier.png",
                                                   "Obstacle_1.png", "Bonsai_droit.png", "Bonsai_gauche.png",
                                                   "Tree_0_1.png","Bambou.png","Palmier_droit.png","Palmier_gauche.png",
-                                                  "Nuage_0_1.png", "cible.png","Coco_0.png",
+                                                  "Nuage_0_1.png", "cible.png","Coco_0.png", "Boss_0.png", "Boss_1.png",
                                                   "Rock_1.png","Rock_2.png","Tree_1_1.png","Tree_1_2.png",
-                                                  "Coin_1.png", "IconCoeur.png", "potionBleu.png","potionRouge.png", "Character_0_annimation.png",
+                                                  "Coin_1.png", "IconCoeur.png", "potionBleu.png","potionRouge.png", "Character_0_annimation.png", "Snowman_0.png",
                                                   "Character_0_vue_4.png","Character_0_vue_0.png", "Character_1_vue_0.png", "Character_2_vue_0.png","Ecran_accueil.png",
                                                   "Character_1_annimation.png",
                                                   "Character_2_annimation.png", "Ecran_atelier.png",
@@ -156,8 +156,8 @@ class Controleur {
   chargerDonneesSauvegarde(cb){
     const dafaultData = `{
       "persoCourant": {"nom": "Chat", "textureFixe": "Character_0_vue_0.png", "son":"Chat.mp3", "textureAnim": "Character_0_annimation.png"},
-      "achete": [],
-      "equipe": {"nom": "Rien", "achat": true, "equipe": true, "pric": 20},
+      "achete": [{"nom": "Rien", "achat": true, "equipe": true, "prix": 0}],
+      "equipe": {"nom": "Rien", "achat": true, "equipe": true, "prix": 0},
       "argent": 0,
       "highScore": 0,
 

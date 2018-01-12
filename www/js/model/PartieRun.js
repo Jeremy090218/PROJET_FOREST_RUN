@@ -34,6 +34,7 @@ class PartieRun extends Partie {
         case 0: this.goCouleurSol = [17, 170, 85]; break;
         case 1: this.goCouleurSol = [17, 200, 40]; break;
         case 2: this.goCouleurSol = [241, 196, 15]; break;
+        case 3: this.goCouleurSol = [236, 240, 241]; break;
       }
     });
   }
@@ -212,11 +213,14 @@ setOnChangeMonde(e){this.onChangeMonde = e;}
         this.controleur.updateMission(this.getPieceRecup(),this.getScore(),this.nbQuestionReussi);
         this.controleur.switchMode("shooter");
       }
-      if(this.getScore()>150 && this.monde == 0){
+      if(this.getScore()>200 && this.monde == 0){
         this.monde = 1; this.onChangeMonde(this.monde);
       }
-      if(this.getScore()> 300 && this.monde == 1){
+      if(this.getScore()> 400 && this.monde == 1){
         this.monde = 2; this.onChangeMonde(this.monde);
+      }
+      if(this.getScore()> 600 && this.monde == 2){
+        this.monde = 3; this.onChangeMonde(this.monde);
       }
     }
 

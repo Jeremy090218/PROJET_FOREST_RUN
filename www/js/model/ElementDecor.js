@@ -27,6 +27,12 @@ class ElementDecor extends ElementPartie {
           super(ctrl, "Tree_1_2.png",[{x: xx, y: 300, z: 1}, {x: xx-400, y: 800, z: 10}], vitesse);
         }
       }
+    } else if (monde == 3) {
+      if(xx > 180){
+        super(ctrl, "Tree_1_1.png",[{x: xx, y: 300, z: 1}, {x: xx+400, y: 800, z: 10}], vitesse);
+      }else{
+        super(ctrl, "Tree_1_1.png",[{x: xx, y: 300, z: 1}, {x: xx-400, y: 800, z: 10}], vitesse);
+      }
     }
 
   }

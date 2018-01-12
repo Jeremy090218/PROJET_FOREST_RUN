@@ -47,6 +47,10 @@ class Utilisateur {
     this.setSkins(data.persoCourant);
     this.setHighScore(data.highScore);
     this.setArgent(parseInt(data.argent));
+
+    for (let i = 0; i < this.getItems().length; i++) {
+      this.boutique.enleverItem(this.getItems()[i]);
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
